@@ -25,7 +25,7 @@ npm install @requify/requify-design-system
 # or
 yarn add @requify/requify-design-system
 # or
-bun add @requify/requify-design-system
+pnpm add @requify/requify-design-system
 ```
 
 ### Tailwind CSS Setup
@@ -146,19 +146,19 @@ The design system uses CSS variables for colors, making it easy to customize the
 
 ```bash
 # Install dependencies
-bun install
+pnpm install
 
 # Start development server
-bun run dev
+pnpm run dev
 
 # Build for production
-bun run build
+pnpm run build:lib
 
 # Type check
-bun run check
+pnpm run check
 
 # Format code
-bun run format
+pnpm run format
 ```
 
 ## License

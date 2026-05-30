@@ -32,35 +32,35 @@ You are a senior UI component developer with expertise in building reusable, acc
 
 ### Build & Development
 
-- `bun run dev` - Start development server with hot module replacement
-- `bun run build` - Build production bundle
-- `bun run preview` - Preview production build locally
-- `bun run svelte-sync` - Sync SvelteKit type definitions
+- `pnpm run dev` - Start development server with hot module replacement
+- `pnpm run build:lib` - Build library bundle
+- `pnpm run build:site` - Build showcase site
+- `pnpm run preview` - Preview production build locally
+- `pnpm run svelte-sync` - Sync SvelteKit type definitions
 
 ### Code Quality & Linting
 
-- `bun run check` - Type check with svelte-check (MUST pass with 0 errors)
-- `bun run check:watch` - Type check in watch mode during development
-- `bun run lint` - Check code formatting with Prettier
-- `bun run format` - Format code with Prettier
-- `bun run format-check` - Check formatting without modifying files
+- `pnpm run check` - Type check with svelte-check (MUST pass with 0 errors)
+- `pnpm run check:watch` - Type check in watch mode during development
+- `pnpm run lint` - Check code formatting with Prettier
+- `pnpm run format` - Format code with Prettier
+- `pnpm run format-check` - Check formatting without modifying files
 
-**CRITICAL**: Always run `bun run check` before considering any code changes complete. All code must pass svelte-check with zero errors. This is mandatory for all changes.
+**CRITICAL**: Always run `pnpm run check` before considering any code changes complete. All code must pass svelte-check with zero errors. This is mandatory for all changes.
 
 ### Testing
 
-- `bun test` - Run tests with Vitest (use Node.js for DOM-dependent tests)
-- `bun run test` - Run tests with Vitest (use for @testing-library/svelte tests)
-- `bun run test:watch` - Run tests in watch mode
-- `bun run test:coverage` - Run tests with coverage reporting
-- `bun test:ui` - Run tests with Vitest UI
+- `pnpm test` - Run tests with Vitest
+- `pnpm run test:watch` - Run tests in watch mode
+- `pnpm run test:coverage` - Run tests with coverage reporting
+- `pnpm run test:ui` - Run tests with Vitest UI
 
-**Important**: For tests requiring DOM environments (components with @testing-library/svelte), use `bun run test` instead of `bun test`. Bun runtime doesn't properly support Vitest's DOM environments (happy-dom/jsdom), while Node.js does.
+**Important**: Use `pnpm test` to run tests via Vitest. pnpm executes scripts through Node.js, which properly supports Vitest's DOM environments (happy-dom/jsdom).
 
 ### Package Publishing
 
-- `bun run build` - Build production bundle for npm publishing
-- `bun publish` - Publish package to npm registry (requires npm login)
+- `pnpm run build:lib` - Build library bundle for npm publishing
+- `npm publish` - Publish package to npm registry (requires npm login)
 - `git tag -a v<version> -m "v<version>"` - Create git tag for version
 
 ## Project Knowledge
@@ -72,7 +72,7 @@ You are a senior UI component developer with expertise in building reusable, acc
 - **Primitives**: bits-ui v2 for accessibility-first headless components
 - **Icons**: @lucide/svelte for consistent iconography
 - **Type Checking**: TypeScript strict mode with svelte-check
-- **Runtime**: Bun for development and build
+- **Runtime**: Node.js with pnpm for development and build
 - **Framework**: SvelteKit for dev server and static site generation
 - **Date Handling**: @internationalized/date for date components
 
@@ -419,11 +419,11 @@ if (value !== undefined && onChange) {
 - **Tailwind CSS 4**: Utility-first CSS with custom theme via CSS custom properties
 - **bits-ui**: Headless primitives with built-in accessibility (Dialog, DropdownMenu, Popover, etc.)
 - **TypeScript**: Strict mode with comprehensive type definitions
-- **Bun**: Fast JavaScript runtime for development and builds
+- **pnpm**: Fast, disk-efficient package manager for development and builds
 
 ## Boundaries
 
-- **Always do:** Write to `src/lib/components/ui/base/` and `src/lib/utils/`, run `bun run check` before commits, follow naming conventions, use snippets for slots, ensure accessibility, use CSS custom properties for theming
+- **Always do:** Write to `src/lib/components/ui/base/` and `src/lib/utils/`, run `pnpm run check` before commits, follow naming conventions, use snippets for slots, ensure accessibility, use CSS custom properties for theming
 - **Ask first:** Adding new peer dependencies, major API changes to existing components, breaking changes to public API, removing components from index.ts exports
 - **Never do:** Commit without running type check, remove exported components without version bump, use inline styles (use Tailwind classes), ignore accessibility, hardcode colors (use CSS custom properties), use any types without justification
 
@@ -431,7 +431,7 @@ if (value !== undefined && onChange) {
 
 ### Mandatory Type Checking
 
-**All code changes MUST pass `bun run check` with zero errors before being considered complete.** This is non-negotiable.
+**All code changes MUST pass `pnpm run check` with zero errors before being considered complete.** This is non-negotiable.
 
 ### Common Type Error Patterns and Solutions
 
@@ -497,9 +497,9 @@ if (value !== undefined && onChange) {
 
 Before considering any code changes complete:
 
-1. **Run `bun run check`** - Must pass with 0 errors
-2. **Run `bun run lint`** - Code must be properly formatted
-3. **Run `bun run test`** - All tests must pass
+1. **Run `pnpm run check`** - Must pass with 0 errors
+2. **Run `pnpm run lint`** - Code must be properly formatted
+3. **Run `pnpm test`** - All tests must pass
 4. **Test in showcase page** - Verify component renders correctly in design system page
 5. **Check accessibility** - Verify keyboard navigation and screen reader support
 6. **Check dark mode** - Verify component works in both light and dark modes
@@ -567,9 +567,9 @@ npm version patch  # or minor, major
 
 Before publishing to npm:
 
-1. **Build production bundle**: `bun run build`
-2. **Run all tests**: `bun run test`
-3. **Run type check**: `bun run check`
+1. **Build production bundle**: `pnpm run build:lib`
+2. **Run all tests**: `pnpm test`
+3. **Run type check**: `pnpm run check`
 4. **Update package.json**: Ensure version is bumped
 5. **Update README.md**: Document new features, breaking changes
 6. **Update CHANGELOG.md** (if exists): List all changes
@@ -591,11 +591,11 @@ npm view requify-design-system
 
 ## Agent Best Practices
 
-1. **Always run type check after modifications**: After any code modification, run `bun run check` to ensure zero TypeScript errors before proceeding
+1. **Always run type check after modifications**: After any code modification, run `pnpm run check` to ensure zero TypeScript errors before proceeding
 2. **Read before editing**: Always examine existing component patterns before making changes
 3. **Follow existing conventions**: Match the code style and patterns already established in the codebase
 4. **Test thoroughly**: Test all prop variants, states, and edge cases before considering changes complete
-5. **Type safety first**: Never commit code that doesn't pass `bun run check`
+5. **Type safety first**: Never commit code that doesn't pass `pnpm run check`
 6. **Accessibility first**: Ensure all interactive elements are keyboard accessible and properly labeled
 7. **Theme compatibility**: Always use CSS custom properties, never hardcode colors
 8. **Documentation**: Keep README.md updated with new components and breaking changes
@@ -619,7 +619,7 @@ When developing new components:
 9. **Write tests** covering all variants, states, and edge cases
 10. **Add to index.ts** export for public API
 11. **Add to showcase page** (`src/routes/+page.svelte`) for demo
-12. **Run type check**: `bun run check` must pass
+12. **Run type check**: `pnpm run check` must pass
 13. **Test manually** in dev server
 14. **Update README.md** with component documentation
 15. **Run all tests**: Ensure no regressions

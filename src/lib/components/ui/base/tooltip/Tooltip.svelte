@@ -122,27 +122,29 @@
 		</BitsTooltip.Trigger>
 
 		<BitsTooltip.Content forceMount {side} {align} {...restProps}>
-			{#snippet child({ props, open })}
+			{#snippet child({ wrapperProps, props, open })}
 				{#if open}
-					<div
-						{...props}
-						transition:scale={{
-							duration: 100,
-							start: 0.95,
-							opacity: 0
-						}}
-						class={cn(
-							'z-50 overflow-hidden rounded-md border border-gray-200 bg-white px-3 py-1.5 text-sm text-gray-900 shadow-md dark:border-gray-700 dark:bg-gray-800 dark:text-gray-50',
-							classValue
-						)}>
-						{#if hasContent}
-							{#if isStringContent}
-								{content}
-							{:else}
-								{@render (content as Snippet)()}
+					<div {...wrapperProps}>
+						<div
+							{...props}
+							transition:scale={{
+								duration: 100,
+								start: 0.95,
+								opacity: 0
+							}}
+							class={cn(
+								'z-50 overflow-hidden rounded-md border border-gray-200 bg-white px-3 py-1.5 text-sm text-gray-900 shadow-md dark:border-gray-700 dark:bg-gray-800 dark:text-gray-50',
+								classValue
+							)}>
+							{#if hasContent}
+								{#if isStringContent}
+									{content}
+								{:else}
+									{@render (content as Snippet)()}
+								{/if}
 							{/if}
-						{/if}
-						<BitsTooltip.Arrow class="fill-white dark:fill-gray-800" />
+							<BitsTooltip.Arrow class="fill-white dark:fill-gray-800" />
+						</div>
 					</div>
 				{/if}
 			{/snippet}

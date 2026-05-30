@@ -1,6 +1,6 @@
 {
 	"name": "@requify/requify-design-system",
-	"version": "0.8.1",
+	"version": "0.9.0",
 	"description": "A professional, customizable design system for Requify built with Svelte 5, Tailwind CSS, and bits-ui",
 	"keywords": [
 		"svelte",
@@ -51,12 +51,12 @@
 		"lint": "prettier --check .",
 		"format": "prettier --experimental-cli --write .",
 		"format-check": "prettier --experimental-cli --check .",
-		"prepublishOnly": "bun run build:lib"
+		"prepublishOnly": "pnpm run build:lib"
 	},
 	"dependencies": {
 		"@internationalized/date": "^3.12.0",
 		"@lucide/svelte": "^1.7.0",
-		"bits-ui": "^2.17.2",
+		"bits-ui": "^2.18.1",
 		"clsx": "^2.1.1",
 		"tailwind-merge": "^3.5.0"
 	},
@@ -82,5 +82,6 @@
 	"publishConfig": {
 		"access": "public",
 		"provenance": true
-	}
+	},
+	"packageManager": "pnpm@11.1.3"
 }

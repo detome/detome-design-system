@@ -117,23 +117,25 @@
 	{/if}
 
 	<PopoverPrimitive.Content forceMount {align} {side} {...restProps}>
-		{#snippet child({ props, open })}
+		{#snippet child({ wrapperProps, props, open })}
 			{#if open}
-				<div
-					{...props}
-					transition:scale={{
-						duration: 150,
-						start: 0.95,
-						opacity: 0,
-						easing: (t) => t * (2 - t)
-					}}
-					class={cn(
-						'z-50 rounded-lg border border-gray-200 bg-white p-4 shadow-lg dark:border-gray-700 dark:bg-gray-800',
-						className
-					)}>
-					{#if children}
-						{@render children()}
-					{/if}
+				<div {...wrapperProps}>
+					<div
+						{...props}
+						transition:scale={{
+							duration: 150,
+							start: 0.95,
+							opacity: 0,
+							easing: (t) => t * (2 - t)
+						}}
+						class={cn(
+							'z-50 rounded-lg border border-gray-200 bg-white p-4 shadow-lg dark:border-gray-700 dark:bg-gray-800',
+							className
+						)}>
+						{#if children}
+							{@render children()}
+						{/if}
+					</div>
 				</div>
 			{/if}
 		{/snippet}

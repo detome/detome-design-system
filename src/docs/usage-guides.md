@@ -795,7 +795,7 @@ Use proper state management:
 
 ### TypeScript Errors
 
-1. Run `bun run check` to see detailed errors
+1. Run `pnpm run check` to see detailed errors
 2. Check component props interface
 3. Verify enum imports
 
