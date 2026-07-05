@@ -34,13 +34,9 @@
 		"dist",
 		"!dist/**/*.test.*",
 		"!dist/**/*.spec.*",
-		"!dist/**/__tests__/**",
-		"!dist/test-utils/**",
 		"src/lib",
 		"!src/lib/**/*.test.*",
-		"!src/lib/**/*.spec.*",
-		"!src/lib/**/__tests__/**",
-		"!src/lib/test-utils/**"
+		"!src/lib/**/*.spec.*"
 	],
 	"sideEffects": [
 		"**/*.css"

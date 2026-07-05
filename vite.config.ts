@@ -20,8 +20,8 @@ const vitestBrowserConditionPlugin: Plugin = {
 const config = defineConfig({
 	plugins: [sveltekit() as any, tailwindcss(), vitestBrowserConditionPlugin],
 	test: {
-		include: ['src/**/*.browser.test.ts'],
-		setupFiles: ['vitest-browser-svelte', './src/lib/test-utils/vitest-setup.ts'],
+		include: ['tests/**/*.browser.test.ts'],
+		setupFiles: ['vitest-browser-svelte', './tests/setup.ts'],
 		browser: {
 			enabled: true,
 			headless: true,

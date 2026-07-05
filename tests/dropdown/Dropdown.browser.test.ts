@@ -1,8 +1,8 @@
 import { expect, test, vi } from 'vitest';
 import { render } from 'vitest-browser-svelte';
 import { page } from 'vitest/browser';
-import { expectExists, expectNotExists } from '$lib/test-utils/browser-utils';
-import DropdownHarness from './DropdownHarness.test.svelte';
+import { expectExists, expectNotExists } from '../browser-utils';
+import DropdownHarness from './DropdownHarness.svelte';
 
 test('opens the menu and shows items when the trigger is clicked', async () => {
 	render(DropdownHarness);

@@ -1,8 +1,8 @@
 import { expect, test } from 'vitest';
 import { render } from 'vitest-browser-svelte';
 import { page, userEvent } from 'vitest/browser';
-import { expectExists, expectNotExists } from '$lib/test-utils/browser-utils';
-import PopoverHarness from './PopoverHarness.test.svelte';
+import { expectExists, expectNotExists } from '../browser-utils';
+import PopoverHarness from './PopoverHarness.svelte';
 
 test('content is not rendered until the trigger is clicked', async () => {
 	render(PopoverHarness);

@@ -2,8 +2,8 @@ import { expect, test } from 'vitest';
 import { render } from 'vitest-browser-svelte';
 import { page } from 'vitest/browser';
 import { Select } from '$lib';
-import { expectExists, expectNotExists } from '$lib/test-utils/browser-utils';
-import SelectChildrenHarness from './SelectChildrenHarness.test.svelte';
+import { expectExists, expectNotExists } from '../browser-utils';
+import SelectChildrenHarness from './SelectChildrenHarness.svelte';
 
 const options = [
 	{ value: 'a', label: 'Option A' },

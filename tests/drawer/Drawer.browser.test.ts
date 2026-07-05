@@ -1,8 +1,8 @@
 import { expect, test } from 'vitest';
 import { render } from 'vitest-browser-svelte';
 import { page } from 'vitest/browser';
-import { expectExists, expectNotExists } from '$lib/test-utils/browser-utils';
-import DrawerHarness from './DrawerHarness.test.svelte';
+import { expectExists, expectNotExists } from '../browser-utils';
+import DrawerHarness from './DrawerHarness.svelte';
 
 test('is not in the document when closed', async () => {
 	render(DrawerHarness, { open: false });
