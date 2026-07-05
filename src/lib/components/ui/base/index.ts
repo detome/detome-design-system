@@ -38,6 +38,7 @@ export { default as Hr } from './separator/Hr.svelte';
 // Phase 4: Alerts & Toasts
 export { default as Alert } from './alert/Alert.svelte';
 export { default as Toast } from './toast/Toast.svelte';
+export { default as ToastProvider } from './toast/ToastProvider.svelte';
 
 // Phase 5: Navigation components
 export { default as Sidebar } from './navigation/Sidebar.svelte';
