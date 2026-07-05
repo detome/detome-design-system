@@ -112,29 +112,31 @@
 		</DropdownMenu.Trigger>
 	{/if}
 
-	<DropdownMenu.Content
-		forceMount
-		{align}
-		{side}
-		{updatePositionStrategy}
-		{hideWhenDetached}
-		{...restProps}>
-		{#snippet child({ wrapperProps, props, open })}
-			{#if open}
-				<div {...wrapperProps}>
-					<div
-						{...props}
-						transition:scale={{ duration: 100, start: 0.95 }}
-						class={cn(
-							'z-50 min-w-32 overflow-hidden rounded-md border border-gray-200 bg-white p-1 shadow-md dark:border-gray-700 dark:bg-gray-800',
-							classValue
-						)}>
-						{#if children}
-							{@render children()}
-						{/if}
+	<DropdownMenu.Portal>
+		<DropdownMenu.Content
+			forceMount
+			{align}
+			{side}
+			{updatePositionStrategy}
+			{hideWhenDetached}
+			{...restProps}>
+			{#snippet child({ wrapperProps, props, open })}
+				{#if open}
+					<div {...wrapperProps}>
+						<div
+							{...props}
+							transition:scale={{ duration: 100, start: 0.95 }}
+							class={cn(
+								'z-50 min-w-32 overflow-hidden rounded-md border border-gray-200 bg-white p-1 shadow-md dark:border-gray-700 dark:bg-gray-800',
+								classValue
+							)}>
+							{#if children}
+								{@render children()}
+							{/if}
+						</div>
 					</div>
-				</div>
-			{/if}
-		{/snippet}
-	</DropdownMenu.Content>
+				{/if}
+			{/snippet}
+		</DropdownMenu.Content>
+	</DropdownMenu.Portal>
 </DropdownMenu.Root>

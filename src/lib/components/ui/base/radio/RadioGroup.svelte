@@ -101,7 +101,7 @@
 	const containerClass = $derived(orientation === 'horizontal' ? 'flex gap-4' : 'space-y-2');
 </script>
 
-<BitsRadioGroup.Root bind:value {disabled} {name} class={cn(containerClass, className)}>
+<BitsRadioGroup.Root bind:value {disabled} {required} {name} class={cn(containerClass, className)}>
 	{#if children}
 		<!-- Support for custom children -->
 		{@render children()}

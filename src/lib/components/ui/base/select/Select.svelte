@@ -94,13 +94,14 @@
 	}
 
 	const baseStyles =
-		'flex h-10 w-full items-center justify-between rounded-md border bg-white px-4 text-sm transition-all duration-200';
+		'flex h-10 w-full items-center justify-between rounded-md border bg-white px-4 text-sm text-gray-900 transition-all duration-200 dark:text-gray-50';
 	const normalStyles =
 		'border-gray-300 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-800 dark:hover:bg-gray-700';
 	const errorStyles = $derived(
 		error ? 'border-error-500 focus:ring-error-500' : 'border-gray-300 dark:border-gray-600'
 	);
 	const disabledStyles = 'disabled:cursor-not-allowed disabled:opacity-50';
+	const valueStyles = $derived(selected ? '' : 'text-gray-400 dark:text-gray-500');
 </script>
 
 <div class="w-full">
@@ -112,33 +113,35 @@
 		<BitsSelect.Trigger
 			{id}
 			class={cn(baseStyles, errorStyles, normalStyles, disabledStyles, classValue)}>
-			<span class="flex-1 text-left">
+			<span class={cn('flex-1 text-left', valueStyles)}>
 				{selected?.label ?? placeholder}
 			</span>
 			<ChevronDown class="h-4 w-4 opacity-50" />
 		</BitsSelect.Trigger>
 
-		<BitsSelect.Content
-			class="z-50 max-h-96 w-[var(--bits-select-anchor-width)] overflow-auto rounded-md border border-gray-200 bg-white shadow-lg dark:border-gray-700 dark:bg-gray-800">
-			{#if children}
-				{@render children()}
-			{:else if options.length > 0}
-				{#each options as option}
-					<BitsSelect.Item
-						value={option.value?.toString() ?? ''}
-						label={option.label}
-						disabled={option.disabled}
-						class="text-md relative flex cursor-pointer items-center px-8 py-3 text-left hover:bg-gray-100 data-[disabled]:pointer-events-none data-[disabled]:opacity-50 dark:hover:bg-gray-700">
-						{#if value === option.value}
-							<span class="absolute left-2">
-								<Check class="h-4 w-4" />
-							</span>
-						{/if}
-						{option.label}
-					</BitsSelect.Item>
-				{/each}
-			{/if}
-		</BitsSelect.Content>
+		<BitsSelect.Portal>
+			<BitsSelect.Content
+				class="z-50 max-h-96 w-[var(--bits-select-anchor-width)] overflow-auto rounded-md border border-gray-200 bg-white shadow-lg dark:border-gray-700 dark:bg-gray-800">
+				{#if children}
+					{@render children()}
+				{:else if options.length > 0}
+					{#each options as option}
+						<BitsSelect.Item
+							value={option.value?.toString() ?? ''}
+							label={option.label}
+							disabled={option.disabled}
+							class="text-md relative flex cursor-pointer items-center px-8 py-3 text-left text-gray-900 hover:bg-gray-100 data-[disabled]:pointer-events-none data-[disabled]:opacity-50 dark:text-gray-50 dark:hover:bg-gray-700">
+							{#if value === option.value}
+								<span class="absolute left-2">
+									<Check class="h-4 w-4" />
+								</span>
+							{/if}
+							{option.label}
+						</BitsSelect.Item>
+					{/each}
+				{/if}
+			</BitsSelect.Content>
+		</BitsSelect.Portal>
 	</BitsSelect.Root>
 
 	{#if error}

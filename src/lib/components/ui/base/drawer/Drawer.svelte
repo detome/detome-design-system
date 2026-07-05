@@ -113,32 +113,34 @@
 </script>
 
 <Dialog.Root bind:open>
-	{#if backdrop}
-		<Dialog.Overlay forceMount>
+	<Dialog.Portal>
+		{#if backdrop}
+			<Dialog.Overlay forceMount>
+				{#snippet child({ props, open })}
+					{#if open}
+						<div
+							{...props}
+							transition:fade={{ duration: 200 }}
+							class="fixed inset-0 z-30 bg-gray-900/50 dark:bg-gray-900/80">
+						</div>
+					{/if}
+				{/snippet}
+			</Dialog.Overlay>
+		{/if}
+
+		<Dialog.Content forceMount={true}>
 			{#snippet child({ props, open })}
 				{#if open}
 					<div
 						{...props}
-						transition:fade={{ duration: 200 }}
-						class="fixed inset-0 z-30 bg-gray-900/50 dark:bg-gray-900/80">
+						class={cn(placementStyles[placement] as string, 'z-40 overflow-y-auto', className)}
+						transition:fly={getTransition(placement)}>
+						{#if children}
+							{@render children()}
+						{/if}
 					</div>
 				{/if}
 			{/snippet}
-		</Dialog.Overlay>
-	{/if}
-
-	<Dialog.Content forceMount={true}>
-		{#snippet child({ props, open })}
-			{#if open}
-				<div
-					{...props}
-					class={cn(placementStyles[placement] as string, 'z-40 overflow-y-auto', className)}
-					transition:fly={getTransition(placement)}>
-					{#if children}
-						{@render children()}
-					{/if}
-				</div>
-			{/if}
-		{/snippet}
-	</Dialog.Content>
+		</Dialog.Content>
+	</Dialog.Portal>
 </Dialog.Root>

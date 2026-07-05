@@ -28,6 +28,7 @@
 		Accordion,
 		AccordionItem,
 		Tooltip,
+		Popover,
 		Drawer,
 		DateRangePicker,
 		Datepicker,
@@ -118,6 +119,11 @@
 				href="#modal"
 				class="bg-primary-100 text-primary-700 hover:bg-primary-200 dark:bg-primary-900 dark:text-primary-300 dark:hover:bg-primary-800 rounded-full px-3 py-1 text-sm font-medium">
 				Modal
+			</a>
+			<a
+				href="#overlays"
+				class="bg-primary-100 text-primary-700 hover:bg-primary-200 dark:bg-primary-900 dark:text-primary-300 dark:hover:bg-primary-800 rounded-full px-3 py-1 text-sm font-medium">
+				Overlays
 			</a>
 			<a
 				href="#tabs"
@@ -373,6 +379,57 @@
 					{/snippet}
 				</Modal>
 			</Card>
+		</section>
+
+		<section id="overlays">
+			<h2 class="mb-6 text-2xl font-semibold text-gray-900 dark:text-gray-50">Overlays</h2>
+
+			<div class="space-y-6">
+				<Card variant="default">
+					<h3 class="mb-4 text-lg font-semibold text-gray-900 dark:text-white">Popover</h3>
+					<Popover>
+						{#snippet trigger()}
+							<Button variant="outline">Open Popover</Button>
+						{/snippet}
+						<div class="w-64">
+							<h4 class="text-sm font-semibold text-gray-900 dark:text-white">Popover Title</h4>
+							<p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
+								Rich, interactive content that stays open until you click outside or press Escape.
+							</p>
+						</div>
+					</Popover>
+				</Card>
+
+				<Card variant="default">
+					<h3 class="mb-4 text-lg font-semibold text-gray-900 dark:text-white">Drawer</h3>
+					<div class="flex flex-wrap gap-3">
+						<Button variant="outline" onclick={() => (drawerOpen = true)}>Open Left Drawer</Button>
+						<Button variant="outline" onclick={() => (drawerRightOpen = true)}>
+							Open Right Drawer
+						</Button>
+					</div>
+
+					<Drawer bind:open={drawerOpen} placement="left">
+						<h3 class="mb-4 text-lg font-semibold text-gray-900 dark:text-white">Left Drawer</h3>
+						<p class="text-sm text-gray-600 dark:text-gray-400">
+							Slides in from the left edge of the viewport with a backdrop.
+						</p>
+						<div class="mt-6">
+							<Button variant="outline" onclick={() => (drawerOpen = false)}>Close</Button>
+						</div>
+					</Drawer>
+
+					<Drawer bind:open={drawerRightOpen} placement="right">
+						<h3 class="mb-4 text-lg font-semibold text-gray-900 dark:text-white">Right Drawer</h3>
+						<p class="text-sm text-gray-600 dark:text-gray-400">
+							Slides in from the right edge of the viewport with a backdrop.
+						</p>
+						<div class="mt-6">
+							<Button variant="outline" onclick={() => (drawerRightOpen = false)}>Close</Button>
+						</div>
+					</Drawer>
+				</Card>
+			</div>
 		</section>
 
 		<section id="tabs">
