@@ -35,12 +35,13 @@ Image component with consistent styling and loading behavior.
 
 ### Props API
 
-| Prop      | Type                | Default  | Description                           |
-| --------- | ------------------- | -------- | ------------------------------------- |
-| `src`     | `string`            | -        | Image source URL (required)           |
-| `alt`     | `string`            | -        | Alt text for accessibility (required) |
-| `class`   | `string`            | -        | Additional CSS classes to apply       |
-| `loading` | `'lazy' \| 'eager'` | `'lazy'` | Loading behavior                      |
+| Prop    | Type     | Default | Description                           |
+| ------- | -------- | ------- | ------------------------------------- |
+| `src`   | `string` | -       | Image source URL (required)           |
+| `alt`   | `string` | -       | Alt text for accessibility (required) |
+| `class` | `string` | -       | Additional CSS classes to apply       |
+
+Note: `loading`/`width`/`height`/`srcset`/etc. are native `<img>` attributes passed straight through — there is no component-level default for `loading` and no built-in fallback-image behavior.
 
 ### Examples
 
@@ -100,6 +101,8 @@ Horizontal rule component for visual separation.
 | Prop    | Type     | Default | Description                     |
 | ------- | -------- | ------- | ------------------------------- |
 | `class` | `string` | -       | Additional CSS classes to apply |
+
+Note: there is no `variant` prop — use `class` for dashed/dotted styles (e.g. `class="border-dashed"`).
 
 ### Examples
 
@@ -311,11 +314,11 @@ Helper text component for form fields and descriptions. Provides contextual info
 
 ### Props API
 
-| Prop       | Type                                             | Default     | Description                     |
-| ---------- | ------------------------------------------------ | ----------- | ------------------------------- |
-| `children` | `Snippet`                                        | -           | Helper text content             |
-| `class`    | `string`                                         | -           | Additional CSS classes to apply |
-| `color`    | `'default' \| 'success' \| 'error' \| 'warning'` | `'default'` | Text color variant              |
+| Prop       | Type                                          | Default  | Description                     |
+| ---------- | --------------------------------------------- | -------- | ------------------------------- |
+| `children` | `Snippet`                                     | -        | Helper text content             |
+| `class`    | `string`                                      | -        | Additional CSS classes to apply |
+| `color`    | `'info' \| 'success' \| 'error' \| 'warning'` | `'info'` | Text color variant              |
 
 ### Examples
 

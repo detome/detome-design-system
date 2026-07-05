@@ -13,8 +13,8 @@
 	 * @example Basic usage
 	 * ```svelte
 	 * <Dropdown trigger>
-	 *   {#snippet trigger()}
-	 *     <Button>Open Menu</Button>
+	 *   {#snippet trigger({ props })}
+	 *     <Button {...props}>Open Menu</Button>
 	 *   {/snippet}
 	 *   <DropdownItem onclick={handleAction1}>Action 1</DropdownItem>
 	 *   <DropdownItem onclick={handleAction2}>Action 2</DropdownItem>
@@ -27,8 +27,8 @@
 	 * @example With custom alignment
 	 * ```svelte
 	 * <Dropdown align="end" trigger>
-	 *   {#snippet trigger()}
-	 *     <Button variant="outline">Options</Button>
+	 *   {#snippet trigger({ props })}
+	 *     <Button variant="outline" {...props}>Options</Button>
 	 *   {/snippet}
 	 *   <DropdownItem>Option 1</DropdownItem>
 	 *   <DropdownItem>Option 2</DropdownItem>
@@ -38,8 +38,8 @@
 	 * @example Right-aligned dropdown
 	 * ```svelte
 	 * <Dropdown side="right" trigger>
-	 *   {#snippet trigger()}
-	 *     <Button>Profile</Button>
+	 *   {#snippet trigger({ props })}
+	 *     <Button {...props}>Profile</Button>
 	 *   {/snippet}
 	 *   <DropdownItem>Settings</DropdownItem>
 	 *   <DropdownItem>Logout</DropdownItem>
@@ -47,7 +47,7 @@
 	 * ```
 	 *
 	 * @param {boolean} open - Dropdown open state (bindable). Default: false
-	 * @param {Snippet} trigger - Trigger element that opens dropdown (required)
+	 * @param {Snippet} trigger - Trigger element that opens dropdown (required). Receives `{ props }` to spread onto the rendered trigger element for correct keyboard/ARIA behavior.
 	 * @param {Snippet} children - Dropdown menu items (DropdownItem, DropdownDivider, DropdownHeader, DropdownLink)
 	 * @param {Align | AlignType} align - Horizontal alignment of dropdown. Default: Align.START
 	 *   Options: 'start' | 'center' | 'end'
@@ -73,7 +73,7 @@
 		/** Whether dropdown is open */
 		open?: boolean;
 		/** Trigger element content */
-		trigger?: Snippet;
+		trigger?: Snippet<[{ props: Record<string, unknown> }]>;
 		/** Dropdown content */
 		children?: Snippet;
 		/** Dropdown alignment */
@@ -105,9 +105,7 @@
 	{#if trigger}
 		<DropdownMenu.Trigger>
 			{#snippet child({ props })}
-				<span {...props}>
-					{@render trigger()}
-				</span>
+				{@render trigger({ props })}
 			{/snippet}
 		</DropdownMenu.Trigger>
 	{/if}

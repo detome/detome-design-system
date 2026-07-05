@@ -6,8 +6,8 @@
 
 <div data-testid="local-root">
 	<Popover bind:open>
-		{#snippet trigger()}
-			<span data-testid="trigger">Open</span>
+		{#snippet trigger({ props })}
+			<button data-testid="trigger" {...props}>Open</button>
 		{/snippet}
 		<div data-testid="content">Popover content</div>
 	</Popover>

@@ -1,6 +1,6 @@
 {
 	"$schema": "https://context7.com/schema/context7.json",
-	"projectTitle": "Requify Design System",
+	"projectTitle": "Detome Design System",
 	"description": "Professional Svelte 5 UI components with Tailwind CSS and bits-ui primitives - 60+ accessible, type-safe components",
 	"folders": ["src/docs", "src/lib/components/ui/base", "src/lib/utils"],
 	"excludeFolders": [

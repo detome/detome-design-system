@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { DateRangePicker, type DateRange as BitsDateRange } from 'bits-ui';
-	import { CalendarDate, type DateValue } from '@internationalized/date';
 	import { cn } from '$lib/utils/cn';
 	import { Calendar } from '@lucide/svelte';
 	import { dateToCalendarDate, calendarDateToDate } from '$lib/utils/bits-ui-utils';
@@ -62,7 +61,7 @@
 	 * Normalizes value to date range format
 	 * Handles both DateRange objects and single Date objects
 	 */
-	let normalizedValue = $derived(() => {
+	let normalizedValue = $derived.by((): DateRange => {
 		if (!value) return { start: undefined, end: undefined };
 		if (value instanceof Date) {
 			return { start: value, end: undefined };
@@ -82,8 +81,8 @@
 
 	// Compute internal bits-ui value from prop value
 	let bitsValue: BitsDateRange = $derived({
-		start: dateToCalendarDate(normalizedValue().start),
-		end: dateToCalendarDate(normalizedValue().end)
+		start: dateToCalendarDate(normalizedValue.start),
+		end: dateToCalendarDate(normalizedValue.end)
 	});
 
 	/**
@@ -111,17 +110,17 @@
 					classValue
 				)}>
 				<Calendar class="h-4 w-4 flex-shrink-0 text-gray-500 dark:text-gray-400" />
-				{#if normalizedValue().start && normalizedValue().end}
+				{#if normalizedValue.start && normalizedValue.end}
 					<span class="font-medium">
-						{formatDate(normalizedValue().start)} - {formatDate(normalizedValue().end)}
+						{formatDate(normalizedValue.start)} - {formatDate(normalizedValue.end)}
 					</span>
-				{:else if normalizedValue().start}
+				{:else if normalizedValue.start}
 					<span class="font-medium">
-						From {formatDate(normalizedValue().start)}
+						From {formatDate(normalizedValue.start)}
 					</span>
-				{:else if normalizedValue().end}
+				{:else if normalizedValue.end}
 					<span class="font-medium">
-						Until {formatDate(normalizedValue().end)}
+						Until {formatDate(normalizedValue.end)}
 					</span>
 				{:else}
 					<span class="text-gray-500 dark:text-gray-400">Select date range</span>

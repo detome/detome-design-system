@@ -47,16 +47,16 @@ Table container component with responsive scrolling and visual variants. Wraps s
 
 ### Props API
 
-| Prop        | Type                                                              | Default     | Description                                        |
-| ----------- | ----------------------------------------------------------------- | ----------- | -------------------------------------------------- |
-| `children`  | `Snippet`                                                         | -           | Table content (TableHead, TableBody)               |
-| `class`     | `string`                                                          | -           | Additional CSS classes to apply to table element   |
-| `classes`   | `{div?: string, table?: string}`                                  | -           | Object with div and table class overrides          |
-| `striped`   | `boolean`                                                         | `false`     | If true, applies alternating row background colors |
-| `hoverable` | `boolean`                                                         | `false`     | If true, adds hover effect to rows                 |
-| `noborder`  | `boolean`                                                         | `false`     | If true, removes border collapse                   |
-| `shadow`    | `boolean`                                                         | `false`     | If true, adds shadow to table container            |
-| `color`     | `'default' \| 'blue' \| 'green' \| 'red' \| 'yellow' \| 'purple'` | `'default'` | Color theme                                        |
+| Prop        | Type                             | Default     | Description                                                             |
+| ----------- | -------------------------------- | ----------- | ----------------------------------------------------------------------- |
+| `children`  | `Snippet`                        | -           | Table content (TableHead, TableBody)                                    |
+| `class`     | `string`                         | -           | Additional CSS classes to apply to table element                        |
+| `classes`   | `{div?: string, table?: string}` | -           | Object with div and table class overrides                               |
+| `striped`   | `boolean`                        | `false`     | If true, applies alternating row background colors                      |
+| `hoverable` | `boolean`                        | `false`     | If true, adds hover effect to rows                                      |
+| `noborder`  | `boolean`                        | `false`     | If true, removes border collapse                                        |
+| `shadow`    | `boolean`                        | `false`     | If true, adds shadow to table container                                 |
+| `color`     | `TextColor \| TextColorType`     | `'default'` | Reserved for future use — accepted but not currently applied to styling |
 
 ### Examples
 
@@ -242,9 +242,11 @@ Table header container. Contains TableHeadCell components.
 
 ### Props API
 
-| Prop       | Type      | Default | Description              |
-| ---------- | --------- | ------- | ------------------------ |
-| `children` | `Snippet` | -       | TableHeadCell components |
+| Prop         | Type      | Default | Description                        |
+| ------------ | --------- | ------- | ---------------------------------- |
+| `children`   | `Snippet` | -       | TableHeadCell components           |
+| `defaultRow` | `boolean` | `true`  | Wraps children in a `<tr>` element |
+| `class`      | `string`  | -       | Additional CSS classes             |
 
 ### Examples
 
@@ -302,11 +304,12 @@ Individual table row. Can be clickable for interactive tables.
 
 ### Props API
 
-| Prop       | Type                      | Default | Description                  |
-| ---------- | ------------------------- | ------- | ---------------------------- |
-| `children` | `Snippet`                 | -       | TableBodyCell components     |
-| `class`    | `string`                  | -       | Additional CSS classes       |
-| `onclick`  | `(e: MouseEvent) => void` | -       | Click handler for entire row |
+| Prop       | Type                         | Default | Description                  |
+| ---------- | ---------------------------- | ------- | ---------------------------- |
+| `children` | `Snippet`                    | -       | TableBodyCell components     |
+| `color`    | `TextColor \| TextColorType` | -       | Text color variant           |
+| `class`    | `string`                     | -       | Additional CSS classes       |
+| `onclick`  | `(e: MouseEvent) => void`    | -       | Click handler for entire row |
 
 ### Examples
 
@@ -332,10 +335,12 @@ Individual table data cell.
 
 ### Props API
 
-| Prop       | Type      | Default | Description            |
-| ---------- | --------- | ------- | ---------------------- |
-| `children` | `Snippet` | -       | Cell content           |
-| `class`    | `string`  | -       | Additional CSS classes |
+| Prop       | Type      | Default | Description                  |
+| ---------- | --------- | ------- | ---------------------------- |
+| `children` | `Snippet` | -       | Cell content                 |
+| `padding`  | `string`  | -       | Padding classes for the cell |
+| `colspan`  | `number`  | -       | Native `colspan` attribute   |
+| `class`    | `string`  | -       | Additional CSS classes       |
 
 ### Examples
 
@@ -359,15 +364,22 @@ Table header cell. Automatically adds proper scope attribute.
 
 ### Props API
 
-| Prop       | Type      | Default | Description            |
-| ---------- | --------- | ------- | ---------------------- |
-| `children` | `Snippet` | -       | Cell content           |
-| `class`    | `string`  | -       | Additional CSS classes |
+| Prop       | Type                      | Default       | Description                      |
+| ---------- | ------------------------- | ------------- | -------------------------------- |
+| `children` | `Snippet`                 | -             | Cell content                     |
+| `padding`  | `string`                  | `'px-6 py-3'` | Padding classes for the cell     |
+| `onclick`  | `(e: MouseEvent) => void` | -             | Click handler (e.g. for sorting) |
+| `class`    | `string`                  | -             | Additional CSS classes           |
+
+Note: there is no built-in sort state (`sortable`/`sorted`) — wire up sorting yourself via `onclick` and render your own sort icon in `children`.
 
 ### Examples
 
 ```svelte
-<TableHeadCell>Name</TableHeadCell>
+<TableHeadCell onclick={() => sort('name')}>
+	Name
+	<ArrowUpDown class="ml-1 inline h-4 w-4" />
+</TableHeadCell>
 ```
 
 ---
@@ -388,7 +400,7 @@ Progress bar component for displaying completion percentage. Supports multiple c
 
 ```svelte
 <script>
-	import { Progressbar, ProgressbarVariant, ComponentSize } from 'requify-design-system';
+	import { Progressbar, AccentVariant, ComponentSize } from 'requify-design-system';
 </script>
 ```
 
@@ -398,7 +410,7 @@ Progress bar component for displaying completion percentage. Supports multiple c
 | -------------- | ------------------------- | ----------- | --------------------------------------------------------- |
 | `progress`     | `number`                  | `0`         | Percentage value (0-100)                                  |
 | `size`         | `ComponentSize \| string` | `'md'`      | Progress bar height. Named sizes or custom Tailwind class |
-| `color`        | `ProgressbarVariant`      | `'primary'` | Color variant                                             |
+| `color`        | `AccentVariant`           | `'primary'` | Color variant                                             |
 | `labelInside`  | `boolean`                 | `false`     | If true, shows percentage inside bar                      |
 | `labelOutside` | `boolean`                 | `false`     | If true, shows percentage above bar                       |
 | `class`        | `string`                  | -           | Additional CSS classes to apply                           |
@@ -414,12 +426,12 @@ Progress bar component for displaying completion percentage. Supports multiple c
 #### All Colors
 
 ```svelte
-<Progressbar progress={75} color={ProgressbarVariant.PRIMARY} />
-<Progressbar progress={75} color={ProgressbarVariant.SECONDARY} />
-<Progressbar progress={75} color={ProgressbarVariant.SUCCESS} />
-<Progressbar progress={75} color={ProgressbarVariant.ERROR} />
-<Progressbar progress={75} color={ProgressbarVariant.WARNING} />
-<Progressbar progress={75} color={ProgressbarVariant.INFO} />
+<Progressbar progress={75} color={AccentVariant.PRIMARY} />
+<Progressbar progress={75} color={AccentVariant.SECONDARY} />
+<Progressbar progress={75} color={AccentVariant.SUCCESS} />
+<Progressbar progress={75} color={AccentVariant.ERROR} />
+<Progressbar progress={75} color={AccentVariant.WARNING} />
+<Progressbar progress={75} color={AccentVariant.INFO} />
 ```
 
 #### All Sizes
@@ -447,7 +459,7 @@ Progress bar component for displaying completion percentage. Supports multiple c
 #### Error Progress
 
 ```svelte
-<Progressbar progress={90} color={ProgressbarVariant.ERROR} labelOutside />
+<Progressbar progress={90} color={AccentVariant.ERROR} labelOutside />
 ```
 
 #### Custom Size
@@ -472,7 +484,7 @@ Progress bar component for displaying completion percentage. Supports multiple c
 	}
 </script>
 
-<Progressbar progress={uploadProgress} labelOutside color={ProgressbarVariant.PRIMARY} />
+<Progressbar progress={uploadProgress} labelOutside color={AccentVariant.PRIMARY} />
 <p class="mt-1 text-sm text-gray-600">{uploadProgress}% complete</p>
 ```
 
@@ -483,7 +495,7 @@ Progress bar component for displaying completion percentage. Supports multiple c
 	let formProgress = $derived((completedFields / totalFields) * 100);
 </script>
 
-<Progressbar progress={formProgress} labelOutside color={ProgressbarVariant.SUCCESS} />
+<Progressbar progress={formProgress} labelOutside color={AccentVariant.SUCCESS} />
 <p class="mt-1 text-sm text-gray-600">
 	{completedFields} of {totalFields} fields completed
 </p>
@@ -885,7 +897,7 @@ Status indicator badge for notifications, alerts, and status markers. Absolute p
 
 ```svelte
 <div class="relative">
-	<Avatar src="/avatar.jpg" alt="User" />
+	<Img src="/avatar.jpg" alt="User" class="h-10 w-10 rounded-full object-cover" />
 	<Indicator variant="error" border />
 </div>
 ```
@@ -950,7 +962,7 @@ Status indicator badge for notifications, alerts, and status markers. Absolute p
 
 ```svelte
 <div class="relative">
-	<Avatar src="/avatar.jpg" alt="User" size="lg" />
+	<Img src="/avatar.jpg" alt="User" class="h-14 w-14 rounded-full object-cover" />
 	<Indicator variant="success" placement="bottom-right" border />
 </div>
 ```
@@ -961,7 +973,7 @@ Status indicator badge for notifications, alerts, and status markers. Absolute p
 <div class="relative">
 	<ListgroupItem>
 		<div class="flex items-center gap-3">
-			<Avatar src="/user.jpg" alt="User" />
+			<Img src="/user.jpg" alt="User" class="h-10 w-10 rounded-full object-cover" />
 			<div>
 				<p class="font-medium">John Doe</p>
 				<p class="text-sm text-gray-600">New message</p>

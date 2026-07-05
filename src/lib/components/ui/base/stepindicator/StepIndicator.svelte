@@ -95,6 +95,7 @@
 <ol class={cn('flex w-full items-center text-center text-sm font-medium', className)}>
 	{#each steps as step, i}
 		<li
+			aria-current={isCurrent(i) ? 'step' : undefined}
 			class={cn(
 				'flex items-center',
 				i < steps.length - 1 ? 'w-full' : '',

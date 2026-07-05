@@ -1,4 +1,4 @@
-// Core wrapper components for the Requify design system
+// Core wrapper components for the Detome design system
 
 // Enum exports - Type-safe component variants and sizes
 export * from './enums.js';

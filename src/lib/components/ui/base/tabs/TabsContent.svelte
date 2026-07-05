@@ -23,15 +23,7 @@
 	 * </TabsContent>
 	 * ```
 	 *
-	 * @example Auto-generated value
-	 * ```svelte
-	 * <TabsContent>
-	 *   <!-- Value auto-generated if not provided -->
-	 *   <p>Content here</p>
-	 * </TabsContent>
-	 * ```
-	 *
-	 * @param {string} value - Tab identifier (must match TabsTrigger value, auto-generated if not provided)
+	 * @param {string} value - Tab identifier (must match TabsTrigger value)
 	 * @param {Snippet} children - Tab content to display
 	 * @param {(event: MouseEvent) => void} onclick - Click handler for content
 	 * @param {string} class - Additional CSS classes to apply
@@ -46,16 +38,13 @@
 	 * - ARIA role="tabpanel"
 	 */
 	interface Props {
-		value?: string; // Optional - will auto-generate if not provided
+		value: string;
 		children?: Snippet;
 		onclick?: (event: MouseEvent) => void;
 		class?: string;
 	}
 
-	let { value: valueProp, children, onclick, class: className, ...restProps }: Props = $props();
-
-	// Auto-generate value if not provided
-	const value = $derived(valueProp ?? `tab-${Math.random().toString(36).substr(2, 9)}`);
+	let { value, children, onclick, class: className, ...restProps }: Props = $props();
 
 	const baseStyles =
 		'mt-2 ring-offset-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 dark:ring-offset-gray-950';

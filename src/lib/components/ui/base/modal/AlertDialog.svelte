@@ -1,14 +1,19 @@
 <script lang="ts">
-	import { ModalSize, StatusVariant, ButtonVariant } from '$lib/components/ui/base/enums';
+	import { AlertDialog as AlertDialogPrimitive } from 'bits-ui';
+	import { StatusVariant, ButtonVariant } from '$lib/components/ui/base/enums';
 	import type { StatusVariantType } from '$lib/components/ui/base/enums';
-	import Modal from './Modal.svelte';
+	import { cn } from '$lib/utils/cn';
+	import { fade, scale } from 'svelte/transition';
 	import Button from '../button/Button.svelte';
-	import { CircleAlert, TriangleAlert, Info, CircleCheckBig } from '@lucide/svelte';
+	import { statusIcons } from '$lib/utils/status-icons';
 	import type { Snippet } from 'svelte';
 
 	/**
 	 * Alert dialog for critical confirmations and important messages.
-	 * Wraps Modal with pre-configured confirm/cancel actions and variant icons.
+	 * Wraps bits-ui's AlertDialog primitive (role="alertdialog") with pre-configured
+	 * confirm/cancel actions and variant icons. Unlike Modal, it cannot be dismissed
+	 * by clicking outside — the user must explicitly choose Confirm or Cancel (or
+	 * press Escape, which is treated the same as Cancel).
 	 *
 	 * @example Basic confirmation
 	 * ```svelte
@@ -81,17 +86,18 @@
 	 * @param {string} confirmText - Text for confirm button. Default: 'Confirm'
 	 * @param {string} cancelText - Text for cancel button. Default: 'Cancel'
 	 * @param {() => void} onConfirm - Callback when confirm button is clicked
-	 * @param {() => void} onCancel - Callback when cancel button is clicked
+	 * @param {() => void} onCancel - Callback when cancel button is clicked or dialog is dismissed via Escape
 	 * @param {Snippet} children - Custom content below description
 	 * @param {string} class - Additional CSS classes to apply
 	 *
-	 * @see {@link Modal} - Base modal component
+	 * @see {@link Modal} - For dismissible dialogs
 	 * @see {@link Drawer} - For side-panel navigation
 	 *
 	 * @accessibility
-	 * - Keyboard: Escape to close, Tab/Shift+Tab to navigate buttons
-	 * - Focus trap: Focus managed by Modal component
-	 * - ARIA: Proper role, aria-labelledby, aria-describedby managed by bits-ui
+	 * - Keyboard: Escape triggers Cancel, Tab/Shift+Tab to navigate buttons
+	 * - Focus trap: Focus managed by bits-ui's AlertDialog primitive
+	 * - ARIA: role="alertdialog", aria-labelledby, aria-describedby managed by bits-ui
+	 * - Clicking outside the dialog does not dismiss it — Confirm or Cancel must be chosen
 	 * - Screen reader: Icon, title, and description are properly announced
 	 * - High contrast colors for all variants
 	 */
@@ -109,7 +115,7 @@
 	}
 
 	let {
-		open = $bindable(),
+		open = $bindable(false),
 		variant = StatusVariant.INFO,
 		title,
 		description,
@@ -118,16 +124,8 @@
 		onConfirm,
 		onCancel,
 		children,
-		class: className,
-		...restProps
+		class: className
 	}: Props = $props();
-
-	const icons: Record<StatusVariant, any> = {
-		[StatusVariant.INFO]: Info,
-		[StatusVariant.WARNING]: TriangleAlert,
-		[StatusVariant.ERROR]: CircleAlert,
-		[StatusVariant.SUCCESS]: CircleCheckBig
-	};
 
 	const iconColors: Record<StatusVariant, string> = {
 		[StatusVariant.INFO]: 'text-info-600',
@@ -143,53 +141,97 @@
 		[StatusVariant.SUCCESS]: ButtonVariant.SUCCESS
 	};
 
-	const Icon = $derived(icons[variant]);
+	const Icon = $derived(statusIcons[variant]);
 
 	function handleConfirm() {
-		if (onConfirm) {
-			onConfirm();
-		}
+		onConfirm?.();
 		open = false;
 	}
 
 	function handleCancel() {
-		if (onCancel) {
-			onCancel();
-		}
+		onCancel?.();
 		open = false;
 	}
 </script>
 
-<Modal bind:open size={ModalSize.SM} dismissible class={className} {...restProps}>
-	<div class="text-center">
-		<div
-			class="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-gray-100 dark:bg-gray-700">
-			<Icon class="h-6 w-6 {iconColors[variant]}" />
-		</div>
+<AlertDialogPrimitive.Root bind:open>
+	<AlertDialogPrimitive.Portal>
+		<AlertDialogPrimitive.Overlay forceMount>
+			{#snippet child({ props, open: overlayOpen })}
+				{#if overlayOpen}
+					<div
+						{...props}
+						class="fixed inset-0 z-50 h-full w-full bg-black/50 backdrop-blur-sm"
+						transition:fade={{ duration: 200, easing: (t) => t * (2 - t) }}>
+					</div>
+				{/if}
+			{/snippet}
+		</AlertDialogPrimitive.Overlay>
 
-		<h3 class="mb-2 text-lg font-semibold text-gray-900 dark:text-gray-50">
-			{title}
-		</h3>
+		<AlertDialogPrimitive.Content
+			forceMount
+			onEscapeKeydown={(e) => {
+				e.preventDefault();
+				handleCancel();
+			}}
+			class={cn(
+				'fixed top-1/2 left-1/2 z-50 w-full max-w-sm -translate-x-1/2 -translate-y-1/2 rounded-lg bg-white p-6 shadow-xl dark:bg-gray-800',
+				className
+			)}>
+			{#snippet child({ props, open: contentOpen })}
+				{#if contentOpen}
+					<div
+						{...props}
+						transition:scale={{
+							duration: 250,
+							start: 0.95,
+							opacity: 0,
+							easing: (t) => t * (2 - t)
+						}}>
+						<div class="text-center">
+							<div
+								class="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-gray-100 dark:bg-gray-700">
+								<Icon class="h-6 w-6 {iconColors[variant]}" />
+							</div>
 
-		{#if description}
-			<p class="mb-5 text-sm text-gray-600 dark:text-gray-400">
-				{description}
-			</p>
-		{/if}
+							<AlertDialogPrimitive.Title
+								class="mb-2 text-lg font-semibold text-gray-900 dark:text-gray-50">
+								{title}
+							</AlertDialogPrimitive.Title>
 
-		{#if children}
-			<div class="mb-5">
-				{@render children()}
-			</div>
-		{/if}
-	</div>
+							{#if description}
+								<AlertDialogPrimitive.Description
+									class="mb-5 text-sm text-gray-600 dark:text-gray-400">
+									{description}
+								</AlertDialogPrimitive.Description>
+							{/if}
 
-	{#snippet footer()}
-		<Button variant="outline" onclick={handleCancel}>
-			{cancelText}
-		</Button>
-		<Button variant={buttonVariants[variant]} onclick={handleConfirm}>
-			{confirmText}
-		</Button>
-	{/snippet}
-</Modal>
+							{#if children}
+								<div class="mb-5">
+									{@render children()}
+								</div>
+							{/if}
+						</div>
+
+						<div class="flex items-center justify-end gap-3">
+							<AlertDialogPrimitive.Cancel onclick={handleCancel}>
+								{#snippet child({ props: cancelProps })}
+									<Button {...cancelProps} variant="outline">
+										{cancelText}
+									</Button>
+								{/snippet}
+							</AlertDialogPrimitive.Cancel>
+							<AlertDialogPrimitive.Action onclick={handleConfirm}>
+								{#snippet child({ props: actionProps })}
+									<Button {...actionProps} variant={buttonVariants[variant]}>
+										{confirmText}
+									</Button>
+								{/snippet}
+							</AlertDialogPrimitive.Action>
+						</div>
+					</div>
+				{/if}
+			{/snippet}
+		</AlertDialogPrimitive.Content>
+	</AlertDialogPrimitive.Portal>
+</AlertDialogPrimitive.Root>

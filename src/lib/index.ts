@@ -1,4 +1,4 @@
-// Core wrapper components for the Requify design system
+// Core wrapper components for the Detome design system
 
 // Re-export all components
 export * from './components/ui/base/index.js';

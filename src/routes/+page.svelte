@@ -11,6 +11,7 @@
 		Checkbox,
 		Switch,
 		Modal,
+		AlertDialog,
 		Alert,
 		Table,
 		TableHead,
@@ -69,6 +70,7 @@
 	let modalLgOpen = $state(false);
 	let modalXlOpen = $state(false);
 	let modalFullOpen = $state(false);
+	let alertDialogOpen = $state(false);
 	let inputValue = $state('');
 	let textareaValue = $state('');
 	let selectValue = $state('option1');
@@ -89,7 +91,7 @@
 
 <div class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
 	<header class="mb-8">
-		<h1 class="text-4xl font-bold text-gray-900 dark:text-gray-50">Requify Design System</h1>
+		<h1 class="text-4xl font-bold text-gray-900 dark:text-gray-50">Detome Design System</h1>
 		<p class="mt-2 text-base text-gray-500 dark:text-gray-400">
 			Professional, customizable UI components built with Svelte 5, Tailwind CSS, and bits-ui
 		</p>
@@ -378,6 +380,44 @@
 						<Button variant="primary" onclick={() => (modalLgOpen = false)}>Confirm</Button>
 					{/snippet}
 				</Modal>
+
+				<Modal bind:open={modalXlOpen} title="Extra Large Modal" size={ModalSize.XL}>
+					<p class="text-gray-700 dark:text-gray-200">
+						This is an XL (Extra Large) modal with max-width of 576px. Useful for content-dense
+						dialogs like multi-column forms.
+					</p>
+					{#snippet footer()}
+						<Button variant="outline" onclick={() => (modalXlOpen = false)}>Cancel</Button>
+						<Button variant="primary" onclick={() => (modalXlOpen = false)}>Confirm</Button>
+					{/snippet}
+				</Modal>
+
+				<Modal bind:open={modalFullOpen} title="Full Screen Modal" size={ModalSize.FULL}>
+					<p class="text-gray-700 dark:text-gray-200">
+						This is a Full modal that spans nearly the entire viewport. Best for immersive workflows
+						or complex editors.
+					</p>
+					{#snippet footer()}
+						<Button variant="outline" onclick={() => (modalFullOpen = false)}>Cancel</Button>
+						<Button variant="primary" onclick={() => (modalFullOpen = false)}>Confirm</Button>
+					{/snippet}
+				</Modal>
+			</Card>
+		</section>
+
+		<section id="alert-dialog">
+			<h2 class="mb-6 text-2xl font-semibold text-gray-900 dark:text-gray-50">Alert Dialog</h2>
+
+			<Card variant="default">
+				<Button variant="danger" onclick={() => (alertDialogOpen = true)}>Delete Account</Button>
+
+				<AlertDialog
+					bind:open={alertDialogOpen}
+					variant="error"
+					title="Delete Account"
+					description="This action cannot be undone. All of your data will be permanently removed."
+					confirmText="Delete"
+					onConfirm={() => (alertDialogOpen = false)} />
 			</Card>
 		</section>
 
@@ -388,8 +428,8 @@
 				<Card variant="default">
 					<h3 class="mb-4 text-lg font-semibold text-gray-900 dark:text-white">Popover</h3>
 					<Popover>
-						{#snippet trigger()}
-							<Button variant="outline">Open Popover</Button>
+						{#snippet trigger({ props })}
+							<Button variant="outline" {...props}>Open Popover</Button>
 						{/snippet}
 						<div class="w-64">
 							<h4 class="text-sm font-semibold text-gray-900 dark:text-white">Popover Title</h4>

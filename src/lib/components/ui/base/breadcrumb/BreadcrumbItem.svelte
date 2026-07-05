@@ -49,7 +49,7 @@
 		href?: string;
 		home?: boolean;
 		class?: string;
-		[key: string]: any; // Allow other props to pass through
+		[key: string]: unknown; // Allow other props to pass through
 	}
 
 	let { children, href, home = false, class: className, ...restProps }: Props = $props();

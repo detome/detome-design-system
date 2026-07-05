@@ -4,6 +4,7 @@
 	import { ChevronDown, Check } from '@lucide/svelte';
 	import type { Snippet } from 'svelte';
 	import { safeValueToString, findOptionByValue } from '$lib/utils/bits-ui-utils';
+	import { SELECT_ITEM_CLASS } from './select-item-styles';
 
 	/**
 	 * Select option interface
@@ -130,12 +131,10 @@
 							value={option.value?.toString() ?? ''}
 							label={option.label}
 							disabled={option.disabled}
-							class="text-md relative flex cursor-pointer items-center px-8 py-3 text-left text-gray-900 hover:bg-gray-100 data-[disabled]:pointer-events-none data-[disabled]:opacity-50 dark:text-gray-50 dark:hover:bg-gray-700">
-							{#if value === option.value}
-								<span class="absolute left-2">
-									<Check class="h-4 w-4" />
-								</span>
-							{/if}
+							class={SELECT_ITEM_CLASS}>
+							<span class="check-icon absolute left-2 hidden">
+								<Check class="h-4 w-4" />
+							</span>
 							{option.label}
 						</BitsSelect.Item>
 					{/each}

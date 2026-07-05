@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { DatePicker } from 'bits-ui';
-	import { CalendarDate, type DateValue } from '@internationalized/date';
+	import type { DateValue } from '@internationalized/date';
 	import { cn } from '$lib/utils/cn';
 	import { Calendar } from '@lucide/svelte';
 	import { dateToCalendarDate, calendarDateToDate } from '$lib/utils/bits-ui-utils';
@@ -71,11 +71,11 @@
 	 * Converts CalendarDate back to JavaScript Date and triggers onChange callback
 	 * @param newDateValue - New date value from bits-ui
 	 */
-	let handleValueChange: any = (newDateValue: DateValue | undefined) => {
+	function handleValueChange(newDateValue: DateValue | undefined) {
 		const newDate = calendarDateToDate(newDateValue);
 		value = newDate ?? undefined;
 		onChange?.();
-	};
+	}
 </script>
 
 <DatePicker.Root
@@ -117,14 +117,13 @@
 	<DatePicker.Content
 		class="z-50 rounded-lg border border-gray-200 bg-white p-4 shadow-lg dark:border-gray-700 dark:bg-gray-800"
 		sideOffset={8}>
-		<DatePicker.Calendar
-			class="border-dark-10 bg-background-alt shadow-popover rounded-[15px] border p-[22px]">
+		<DatePicker.Calendar>
 			{#snippet children({ months, weekdays })}
 				{#each months as month}
 					<div class="space-y-4">
 						<DatePicker.Header class="flex items-center justify-between">
 							<DatePicker.PrevButton
-								class="rounded-9px bg-background-alt hover:bg-muted inline-flex size-10 items-center justify-center transition-all active:scale-[0.98]">
+								class="inline-flex h-10 w-10 items-center justify-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700">
 								<svg
 									xmlns="http://www.w3.org/2000/svg"
 									width="20"
@@ -138,9 +137,9 @@
 									<polyline points="15 18 9 12 15 6" />
 								</svg>
 							</DatePicker.PrevButton>
-							<DatePicker.Heading class="text-[15px] font-medium text-gray-900 dark:text-white" />
+							<DatePicker.Heading class="text-base font-semibold text-gray-900 dark:text-white" />
 							<DatePicker.NextButton
-								class="rounded-9px bg-background-alt hover:bg-muted inline-flex size-10 items-center justify-center transition-all active:scale-[0.98]">
+								class="inline-flex h-10 w-10 items-center justify-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700">
 								<svg
 									xmlns="http://www.w3.org/2000/svg"
 									width="20"
@@ -156,30 +155,33 @@
 							</DatePicker.NextButton>
 						</DatePicker.Header>
 
-						<DatePicker.Grid class="w-full border-collapse space-y-1 select-none">
+						<DatePicker.Grid class="w-full border-collapse">
 							<DatePicker.GridHead>
-								<DatePicker.GridRow class="mb-1 flex w-full justify-between">
+								<DatePicker.GridRow class="flex">
 									{#each weekdays as day}
 										<DatePicker.HeadCell
-											class="text-muted-foreground w-10 rounded-md text-xs font-normal!">
-											<div>{day.slice(0, 2)}</div>
+											class="w-10 text-center text-xs font-medium text-gray-500 dark:text-gray-400">
+											{day.slice(0, 2)}
 										</DatePicker.HeadCell>
 									{/each}
 								</DatePicker.GridRow>
 							</DatePicker.GridHead>
 							<DatePicker.GridBody>
 								{#each month.weeks as weekDates}
-									<DatePicker.GridRow class="flex w-full">
+									<DatePicker.GridRow class="mt-1 flex">
 										{#each weekDates as date}
 											<DatePicker.Cell
 												{date}
 												month={month.value}
-												class="relative size-10 p-0! text-center">
+												class="relative h-10 w-10 p-0 text-center">
 												<DatePicker.Day
-													class="rounded-9px text-foreground hover:border-foreground data-selected:bg-foreground data-disabled:text-foreground/30 data-selected:text-background data-unavailable:text-muted-foreground group relative inline-flex size-10 items-center justify-center border border-transparent bg-transparent p-0 text-sm font-normal whitespace-nowrap transition-all data-disabled:pointer-events-none data-outside-month:pointer-events-none data-selected:font-medium data-unavailable:line-through">
-													<div
-														class="bg-foreground group-data-selected:bg-background absolute top-[5px] hidden size-1 rounded-full transition-all group-data-today:block">
-													</div>
+													class={cn(
+														'inline-flex h-10 w-10 items-center justify-center rounded-lg text-sm',
+														'hover:bg-gray-100 dark:hover:bg-gray-700',
+														'data-[selected]:bg-primary-600 data-[selected]:text-white',
+														'data-[disabled]:cursor-not-allowed data-[disabled]:opacity-50',
+														'data-[outside-month]:text-gray-400 dark:data-[outside-month]:text-gray-600'
+													)}>
 													{date.day}
 												</DatePicker.Day>
 											</DatePicker.Cell>

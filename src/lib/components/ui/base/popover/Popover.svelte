@@ -13,8 +13,8 @@
 	 * @example Basic popover
 	 * ```svelte
 	 * <Popover bind:open={showPopover}>
-	 *   {#snippet trigger()}
-	 *     <Button>Click to open</Button>
+	 *   {#snippet trigger({ props })}
+	 *     <Button {...props}>Click to open</Button>
 	 *   {/snippet}
 	 *   <div>
 	 *     <h3>Popover Title</h3>
@@ -26,8 +26,8 @@
 	 * @example With custom alignment
 	 * ```svelte
 	 * <Popover bind:open={showPopover} align="center" side="top">
-	 *   {#snippet trigger()}
-	 *     <Button>Open Popover</Button>
+	 *   {#snippet trigger({ props })}
+	 *     <Button {...props}>Open Popover</Button>
 	 *   {/snippet}
 	 *   <p>Centered content</p>
 	 * </Popover>
@@ -36,8 +36,8 @@
 	 * @example With form content
 	 * ```svelte
 	 * <Popover bind:open={showPopover}>
-	 *   {#snippet trigger()}
-	 *     <Button>Filter</Button>
+	 *   {#snippet trigger({ props })}
+	 *     <Button {...props}>Filter</Button>
 	 *   {/snippet}
 	 *   <form onsubmit={handleFilter}>
 	 *     <Input placeholder="Filter by..." />
@@ -49,8 +49,8 @@
 	 * @example Right placement
 	 * ```svelte
 	 * <Popover bind:open={showPopover} side="right">
-	 *   {#snippet trigger()}
-	 *     <Button>Open Right</Button>
+	 *   {#snippet trigger({ props })}
+	 *     <Button {...props}>Open Right</Button>
 	 *   {/snippet}
 	 *   <p>Content on right side</p>
 	 * </Popover>
@@ -65,7 +65,7 @@
 	 * ```
 	 *
 	 * @param {boolean} open - Controls popover visibility. Default: false
-	 * @param {Snippet} trigger - Element that triggers popover on click
+	 * @param {Snippet} trigger - Element that triggers popover on click. Receives `{ props }` to spread onto the rendered trigger element for correct keyboard/ARIA behavior.
 	 * @param {Snippet} children - Popover content
 	 * @param {Align | AlignType} align - Popover alignment along the side. Default: Align.START
 	 *   Options: 'start' | 'center' | 'end'
@@ -87,7 +87,7 @@
 	 */
 	interface Props {
 		open?: boolean;
-		trigger?: Snippet;
+		trigger?: Snippet<[{ props: Record<string, unknown> }]>;
 		children?: Snippet;
 		align?: Align | AlignType;
 		side?: Side | SideType;
@@ -109,9 +109,7 @@
 	{#if trigger}
 		<PopoverPrimitive.Trigger>
 			{#snippet child({ props })}
-				<span {...props}>
-					{@render trigger()}
-				</span>
+				{@render trigger({ props })}
 			{/snippet}
 		</PopoverPrimitive.Trigger>
 	{/if}

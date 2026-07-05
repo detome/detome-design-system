@@ -93,13 +93,13 @@
 		[BadgeVariant.SECONDARY]:
 			'bg-secondary-100 text-secondary-800 border-secondary-200 dark:bg-secondary-900/30 dark:text-secondary-300 dark:border-secondary-700',
 		[BadgeVariant.SUCCESS]:
-			'bg-green-100 text-green-800 border-green-200 dark:bg-green-900/30 dark:text-green-300 dark:border-green-700',
+			'bg-success-100 text-success-800 border-success-200 dark:bg-success-900/30 dark:text-success-300 dark:border-success-700',
 		[BadgeVariant.WARNING]:
-			'bg-yellow-100 text-yellow-800 border-yellow-200 dark:bg-yellow-900/30 dark:text-yellow-300 dark:border-yellow-700',
+			'bg-warning-100 text-warning-800 border-warning-200 dark:bg-warning-900/30 dark:text-warning-300 dark:border-warning-700',
 		[BadgeVariant.ERROR]:
-			'bg-red-100 text-red-800 border-red-200 dark:bg-red-900/30 dark:text-red-300 dark:border-red-700',
+			'bg-error-100 text-error-800 border-error-200 dark:bg-error-900/30 dark:text-error-300 dark:border-error-700',
 		[BadgeVariant.INFO]:
-			'bg-blue-100 text-blue-800 border-blue-200 dark:bg-blue-900/30 dark:text-blue-300 dark:border-blue-700'
+			'bg-info-100 text-info-800 border-info-200 dark:bg-info-900/30 dark:text-info-300 dark:border-info-700'
 	};
 
 	const sizes: Record<string, string> = {

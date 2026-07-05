@@ -83,7 +83,7 @@
 		disabled?: boolean;
 		type?: 'button' | 'submit' | 'reset';
 		onclick?: (e: MouseEvent) => void;
-		[key: string]: any; // Allow additional HTML attributes
+		[key: string]: unknown; // Allow additional HTML attributes
 	}
 
 	let {

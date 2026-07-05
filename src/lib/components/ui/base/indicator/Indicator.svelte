@@ -93,10 +93,10 @@
 
 	// Map variants to colors
 	const variantColors: Record<BadgeVariant, string> = {
-		[BadgeVariant.SUCCESS]: 'bg-green-500',
-		[BadgeVariant.ERROR]: 'bg-red-500',
-		[BadgeVariant.WARNING]: 'bg-yellow-500',
-		[BadgeVariant.INFO]: 'bg-blue-500',
+		[BadgeVariant.SUCCESS]: 'bg-success-500',
+		[BadgeVariant.ERROR]: 'bg-error-500',
+		[BadgeVariant.WARNING]: 'bg-warning-500',
+		[BadgeVariant.INFO]: 'bg-info-500',
 		[BadgeVariant.DEFAULT]: 'bg-gray-500',
 		[BadgeVariant.PRIMARY]: 'bg-primary-500',
 		[BadgeVariant.SECONDARY]: 'bg-secondary-500'

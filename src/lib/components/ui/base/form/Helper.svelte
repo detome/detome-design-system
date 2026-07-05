@@ -80,9 +80,9 @@
 
 	const colors: Record<StatusVariant, string> = {
 		[StatusVariant.INFO]: 'text-gray-500 dark:text-gray-400',
-		[StatusVariant.SUCCESS]: 'text-green-600 dark:text-green-400',
-		[StatusVariant.ERROR]: 'text-red-600 dark:text-red-400',
-		[StatusVariant.WARNING]: 'text-yellow-600 dark:text-yellow-400'
+		[StatusVariant.SUCCESS]: 'text-success-600 dark:text-success-400',
+		[StatusVariant.ERROR]: 'text-error-600 dark:text-error-400',
+		[StatusVariant.WARNING]: 'text-warning-600 dark:text-warning-400'
 	};
 
 	const baseStyles = 'mt-1 text-sm';

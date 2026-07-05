@@ -1,4 +1,4 @@
-# Requify Design System
+# Detome Design System
 
 A professional, customizable design system built with Svelte 5, Tailwind CSS, and bits-ui.
 

@@ -2,7 +2,7 @@
 	import { Select as BitsSelect } from 'bits-ui';
 	import { Check } from '@lucide/svelte';
 	import type { Snippet } from 'svelte';
-	import { getContext } from 'svelte';
+	import { SELECT_ITEM_CLASS } from './select-item-styles';
 
 	/**
 	 * Individual select option item for custom rendering in Select dropdown.
@@ -68,11 +68,7 @@
 	let { value, label, disabled = false, children }: Props = $props();
 </script>
 
-<BitsSelect.Item
-	{value}
-	{label}
-	{disabled}
-	class="relative flex cursor-pointer items-center px-8 py-3 text-left text-lg text-gray-900 hover:bg-gray-100 data-[disabled]:pointer-events-none data-[disabled]:opacity-50 dark:text-gray-50 dark:hover:bg-gray-700 data-[selected]:[&>span.check-icon]:inline">
+<BitsSelect.Item {value} {label} {disabled} class={SELECT_ITEM_CLASS}>
 	<span class="check-icon absolute left-2 hidden">
 		<Check class="h-4 w-4" />
 	</span>

@@ -1,4 +1,4 @@
-# Requify Design System
+# Detome Design System
 
 A professional, customizable design system built with Svelte 5, Tailwind CSS, and bits-ui primitives. Includes 60+ accessible, type-safe UI components.
 
@@ -82,7 +82,7 @@ Container component with variants for different visual styles. Can render as lin
 
 **Props:**
 - `variant`: 'default' | 'bordered' | 'elevated' | 'flat' | 'glass' (default: 'default')
-- `size` | `padding`: 'none' | 'sm' | 'md' | 'lg' | 'xl' (default: 'md')
+- `padding`: 'none' | 'sm' | 'md' | 'lg' | 'xl' (default: 'md')
 - `hoverable`: boolean (default: false)
 - `href`: string (renders as <a> if provided)
 - `children`: Snippet
@@ -96,7 +96,6 @@ Text input with error states, left/right icon slots, clearable option, and size 
 - `clearable`: boolean (shows X button to clear value, default: false)
 - `left`: Snippet (left icon slot)
 - `right`: Snippet (right icon slot)
-- `children`: Snippet<[HTMLInputAttributes]> (custom input rendering)
 - `value`: string (bindable)
 - `disabled`: boolean (default: false)
 - `id`: string (for label association)
@@ -162,6 +161,7 @@ Toggle switch with variants (primary, secondary, success, error, warning, info).
 - `value`: string
 - `id`: string (for label association)
 - `children`: Snippet (label content displayed next to switch)
+- `leftLabel`: Snippet (label content displayed to the left of the switch)
 - `class`: string (additional CSS classes)
 - `onCheckedChange`: (checked: boolean) => void
 
@@ -196,23 +196,25 @@ interface SelectOption {
 Individual select option item for custom rendering in Select.
 
 **Props:**
-- `value`: string | number | null (option value)
+- `value`: string (option value)
 - `label`: string (display label text)
 - `disabled`: boolean (default: false)
-- `onSelect`: () => void (callback when selected)
+- `children`: Snippet (custom option content, e.g. icon + text)
 
 #### RadioGroup
 Radio button group with keyboard navigation. Wraps bits-ui.RadioGroup.Root.
 
 **Props:**
 - `value`: string (bindable)
+- `options`: RadioOption[] (alternative to children, default: [])
 - `orientation`: 'horizontal' | 'vertical' (default: 'vertical')
 - `disabled`: boolean (default: false)
 - `name`: string
 - `required`: boolean (default: false)
-- `onChange`: (value: string) => void
-- `children`: Snippet (RadioItem components)
+- `children`: Snippet (RadioItem components, alternative to options)
 - `class`: string (additional CSS classes)
+
+Note: there is no `onChange` prop — use `bind:value` to react to changes.
 
 **Interface:**
 ```typescript
@@ -228,8 +230,10 @@ Individual radio button item for RadioGroup.
 
 **Props:**
 - `value`: string
-- `disabled`: boolean
-- `label`: Snippet
+- `disabled`: boolean (default: false)
+- `id`: string (for label association; auto-generated per instance if omitted)
+- `labelClickable`: boolean (if true, clicking the label also selects the radio, default: true)
+- `children`: Snippet (label content)
 
 #### Datepicker
 Date selection component with custom styling and keyboard support. Wraps bits-ui.DatePicker with @internationalized/date.
@@ -262,33 +266,61 @@ interface DateRange {
 ```
 
 #### Search
-Search input with icon and clearable functionality. Extends Input with search-specific styling.
+Search input (`type="search"`) with a built-in leading search icon.
 
 **Props:**
-- Same as Input, plus search-specific defaults and styling.
+- `value`: string (bindable)
+- `size`: ComponentSize | ComponentSizeType ('xs' | 'sm' | 'md' | 'lg' | 'xl', default: 'md')
+- `placeholder`: string (default: 'Search...')
+- `class`: string
+
+Note: unlike Input, this does not have `error`/`clearable`/`left`/`right` props.
 
 ### Navigation Components
 
 #### Sidebar
-Collapsible sidebar navigation with groups. Complex navigation component with nested structure.
+Sidebar navigation container. Provides the active URL to child items via context.
 
 **Props:**
-- `open`: boolean (collapsed state)
-- `width`: string (default: '250px')
-- `collapsedWidth`: string (default: '64px')
-- `children`: Snippet
+- `activeUrl`: string (current page URL, passed to children via context for active-state highlighting)
+- `children`: Snippet (SidebarGroup, SidebarItem, SidebarDropdown components)
+- `class`: string
 
 #### SidebarWrapper
 Container for sidebar with proper layout and transitions.
 
+**Props:**
+- `children`: Snippet
+- `class`: string
+
 #### SidebarGroup
-Groups sidebar items together with optional label.
+Groups sidebar items together with optional rounded background styling.
+
+**Props:**
+- `children`: Snippet (SidebarItem, SidebarDropdown components)
+- `rounded`: boolean (wraps items in a rounded background container, default: false)
+- `class`: string
 
 #### SidebarItem
-Individual sidebar navigation item with active state and icon support.
+Individual sidebar navigation item (anchor) with active-state and icon support.
+
+**Props:**
+- `label`: string
+- `href`: string
+- `icon`: Snippet
+- `children`: Snippet
+- `nested`: boolean (indents item for nested navigation, default: false)
+- `class`: string
 
 #### SidebarDropdown
-Dropdown menu within sidebar for nested navigation.
+Collapsible dropdown section within sidebar for nested navigation.
+
+**Props:**
+- `label`: string
+- `icon`: Snippet
+- `children`: Snippet (SidebarItem components)
+- `defaultOpen`: boolean (default: false)
+- `class`: string
 
 #### Tabs
 Tabbed interface with keyboard navigation. Wraps bits-ui.Tabs.Root.
@@ -328,19 +360,24 @@ Hierarchical navigation trail for showing page hierarchy.
 Individual breadcrumb item with separator and link.
 
 **Props:**
-- `href`: string
-- `current`: boolean (if true, renders as text, not link)
+- `href`: string (if provided, renders as `<a>`; if omitted, renders as `<span>` for the current page)
+- `home`: boolean (if true, suppresses the separator chevron before this item, default: false)
 - `children`: Snippet
+- `class`: string
+
+Note: there is no `current` prop — omitting `href` is what renders the item as plain text.
 
 #### Accordion
 Collapsible content panels with keyboard navigation. Wraps bits-ui.Accordion.Root.
 
 **Props:**
-- `type`: 'single' | 'multiple' (default: 'single')
-- `value`: string | string[] (open item(s), bindable)
-- `onValueChange`: (value: string | string[]) => void
-- `collapsible`: boolean (default: true)
+- `value`: string | string[] (open item(s), bindable — string when `multiple` is false, string[] when true)
+- `multiple`: boolean (allow multiple panels open at once, default: false)
+- `disabled`: boolean (disables all interaction, default: false)
 - `children`: Snippet (AccordionItem components)
+- `class`: string
+
+Note: there is no `type` or `collapsible` prop — pass `multiple` instead, and there is no `onValueChange` (use `bind:value`).
 
 **Accessibility:** Space/Enter to toggle, arrow keys between items, ARIA expanded states.
 
@@ -348,10 +385,12 @@ Collapsible content panels with keyboard navigation. Wraps bits-ui.Accordion.Roo
 Individual accordion panel with header and content.
 
 **Props:**
-- `value`: string (item identifier)
-- `disabled`: boolean
-- `title`: Snippet (accordion header)
+- `value`: string (item identifier, required)
+- `disabled`: boolean (default: false)
+- `title`: string (header text; alternative to `header` snippet)
+- `header`: Snippet (custom header content, alternative to `title`)
 - `children`: Snippet (accordion content)
+- `class`: string
 
 #### Dropdown
 Dropdown menu with keyboard navigation. Wraps bits-ui.DropdownMenu.Root.
@@ -359,7 +398,7 @@ Dropdown menu with keyboard navigation. Wraps bits-ui.DropdownMenu.Root.
 **Props:**
 - `open`: boolean (bindable)
 - `align`: 'start' | 'center' | 'end' (default: 'start')
-- `trigger`: Snippet (trigger element, required)
+- `trigger`: Snippet<[{ props: Record<string, unknown> }]> (spread `props` onto your own trigger element, required)
 - `children`: Snippet (DropdownItem, DropdownDivider, DropdownHeader, DropdownLink)
 
 **Accessibility:** Arrow key navigation, Space/Enter to select, Escape to close, focus trap.
@@ -369,8 +408,9 @@ Individual dropdown menu item.
 
 **Props:**
 - `disabled`: boolean
-- `onSelect`: () => void
+- `onclick`: (e: MouseEvent) => void
 - `children`: Snippet
+- `class`: string
 
 #### DropdownDivider
 Visual separator between dropdown sections.
@@ -385,20 +425,24 @@ Header text for dropdown sections.
 Dropdown item that renders as link.
 
 **Props:**
-- `href`: string
-- `disabled`: boolean
+- `href`: string (required)
+- `onclick`: (e: MouseEvent) => void
 - `children`: Snippet
+- `class`: string
 
 #### Pagination
-Pagination controls for data sets. Supports page numbers, next/prev, and page size selection.
+Pagination controls with previous/next buttons and a caller-supplied list of page links.
 
 **Props:**
-- `currentPage`: number (bindable)
-- `totalPages`: number
-- `onPageChange`: (page: number) => void
-- `showSizeSelector`: boolean (default: false)
-- `pageSize`: number (default: 10)
-- `onPageSizeChange`: (size: number) => void
+- `pages`: PageItem[] (required — array of `{ name: string; href: string; active?: boolean }`)
+- `previous`: () => void (shows the previous button when provided)
+- `next`: () => void (shows the next button when provided)
+- `size`: ComponentSize | ComponentSizeType (default: 'md')
+- `prevContent`: Snippet (custom previous-button content, replaces chevron icon)
+- `nextContent`: Snippet (custom next-button content, replaces chevron icon)
+- `class`: string
+
+Note: page items render as `<a href>` — this component does not manage page state (no `currentPage`/`totalPages`/`onPageChange`/page-size selector); the caller builds the `pages` array and supplies `previous`/`next` handlers.
 
 ### Feedback Components
 
@@ -415,22 +459,29 @@ Informational message with variants (info, success, warning, error) and dismissi
 **Accessibility:** role="alert", ARIA live region, dismiss button with aria-label.
 
 #### Toast
-Temporary notification with positioning and variant options.
+Single toast notification. Renders either from a `toast` data object (id, variant, message) or custom `children`.
 
 **Props:**
-- `open`: boolean (bindable)
-- `variant`: 'info' | 'success' | 'warning' | 'error'
-- `position`: 'top-left' | 'top-center' | 'top-right' | 'bottom-left' | 'bottom-center' | 'bottom-right'
-- `duration`: number (auto-dismiss in ms, 0 for manual)
-- `title`: string
-- `description`: string
-- `action`: Snippet
-- `onClose`: () => void
+- `toast`: { id: string; variant?: StatusVariant; message?: string } (data object, alternative to children)
+- `onDismiss`: (id: string) => void (called with toast.id when dismissed)
+- `dismissable`: boolean (shows dismiss button; auto-true if toast+onDismiss given, default: false)
+- `onclose`: () => void (called on dismiss regardless of toast/onDismiss)
+- `color`: StatusVariant | StatusVariantType (default: 'info') — alternative to `toast.variant`
+- `children`: Snippet (custom content, overrides toast.message)
+- `class`: string
 
-**Accessibility:** role="status", ARIA live region, keyboard dismissible.
+**Accessibility:** role="alert", aria-live="polite", dismiss button with aria-label, fly-in animation.
 
 #### ToastProvider
-Context provider for toast management and positioning.
+Fixed-position container that renders a list of toasts and any app content passed as children.
+
+**Props:**
+- `children`: Snippet (app content, rendered below the toast container)
+- `toasts`: Array<{ id: string; variant?: StatusVariant; message?: string }> (default: [])
+- `position`: 'top-left' | 'top-center' | 'top-right' | 'bottom-left' | 'bottom-center' | 'bottom-right' (default: 'top-right')
+- `onDismiss`: (id: string) => void (called when a toast's dismiss button is clicked)
+
+Note: there is no built-in auto-dismiss/`duration` — call sites manage the `toasts` array and remove entries themselves (e.g. via `setTimeout`).
 
 #### Modal
 Dialog modal with backdrop and keyboard dismissal. Wraps bits-ui.Dialog.Root.
@@ -452,13 +503,20 @@ Dialog modal with backdrop and keyboard dismissal. Wraps bits-ui.Dialog.Root.
 **Accessibility:** Focus trap, Escape to close, ARIA dialog role, proper focus management.
 
 #### AlertDialog
-Alert dialog for critical confirmations (destructive actions, warnings). Wraps bits-ui.Dialog.
+Alert dialog for critical confirmations (destructive actions, warnings). Wraps bits-ui.AlertDialog.Root.
 
 **Props:**
-- Similar to Modal, but optimized for confirmations with destructive implications.
-- Has built-in action/cancel button slots.
+- `open`: boolean (bindable)
+- `variant`: StatusVariant 'info' | 'success' | 'warning' | 'error' (default: 'info')
+- `title`: string
+- `description`: string
+- `confirmText`: string (default: 'Confirm')
+- `cancelText`: string (default: 'Cancel')
+- `onConfirm`: () => void
+- `onCancel`: () => void
+- `children`: Snippet (custom content between description and actions)
 
-**Accessibility:** role="alertdialog", ARIA described-by for dangerous actions, focus on primary action.
+**Accessibility:** role="alertdialog" (native bits-ui AlertDialog primitive, not Dialog), Escape triggers Cancel (not a silent dismiss), clicking outside does not dismiss by default, focus on primary action.
 
 #### Drawer
 Slide-out panel from screen edge with backdrop and transitions.
@@ -492,51 +550,67 @@ Positioned popover with manual trigger control. Wraps bits-ui.Popover.Root.
 - `open`: boolean (bindable)
 - `side`: 'top' | 'right' | 'bottom' | 'left'
 - `align`: 'start' | 'center' | 'end'
-- `trigger`: Snippet (trigger element)
+- `trigger`: Snippet<[{ props: Record<string, unknown> }]> (spread `props` onto your own trigger element, e.g. `{#snippet trigger({ props })}<Button {...props}>Open</Button>{/snippet}`)
 - `children`: Snippet (popover content)
 
-**Accessibility:** Focus trap when open, Escape to close, ARIA attributes.
+**Accessibility:** Focus trap when open, Escape to close, ARIA attributes correctly delegated to the caller's trigger element via `props`.
 
 ### Data Display Components
 
 #### Table
-Data table with sortable headers and responsive design.
+Data table container with optional striping, hover, and border styling.
 
 **Props:**
 - `children`: Snippet (TableHead, TableBody components)
+- `classes`: { div?: string; table?: string } (separate classes for the wrapping div and the table element)
+- `striped`: boolean (alternating row background, default: false)
+- `hoverable`: boolean (row hover highlight, default: false)
+- `noborder`: boolean (removes the outer border, default: false)
+- `shadow`: boolean (adds a drop shadow, default: false)
+- `color`: TextColor | TextColorType (base text color variant)
+- `class`: string
 
 #### TableHead
-Table header container with sorting support.
+Table header container.
 
 **Props:**
 - `children`: Snippet (TableHeadCell components)
+- `defaultRow`: boolean (wraps children in a default `<tr>`, default: false)
+- `class`: string
 
 #### TableHeadCell
-Individual table header cell with sort indicators.
+Individual table header cell (`<th scope="col">`). There is no built-in sort state — wire up sorting yourself via `onclick`.
 
 **Props:**
-- `sortable`: boolean
-- `sorted`: 'asc' | 'desc' | null
-- `onSort`: () => void
 - `children`: Snippet
+- `padding`: string (default: 'px-6 py-3')
+- `onclick`: (event: MouseEvent) => void (e.g. for sorting; pair with your own sort icon in `children`)
+- `class`: string
 
 #### TableBody
 Table body container for rows.
 
 **Props:**
 - `children`: Snippet (TableBodyRow components)
+- `class`: string
 
 #### TableBodyRow
-Individual table row with hover states.
+Individual table row (`<tr>`) with hover states.
 
 **Props:**
 - `children`: Snippet (TableBodyCell components)
+- `color`: TextColor | TextColorType
+- `onclick`: (event: MouseEvent) => void
+- `class`: string
 
 #### TableBodyCell
-Individual table data cell.
+Individual table data cell (`<td>`).
 
 **Props:**
 - `children`: Snippet
+- `padding`: string
+- `colspan`: number
+- `class`: string
 
 #### Progressbar
 Linear progress indicator with variants and sizes.
@@ -555,145 +629,167 @@ Linear progress indicator with variants and sizes.
 **Accessibility:** role="progressbar", ARIA value attributes, screen reader friendly.
 
 #### Listgroup
-Styled list for content groups and navigation.
+Styled container for grouping ListgroupItem components.
 
 **Props:**
+- `active`: boolean (reserved for future active-state management; currently has no visual effect, default: false)
 - `children`: Snippet (ListgroupItem components)
+- `class`: string
 
 #### ListgroupItem
-Individual list item with active state and link support.
+Individual list item. Renders as a native `<button type="button">` — there is no `href`/link mode.
 
 **Props:**
-- `active`: boolean
-- `href`: string
-- `disabled`: boolean
-- `onclick`: (e: MouseEvent) => void
+- `disabled`: boolean (native button attribute)
+- `onclick`: (e: MouseEvent) => void (native button attribute)
 - `children`: Snippet
+- `class`: string (e.g. add `bg-primary-50 text-primary-700` for an "active" look, since there is no built-in active prop)
 
 #### StepIndicator
 Visual step progress indicator for multi-step workflows.
 
 **Props:**
-- `currentStep`: number
-- `totalSteps`: number
-- `steps`: string[] (step labels)
-- `onStepClick`: (step: number) => void
-- `clickable`: boolean (default: false)
+- `currentStep`: number (1-indexed current step, default: 1)
+- `steps`: string[] (step labels, default: ['Step 1', 'Step 2', 'Step 3'])
+- `glow`: boolean (adds glow effect to current step, default: false)
+- `class`: string
+- `children`: Snippet<[{ step: number; label: string }]> (custom content per step, e.g. an icon instead of the step number)
+
+**Accessibility:** Semantic `<ol>`, `aria-current="step"` on the current `<li>`, checkmark icon for completed steps.
 
 #### Indicator
-Badge indicator with flexible positioning (9 positions).
+Small positioned status dot (e.g. online/notification marker), absolutely positioned over a `position: relative` parent.
 
 **Props:**
-- `show`: boolean
-- `placement`: 'top-left' | 'top-center' | 'top-right' | 'center-left' | 'center' | 'center-right' | 'bottom-left' | 'bottom-center' | 'bottom-right'
-- `offset`: { x: number; y: number } (pixel offset, default: { x: 0, y: 0 })
-- `content`: Snippet
-- `children`: Snippet (parent element)
+- `variant`: BadgeVariant | BadgeVariantType (color, default: 'default')
+  - Options: 'default' | 'primary' | 'secondary' | 'success' | 'warning' | 'error' | 'info'
+- `size`: ComponentSize | ComponentSizeType (default: 'md')
+- `placement`: IndicatorPlacement | IndicatorPlacementType (default: 'top-right')
+  - Options: 'top-left' | 'top-center' | 'top-right' | 'center-left' | 'center' | 'center-right' | 'bottom-left' | 'bottom-center' | 'bottom-right'
+- `border`: boolean (adds a white ring border, default: false)
+- `class`: string
+
+Note: this renders only the dot itself (`aria-hidden`, absolutely positioned) — wrap it and its target together in a `position: relative` element yourself. There is no `show`/`offset`/`content` prop.
 
 #### Spinner
 Circular loading spinner with size variants.
 
 **Props:**
-- `size`: 'xs' | 'sm' | 'md' | 'lg' | 'xl' (default: 'md')
-- `color`: string (CSS color value)
+- `size`: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '4' | '6' | '8' | '10' | '12' | '16' | string (named or numeric Tailwind sizes, or a custom class; default: 'md')
+- `class`: string (use to set a text color class, e.g. `text-primary-500`, since the spinner uses `currentColor`)
 
 #### ListPlaceholder
-Skeleton placeholder for list items with shimmer effect.
+Skeleton placeholder for list items with pulse animation.
 
 **Props:**
-- `count`: number (number of items, default: 3)
-- `height`: string (item height, default: '48px')
+- `rows`: number (number of skeleton rows, default: 5)
+- `class`: string
 
 #### WidgetPlaceholder
-Skeleton placeholder for cards/widgets with shimmer effect.
+Fixed-layout skeleton placeholder for a card/widget with pulse animation (header row, avatar/icon block, and several content lines).
 
 **Props:**
-- `height`: string (default: '200px')
-- `showHeader`: boolean (default: true)
-- `showFooter`: boolean (default: false)
+- `class`: string
+
+Note: there is no `height`/`showHeader`/`showFooter` prop — the skeleton layout is fixed.
 
 ### Typography Components
 
 #### Heading
-Semantic heading component with size variants.
+Semantic heading component (renders the matching `<h1>`-`<h6>` element) with a predefined size per tag.
 
 **Props:**
-- `level`: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' (HTML tag)
-- `size`: 'xs' | 'sm' | 'base' | 'lg' | 'xl' | '2xl' | '3xl' (text size, default: 'lg')
-- `weight`: 'normal' | 'medium' | 'semibold' | 'bold' (default: 'semibold')
-- `color`: 'default' | 'muted' | 'primary' | 'secondary' | 'success' | 'warning' | 'error' (default: 'default')
+- `tag`: HeadingTag | HeadingTagType ('h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6', default: 'h1') — determines both the rendered element and its default size
+- `customSize`: string (custom Tailwind size class, overrides the tag's default size)
 - `children`: Snippet
-- `id`: string (for anchor links)
+- `class`: string
+
+Note: there is no separate `size`/`weight`/`color`/`id` prop — size comes from `tag` (or `customSize`), and color/id are set via `class`/native passthrough attributes.
 
 #### P
-Paragraph text component with size and color variants.
+Paragraph text component with size, weight, and color variants.
 
 **Props:**
 - `size`: 'xs' | 'sm' | 'base' | 'lg' | 'xl' | '2xl' | '3xl' (default: 'base')
 - `weight`: 'normal' | 'medium' | 'semibold' | 'bold' (default: 'normal')
-- `color`: 'default' | 'muted' | 'primary' | 'secondary' | 'success' | 'warning' | 'error' (default: 'default')
-- `leading`: 'tight' | 'normal' | 'relaxed' (line-height)
+- `color`: 'default' | 'muted' | 'primary' | 'secondary' | 'success' | 'warning' | 'error' | 'info' | 'blue' | 'green' | 'red' | 'yellow' | 'purple' (default: 'default')
 - `children`: Snippet
+- `class`: string
+
+Note: there is no `leading` prop — line-height is fixed (`leading-relaxed`); override via `class` if needed.
 
 #### A
-Styled link component with hover states.
+Styled link component with color variants.
 
 **Props:**
-- `href`: string
-- `external`: boolean (shows external icon, default: false)
-- `variant`: 'default' | 'primary' | 'muted' (default: 'primary')
+- `href`: string (required)
+- `color`: TextColor | TextColorType (default: 'primary')
+  - Options: 'default' | 'primary' | 'secondary' | 'muted' | 'success' | 'warning' | 'error' | 'info' | 'blue' | 'green' | 'red' | 'yellow' | 'purple'
+- `target`: string (e.g. '_blank')
+- `rel`: string (e.g. 'noopener noreferrer')
 - `children`: Snippet
+- `class`: string
+
+Note: there is no `variant` prop (use `color`) and no built-in `external` icon — add one yourself as a child for external links.
 
 #### Blockquote
-Styled blockquote for quotes and testimonials.
+Styled blockquote with optional border, background, and italics.
 
 **Props:**
-- `variant`: 'default' | 'bordered' | 'elevated' (default: 'bordered')
-- `cite`: string (attribution)
+- `border`: boolean (adds a left border, default: false)
+- `bg`: boolean (adds background and padding, default: false)
+- `italic`: boolean (default: true)
+- `cite`: string (native `<blockquote>` attribute, passed through)
 - `children`: Snippet
+- `class`: string
 
 ### Other Components
 
 #### Img
-Responsive image component with lazy loading and fallback.
+Responsive image with fluid width (`max-w-full h-auto`). A thin wrapper around `<img>`.
 
 **Props:**
-- `src`: string
+- `src`: string (required)
 - `alt`: string (required for accessibility)
-- `loading`: 'lazy' | 'eager' (default: 'lazy')
-- `width`: number
-- `height`: number
 - `class`: string
+- Any other native `<img>` attribute (`loading`, `width`, `height`, `srcset`, `sizes`, etc.) is passed through, but none has a component-level default and there is no fallback-image behavior.
 
-**Accessibility:** Always requires alt text, lazy loading for performance.
+**Accessibility:** Always requires alt text; use `alt=""` for decorative images.
 
 #### Hr
-Horizontal rule/separator with variants.
+Horizontal rule/separator (`<hr>`) with default spacing and border color.
 
 **Props:**
-- `variant`: 'default' | 'dashed' | 'dotted' (default: 'default')
 - `class`: string
+
+Note: there is no `variant` prop — use `class` for dashed/dotted styles (e.g. `class="border-dashed"`).
 
 #### Helper
 Form helper text for additional context below inputs.
 
 **Props:**
-- `text`: string
-- `error`: boolean (error color variant, default: false)
+- `children`: Snippet (helper text content)
+- `color`: StatusVariant | StatusVariantType (default: 'info')
+  - Options: 'info' | 'success' | 'warning' | 'error'
+- `class`: string
 
 #### Toolbar
-Toolbar container with grouping support.
+Flexible, wrapping horizontal container for ToolbarButton/ToolbarGroup.
 
 **Props:**
-- `align`: 'start' | 'center' | 'end' | 'space-between' (default: 'start')
-- `orientation`: 'horizontal' | 'vertical' (default: 'horizontal')
 - `children`: Snippet
+- `class`: string
+
+Note: there is no `align`/`orientation` prop — use `class` (e.g. `class="flex-col gap-2"`) to change layout.
 
 #### ToolbarButton
-Pre-styled button for toolbar use.
+Small square icon button for toolbar use (not the same API as Button — no `variant`/`loading`/`href`/`fullWidth`).
 
 **Props:**
-- Same as Button, with toolbar-specific defaults.
+- `size`: ComponentSize | ComponentSizeType ('xs' | 'sm' | 'md' | 'lg', default: 'sm')
+- `children`: Snippet (typically an icon)
+- `class`: string
+- Native `<button>` attributes (`disabled`, `onclick`, `aria-label`, etc.) are passed through.
 
 #### ToolbarGroup
 Groups toolbar buttons with proper spacing.
@@ -709,14 +805,9 @@ Groups toolbar buttons with proper spacing.
 ### BadgeVariant
 - DEFAULT, PRIMARY, SECONDARY, SUCCESS, WARNING, ERROR, INFO
 
-### AlertVariant
+### StatusVariant
 - INFO, SUCCESS, WARNING, ERROR
-
-### ToastVariant
-- INFO, SUCCESS, WARNING, ERROR
-
-### ProgressbarVariant
-- PRIMARY, SECONDARY, SUCCESS, ERROR, WARNING, INFO
+- Used by Alert, Toast, AlertDialog, Helper (there is no separate AlertVariant/ToastVariant enum)
 
 ### CardVariant
 - DEFAULT, BORDERED, ELEVATED, FLAT, GLASS
@@ -735,6 +826,7 @@ Groups toolbar buttons with proper spacing.
 
 ### AccentVariant
 - PRIMARY, SECONDARY, SUCCESS, ERROR, WARNING, INFO
+- Used by Progressbar, Switch (there is no separate ProgressbarVariant enum)
 
 ### HeadingTag
 - H1, H2, H3, H4, H5, H6
@@ -746,7 +838,7 @@ Groups toolbar buttons with proper spacing.
 - NORMAL, MEDIUM, SEMIBOLD, BOLD
 
 ### TextColor
-- DEFAULT, MUTED, PRIMARY, SECONDARY, SUCCESS, WARNING, ERROR
+- DEFAULT, MUTED, PRIMARY, SECONDARY, SUCCESS, WARNING, ERROR, INFO, BLUE, GREEN, RED, YELLOW, PURPLE
 
 ### Side
 - TOP, RIGHT, BOTTOM, LEFT
@@ -827,8 +919,8 @@ Svelte 5 snippets allow flexible content composition:
 ```svelte
 <Card>
   <Label for="email">Email</Label>
- <Input id="email" error="Invalid email format" />
-  <Helper text="We'll never share your email" />
+  <Input id="email" error="Invalid email format" />
+  <Helper>We'll never share your email</Helper>
 </Card>
 ```
 
@@ -872,8 +964,10 @@ Svelte 5 snippets allow flexible content composition:
   bind:open={showModal}
   title="Create User"
   size={ModalSize.MD}>
-  <Input label="Name" bind:value={userName} />
-  <Input label="Email" bind:value={userEmail} />
+  <Label for="new-user-name">Name</Label>
+  <Input id="new-user-name" bind:value={userName} />
+  <Label for="new-user-email">Email</Label>
+  <Input id="new-user-email" bind:value={userEmail} />
 
   {#snippet footer()}
     <Button variant="outline" onclick={() => showModal = false}>
@@ -895,12 +989,12 @@ Svelte 5 snippets allow flexible content composition:
   </TabsList>
 
   <TabsContent value="overview">
-    <Heading level="h3">Overview</Heading>
+    <Heading tag="h3">Overview</Heading>
     <P>Content goes here</P>
   </TabsContent>
 
   <TabsContent value="settings">
-    <Heading level="h3">Settings</Heading>
+    <Heading tag="h3">Settings</Heading>
     <P>Configuration options</P>
   </TabsContent>
 </Tabs>

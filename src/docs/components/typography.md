@@ -153,13 +153,13 @@ Paragraph component with configurable size, weight, and color. Semantic p elemen
 
 ### Props API
 
-| Prop       | Type                                               | Default     | Description                     |
-| ---------- | -------------------------------------------------- | ----------- | ------------------------------- |
-| `children` | `Snippet`                                          | -           | Paragraph content               |
-| `class`    | `string`                                           | -           | Additional CSS classes to apply |
-| `size`     | `'xs' \| 'sm' \| 'base' \| 'lg' \| 'xl'`           | `'base'`    | Text size                       |
-| `weight`   | `'normal' \| 'medium' \| 'semibold' \| 'bold'`     | `'normal'`  | Font weight                     |
-| `color`    | `'default' \| 'muted' \| 'primary' \| 'secondary'` | `'default'` | Text color variant              |
+| Prop       | Type                                                                                                                                                    | Default     | Description                     |
+| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- | ------------------------------- |
+| `children` | `Snippet`                                                                                                                                               | -           | Paragraph content               |
+| `class`    | `string`                                                                                                                                                | -           | Additional CSS classes to apply |
+| `size`     | `'xs' \| 'sm' \| 'base' \| 'lg' \| 'xl'`                                                                                                                | `'base'`    | Text size                       |
+| `weight`   | `'normal' \| 'medium' \| 'semibold' \| 'bold'`                                                                                                          | `'normal'`  | Font weight                     |
+| `color`    | `'default' \| 'muted' \| 'primary' \| 'secondary' \| 'success' \| 'warning' \| 'error' \| 'info' \| 'blue' \| 'green' \| 'red' \| 'yellow' \| 'purple'` | `'default'` | Text color variant              |
 
 ### Examples
 
@@ -291,13 +291,14 @@ Link component with default styling and hover effects. Semantic anchor element.
 
 ### Props API
 
-| Prop       | Type                                         | Default | Description                     |
-| ---------- | -------------------------------------------- | ------- | ------------------------------- |
-| `children` | `Snippet`                                    | -       | Link content                    |
-| `class`    | `string`                                     | -       | Additional CSS classes to apply |
-| `href`     | `string`                                     | -       | Link URL (required)             |
-| `target`   | `'_blank' \| '_self' \| '_parent' \| '_top'` | -       | Target attribute                |
-| `rel`      | `string`                                     | -       | Rel attribute for SEO/security  |
+| Prop       | Type                         | Default     | Description                                                                                                                                                               |
+| ---------- | ---------------------------- | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `children` | `Snippet`                    | -           | Link content                                                                                                                                                              |
+| `class`    | `string`                     | -           | Additional CSS classes to apply                                                                                                                                           |
+| `href`     | `string`                     | -           | Link URL (required)                                                                                                                                                       |
+| `color`    | `TextColor \| TextColorType` | `'primary'` | Link color variant: 'default' \| 'primary' \| 'secondary' \| 'muted' \| 'success' \| 'warning' \| 'error' \| 'info' \| 'blue' \| 'green' \| 'red' \| 'yellow' \| 'purple' |
+| `target`   | `string`                     | -           | Target attribute (e.g. '_blank')                                                                                                                                          |
+| `rel`      | `string`                     | -           | Rel attribute for SEO/security                                                                                                                                            |
 
 ### Examples
 
@@ -311,6 +312,12 @@ Link component with default styling and hover effects. Semantic anchor element.
 
 ```svelte
 <A href="https://example.com" target="_blank" rel="noopener">External Link</A>
+```
+
+#### Color Variant
+
+```svelte
+<A href="/pricing" color="secondary">Pricing</A>
 ```
 
 #### With Custom Styling
@@ -413,10 +420,14 @@ Blockquote component for quoted text. Provides proper styling and semantic marku
 
 ### Props API
 
-| Prop       | Type      | Default | Description                     |
-| ---------- | --------- | ------- | ------------------------------- |
-| `children` | `Snippet` | -       | Quote content                   |
-| `class`    | `string`  | -       | Additional CSS classes to apply |
+| Prop       | Type      | Default | Description                                             |
+| ---------- | --------- | ------- | ------------------------------------------------------- |
+| `children` | `Snippet` | -       | Quote content                                           |
+| `border`   | `boolean` | `false` | If true, adds a left border                             |
+| `bg`       | `boolean` | `false` | If true, adds background and padding                    |
+| `italic`   | `boolean` | `true`  | If true, text is italicized                             |
+| `cite`     | `string`  | -       | Native `<blockquote>` `cite` attribute (passed through) |
+| `class`    | `string`  | -       | Additional CSS classes to apply                         |
 
 ### Examples
 
@@ -445,7 +456,7 @@ Blockquote component for quoted text. Provides proper styling and semantic marku
 			we needed."
 		</P>
 		<div class="mt-4 flex items-center gap-3">
-			<Avatar src="/avatar.jpg" alt="John Doe" />
+			<Img src="/avatar.jpg" alt="John Doe" class="h-10 w-10 rounded-full object-cover" />
 			<div>
 				<P weight="semibold">John Doe</P>
 				<P size="sm" color="muted">CEO, Tech Corp</P>

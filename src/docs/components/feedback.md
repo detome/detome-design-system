@@ -31,20 +31,20 @@ Alert component with multiple variants for displaying contextual information. Su
 
 ```svelte
 <script>
-	import { Alert, AlertVariant } from 'requify-design-system';
+	import { Alert, StatusVariant } from 'requify-design-system';
 </script>
 ```
 
 ### Props API
 
-| Prop          | Type                                                          | Default  | Description                        |
-| ------------- | ------------------------------------------------------------- | -------- | ---------------------------------- |
-| `variant`     | `AlertVariant \| 'info' \| 'success' \| 'warning' \| 'error'` | `'info'` | Color variant                      |
-| `dismissible` | `boolean`                                                     | `false`  | If true, shows X button to dismiss |
-| `onDismiss`   | `() => void`                                                  | -        | Callback when alert is dismissed   |
-| `icon`        | `Snippet`                                                     | -        | Custom icon snippet                |
-| `children`    | `Snippet`                                                     | -        | Alert content                      |
-| `class`       | `string`                                                      | -        | Additional CSS classes to apply    |
+| Prop          | Type                                                           | Default  | Description                        |
+| ------------- | -------------------------------------------------------------- | -------- | ---------------------------------- |
+| `variant`     | `StatusVariant \| 'info' \| 'success' \| 'warning' \| 'error'` | `'info'` | Color variant                      |
+| `dismissible` | `boolean`                                                      | `false`  | If true, shows X button to dismiss |
+| `onDismiss`   | `() => void`                                                   | -        | Callback when alert is dismissed   |
+| `icon`        | `Snippet`                                                      | -        | Custom icon snippet                |
+| `children`    | `Snippet`                                                      | -        | Alert content                      |
+| `class`       | `string`                                                       | -        | Additional CSS classes to apply    |
 
 ### Examples
 
@@ -59,19 +59,19 @@ Alert component with multiple variants for displaying contextual information. Su
 #### All Variants
 
 ```svelte
-<Alert variant={AlertVariant.INFO}>
+<Alert variant={StatusVariant.INFO}>
 	<p>This is an info alert</p>
 </Alert>
 
-<Alert variant={AlertVariant.SUCCESS}>
+<Alert variant={StatusVariant.SUCCESS}>
 	<p>Changes saved successfully!</p>
 </Alert>
 
-<Alert variant={AlertVariant.WARNING}>
+<Alert variant={StatusVariant.WARNING}>
 	<p>This is a warning message</p>
 </Alert>
 
-<Alert variant={AlertVariant.ERROR}>
+<Alert variant={StatusVariant.ERROR}>
 	<p>An error occurred</p>
 </Alert>
 ```
@@ -98,7 +98,7 @@ Alert component with multiple variants for displaying contextual information. Su
 #### Success Message
 
 ```svelte
-<Alert variant={AlertVariant.SUCCESS}>
+<Alert variant={StatusVariant.SUCCESS}>
 	<p>Profile updated successfully!</p>
 </Alert>
 ```
@@ -106,7 +106,7 @@ Alert component with multiple variants for displaying contextual information. Su
 #### Error Message
 
 ```svelte
-<Alert variant={AlertVariant.ERROR} dismissible onDismiss={clearError}>
+<Alert variant={StatusVariant.ERROR} dismissible onDismiss={clearError}>
 	<p>Failed to save changes. Please try again.</p>
 </Alert>
 ```
@@ -114,7 +114,7 @@ Alert component with multiple variants for displaying contextual information. Su
 #### Warning Message
 
 ```svelte
-<Alert variant={AlertVariant.WARNING}>
+<Alert variant={StatusVariant.WARNING}>
 	<p>Your session will expire in 5 minutes</p>
 </Alert>
 ```
@@ -122,7 +122,7 @@ Alert component with multiple variants for displaying contextual information. Su
 #### Rich Content
 
 ```svelte
-<Alert variant={AlertVariant.INFO}>
+<Alert variant={StatusVariant.INFO}>
 	<h4 class="mb-1 font-semibold">New Feature Available</h4>
 	<p>We've added a new feature to help you manage your projects.</p>
 	<Button variant={ButtonVariant.OUTLINE} size="sm" class="mt-3">Learn More</Button>
@@ -132,7 +132,7 @@ Alert component with multiple variants for displaying contextual information. Su
 #### With Action
 
 ```svelte
-<Alert variant={AlertVariant.WARNING} dismissible>
+<Alert variant={StatusVariant.WARNING} dismissible>
 	<div class="flex items-start gap-3">
 		<div class="flex-1">
 			<p class="font-medium">Unsaved changes</p>
@@ -171,7 +171,7 @@ Toast notification component with multiple variants and dismissible option. Supp
 
 ```svelte
 <script>
-	import { Toast, ToastVariant } from 'requify-design-system';
+	import { Toast, StatusVariant } from 'requify-design-system';
 </script>
 ```
 
@@ -183,43 +183,43 @@ Toast notification component with multiple variants and dismissible option. Supp
 | `onDismiss`   | `(id: string) => void` | -        | Callback when toast is dismissed via close button                 |
 | `dismissable` | `boolean`              | `false`  | If true, shows dismiss button. Auto-detected from toast/onDismiss |
 | `onclose`     | `() => void`           | -        | Callback when toast is closed or dismissed                        |
-| `color`       | `ToastVariant`         | `'info'` | Color variant (alternative to toast.variant)                      |
+| `color`       | `StatusVariant`        | `'info'` | Color variant (alternative to toast.variant)                      |
 | `children`    | `Snippet`              | -        | Custom toast content (overrides toast.message)                    |
 | `class`       | `string`               | -        | Additional CSS classes to apply                                   |
 
 #### ToastData Interface
 
-| Property  | Type           | Description             |
-| --------- | -------------- | ----------------------- |
-| `id`      | `string`       | Unique toast identifier |
-| `variant` | `ToastVariant` | Toast variant           |
-| `message` | `string`       | Toast message text      |
+| Property  | Type            | Description             |
+| --------- | --------------- | ----------------------- |
+| `id`      | `string`        | Unique toast identifier |
+| `variant` | `StatusVariant` | Toast variant           |
+| `message` | `string`        | Toast message text      |
 
 ### Examples
 
 #### Basic Usage
 
 ```svelte
-<Toast variant={ToastVariant.SUCCESS} message="Changes saved successfully!" />
+<Toast color={StatusVariant.SUCCESS}>Changes saved successfully!</Toast>
 ```
+
+Note: there is no top-level `variant`/`message` prop — use `color` for the color variant, and pass the message as `children` (or via the `toast` data object, shown below).
 
 #### All Variants
 
 ```svelte
-<Toast variant={ToastVariant.INFO} message="New message received" />
-<Toast variant={ToastVariant.SUCCESS} message="Success!" />
-<Toast variant={ToastVariant.WARNING} message="Warning message" />
-<Toast variant={ToastVariant.ERROR} message="Error occurred" />
+<Toast color={StatusVariant.INFO}>New message received</Toast>
+<Toast color={StatusVariant.SUCCESS}>Success!</Toast>
+<Toast color={StatusVariant.WARNING}>Warning message</Toast>
+<Toast color={StatusVariant.ERROR}>Error occurred</Toast>
 ```
 
 #### Dismissible
 
 ```svelte
-<Toast
-	variant={ToastVariant.ERROR}
-	message="Failed to save changes"
-	dismissable
-	onDismiss={() => console.log('dismissed')} />
+<Toast color={StatusVariant.ERROR} dismissable onclose={() => console.log('dismissed')}>
+	Failed to save changes
+</Toast>
 ```
 
 #### With Custom Content
@@ -241,7 +241,7 @@ Toast notification component with multiple variants and dismissible option. Supp
 <script>
 	const myToastData = {
 		id: 'toast-1',
-		variant: ToastVariant.SUCCESS,
+		variant: StatusVariant.SUCCESS,
 		message: 'Item added to cart'
 	};
 </script>
@@ -252,7 +252,7 @@ Toast notification component with multiple variants and dismissible option. Supp
 #### Warning Variant
 
 ```svelte
-<Toast variant={ToastVariant.WARNING} message="This is a warning" />
+<Toast color={StatusVariant.WARNING}>This is a warning</Toast>
 ```
 
 #### Multiple Toasts
@@ -301,18 +301,20 @@ Provider component for toast state management. Wraps multiple Toast components a
 
 ```svelte
 <script>
-	import { ToastProvider, Toast, ToastVariant } from 'requify-design-system';
+	import { ToastProvider, Toast, StatusVariant } from 'requify-design-system';
 </script>
 ```
 
 ### Props API
 
-| Prop        | Type                                                                                              | Default          | Description                      |
-| ----------- | ------------------------------------------------------------------------------------------------- | ---------------- | -------------------------------- |
-| `toasts`    | `ToastData[]`                                                                                     | `[]`             | Array of toast data objects      |
-| `position`  | `'top-left' \| 'top-center' \| 'top-right' \| 'bottom-left' \| 'bottom-center' \| 'bottom-right'` | `'bottom-right'` | Toast position on screen         |
-| `onDismiss` | `(id: string) => void`                                                                            | -                | Callback when toast is dismissed |
-| `class`     | `string`                                                                                          | -                | Additional CSS classes to apply  |
+| Prop        | Type                                                                                              | Default       | Description                                       |
+| ----------- | ------------------------------------------------------------------------------------------------- | ------------- | ------------------------------------------------- |
+| `children`  | `Snippet`                                                                                         | -             | App content, rendered below the toast container   |
+| `toasts`    | `ToastData[]`                                                                                     | `[]`          | Array of toast data objects                       |
+| `position`  | `'top-left' \| 'top-center' \| 'top-right' \| 'bottom-left' \| 'bottom-center' \| 'bottom-right'` | `'top-right'` | Toast position on screen                          |
+| `onDismiss` | `(id: string) => void`                                                                            | -             | Callback when a toast's dismiss button is clicked |
+
+Note: there is no `class` prop, and no built-in auto-dismiss/`duration` — the caller manages the `toasts` array (e.g. remove entries via `setTimeout`).
 
 ### Examples
 
@@ -322,7 +324,7 @@ Provider component for toast state management. Wraps multiple Toast components a
 <script>
 	let toasts = $state([]);
 
-	function addToast(message: string, variant: ToastVariant) {
+	function addToast(message: string, variant: StatusVariant) {
 		toasts = [...toasts, { id: Date.now().toString(), message, variant }];
 	}
 
@@ -331,7 +333,7 @@ Provider component for toast state management. Wraps multiple Toast components a
 	}
 </script>
 
-<Button onclick={() => addToast('Success!', ToastVariant.SUCCESS)}>Add Toast</Button>
+<Button onclick={() => addToast('Success!', StatusVariant.SUCCESS)}>Add Toast</Button>
 
 <ToastProvider {toasts} onDismiss={removeToast} />
 ```
@@ -455,10 +457,10 @@ Modal dialog component for displaying content in an overlay. Supports multiple s
 #### With Custom Header
 
 ```svelte
-<Modal bind:open={isOpen} header>
+<Modal bind:open={isOpen}>
 	{#snippet header()}
 		<div class="flex items-center gap-3">
-			<Avatar />
+			<div class="h-10 w-10 rounded-full bg-gray-200 dark:bg-gray-700"></div>
 			<div>
 				<h3 class="font-semibold">User Profile</h3>
 				<p class="text-sm text-gray-600">Edit your details</p>
@@ -540,7 +542,7 @@ Modal dialog component for displaying content in an overlay. Supports multiple s
 
 ## AlertDialog
 
-Pre-configured modal for critical confirmations and alerts. Provides built-in buttons for confirm/cancel actions.
+Alert dialog for critical confirmations, built directly on bits-ui's native `AlertDialog` primitive (not a wrapper around Modal/Dialog). Provides built-in confirm/cancel buttons.
 
 ### When to Use
 
@@ -553,22 +555,23 @@ Pre-configured modal for critical confirmations and alerts. Provides built-in bu
 
 ```svelte
 <script>
-	import { AlertDialog } from 'requify-design-system';
+	import { AlertDialog, StatusVariant } from 'requify-design-system';
 </script>
 ```
 
 ### Props API
 
-| Prop          | Type                                 | Default     | Description                 |
-| ------------- | ------------------------------------ | ----------- | --------------------------- |
-| `open`        | `boolean`                            | `false`     | Alert open state (bindable) |
-| `title`       | `string`                             | -           | Alert title                 |
-| `description` | `string`                             | -           | Alert description           |
-| `confirmText` | `string`                             | `'Confirm'` | Confirm button text         |
-| `cancelText`  | `string`                             | `'Cancel'`  | Cancel button text          |
-| `onConfirm`   | `() => void`                         | -           | Callback when confirmed     |
-| `onCancel`    | `() => void`                         | -           | Callback when cancelled     |
-| `variant`     | `'danger' \| 'warning' \| 'default'` | `'default'` | Alert variant               |
+| Prop          | Type            | Default     | Description                                                     |
+| ------------- | --------------- | ----------- | --------------------------------------------------------------- |
+| `open`        | `boolean`       | `false`     | Alert open state (bindable)                                     |
+| `title`       | `string`        | -           | Alert title                                                     |
+| `description` | `string`        | -           | Alert description                                               |
+| `confirmText` | `string`        | `'Confirm'` | Confirm button text                                             |
+| `cancelText`  | `string`        | `'Cancel'`  | Cancel button text                                              |
+| `onConfirm`   | `() => void`    | -           | Callback when confirmed                                         |
+| `onCancel`    | `() => void`    | -           | Callback when cancelled (also fires on Escape)                  |
+| `variant`     | `StatusVariant` | `'info'`    | Icon/color variant: 'info' \| 'success' \| 'warning' \| 'error' |
+| `children`    | `Snippet`       | -           | Custom content between description and actions                  |
 
 ### Examples
 
@@ -588,7 +591,7 @@ Pre-configured modal for critical confirmations and alerts. Provides built-in bu
 	onConfirm={deleteItem} />
 ```
 
-#### Danger Variant
+#### Error Variant
 
 ```svelte
 <AlertDialog
@@ -596,7 +599,7 @@ Pre-configured modal for critical confirmations and alerts. Provides built-in bu
 	title="Delete Account"
 	description="This will permanently delete your account"
 	confirmText="Delete"
-	variant="danger"
+	variant={StatusVariant.ERROR}
 	onConfirm={deleteAccount} />
 ```
 
@@ -604,13 +607,12 @@ Pre-configured modal for critical confirmations and alerts. Provides built-in bu
 
 ```svelte
 <AlertDialog
-  bind:open={isOpen}
-  title="Unsaved Changes"
-  description="You have unsaved changes. Continue?"
-  confirmText="Continue"
-  variant="warning"
-  onConfirm={continue}
-/>
+	bind:open={isOpen}
+	title="Unsaved Changes"
+	description="You have unsaved changes. Continue?"
+	confirmText="Continue"
+	variant={StatusVariant.WARNING}
+	onConfirm={handleContinue} />
 ```
 
 #### Custom Button Text
@@ -627,8 +629,9 @@ Pre-configured modal for critical confirmations and alerts. Provides built-in bu
 
 ### Accessibility
 
-- Inherits accessibility from Modal
-- Role="alertdialog" for critical dialogs
+- `role="alertdialog"` from bits-ui's native AlertDialog primitive (not Dialog)
+- Escape triggers Cancel (calls `onCancel` and closes) rather than a silent dismiss
+- Clicking outside does not dismiss the dialog by default
 - Focus management with proper tab order
 
 ---
@@ -699,8 +702,8 @@ Slide-out drawer/sheet component from any edge of viewport. Wraps bits-ui Dialog
 <Drawer bind:open={showSheet} placement="bottom">
 	<h3>Select Option</h3>
 	<div class="mt-4 space-y-2">
-		<Button variant={ButtonVariant.OUTLINE} onclick={selectOption(1)}>Option 1</Button>
-		<Button variant={ButtonVariant.OUTLINE} onclick={selectOption(2)}>Option 2</Button>
+		<Button variant={ButtonVariant.OUTLINE} onclick={() => selectOption(1)}>Option 1</Button>
+		<Button variant={ButtonVariant.OUTLINE} onclick={() => selectOption(2)}>Option 2</Button>
 	</div>
 </Drawer>
 ```
@@ -939,14 +942,14 @@ Popover component for displaying rich, interactive content on demand. Wraps bits
 
 ### Props API
 
-| Prop       | Type                                     | Default    | Description                                |
-| ---------- | ---------------------------------------- | ---------- | ------------------------------------------ |
-| `open`     | `boolean`                                | `false`    | Controls popover visibility                |
-| `trigger`  | `Snippet`                                | -          | Element that triggers popover on click     |
-| `children` | `Snippet`                                | -          | Popover content                            |
-| `align`    | `'start' \| 'center' \| 'end'`           | `'start'`  | Popover alignment along of side            |
-| `side`     | `'top' \| 'right' \| 'bottom' \| 'left'` | `'bottom'` | Popover placement side relative to trigger |
-| `class`    | `string`                                 | -          | Additional CSS classes to apply            |
+| Prop       | Type                                     | Default    | Description                                                                                                 |
+| ---------- | ---------------------------------------- | ---------- | ----------------------------------------------------------------------------------------------------------- |
+| `open`     | `boolean`                                | `false`    | Controls popover visibility                                                                                 |
+| `trigger`  | `Snippet<[{ props }]>`                   | -          | Trigger content. Spread the given `props` onto your own trigger element for correct keyboard/ARIA behavior. |
+| `children` | `Snippet`                                | -          | Popover content                                                                                             |
+| `align`    | `'start' \| 'center' \| 'end'`           | `'start'`  | Popover alignment along of side                                                                             |
+| `side`     | `'top' \| 'right' \| 'bottom' \| 'left'` | `'bottom'` | Popover placement side relative to trigger                                                                  |
+| `class`    | `string`                                 | -          | Additional CSS classes to apply                                                                             |
 
 ### Examples
 
@@ -958,8 +961,8 @@ Popover component for displaying rich, interactive content on demand. Wraps bits
 </script>
 
 <Popover bind:open={showPopover}>
-	{#snippet trigger()}
-		<Button>Click to open</Button>
+	{#snippet trigger({ props })}
+		<Button {...props}>Click to open</Button>
 	{/snippet}
 	<div>
 		<h3>Popover Title</h3>
@@ -972,8 +975,8 @@ Popover component for displaying rich, interactive content on demand. Wraps bits
 
 ```svelte
 <Popover bind:open={showPopover} align="center" side="top">
-	{#snippet trigger()}
-		<Button>Open Popover</Button>
+	{#snippet trigger({ props })}
+		<Button {...props}>Open Popover</Button>
 	{/snippet}
 	<p>Centered content</p>
 </Popover>
@@ -983,8 +986,8 @@ Popover component for displaying rich, interactive content on demand. Wraps bits
 
 ```svelte
 <Popover bind:open={showPopover}>
-	{#snippet trigger()}
-		<Button>Filter</Button>
+	{#snippet trigger({ props })}
+		<Button {...props}>Filter</Button>
 	{/snippet}
 	<form onsubmit={handleFilter} class="space-y-3">
 		<Label>Filter by...</Label>
@@ -998,8 +1001,8 @@ Popover component for displaying rich, interactive content on demand. Wraps bits
 
 ```svelte
 <Popover bind:open={showPopover} side="right">
-	{#snippet trigger()}
-		<Button>Open Right</Button>
+	{#snippet trigger({ props })}
+		<Button {...props}>Open Right</Button>
 	{/snippet}
 	<p>Content on right side</p>
 </Popover>
@@ -1019,8 +1022,8 @@ Popover component for displaying rich, interactive content on demand. Wraps bits
 
 ```svelte
 <Popover bind:open={showPopover}>
-	{#snippet trigger()}
-		<Button icon>
+	{#snippet trigger({ props })}
+		<Button icon {...props}>
 			{#snippet icon()}
 				<MoreHorizontal class="h-4 w-4" />
 			{/snippet}
@@ -1038,8 +1041,10 @@ Popover component for displaying rich, interactive content on demand. Wraps bits
 
 ```svelte
 <Popover bind:open={showPopover}>
-	{#snippet trigger()}
-		<Avatar src="/avatar.jpg" alt="User" />
+	{#snippet trigger({ props })}
+		<button {...props}>
+			<Img src="/avatar.jpg" alt="User" class="h-10 w-10 rounded-full object-cover" />
+		</button>
 	{/snippet}
 	<div class="space-y-3">
 		<div class="text-center">

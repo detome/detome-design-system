@@ -126,8 +126,8 @@ Interactive button component with multiple visual variants, sizes, and states. W
 ```svelte
 <Button fullWidth>Full Width Button</Button>
 <ButtonGroup class="w-full">
-  <Button fullWidth>Previous</Button>
-  <Button fullWidth variant={ButtonVariant.PRIMARY} fullWidth>Next</Button>
+	<Button fullWidth>Previous</Button>
+	<Button fullWidth variant={ButtonVariant.PRIMARY}>Next</Button>
 </ButtonGroup>
 ```
 
@@ -178,15 +178,14 @@ Container component with multiple visual variants for content grouping. Can rend
 
 ### Props API
 
-| Prop        | Type                                              | Default     | Description                                                    |
-| ----------- | ------------------------------------------------- | ----------- | -------------------------------------------------------------- |
-| `variant`   | `'default' \| 'bordered' \| 'elevated' \| 'flat'` | `'default'` | Visual style variant                                           |
-| `size`      | `'sm' \| 'md' \| 'lg' \| 'xl'`                    | `'md'`      | Padding size (alias for padding)                               |
-| `padding`   | `'none' \| 'sm' \| 'md' \| 'lg' \| 'xl'`          | `'md'`      | Padding size                                                   |
-| `hoverable` | `boolean`                                         | `false`     | If true or href provided, adds hover lift effect               |
-| `href`      | `string`                                          | -           | If provided, renders as anchor tag with href and link behavior |
-| `children`  | `Snippet`                                         | -           | Card content                                                   |
-| `class`     | `string`                                          | -           | Additional CSS classes to apply                                |
+| Prop        | Type                                                         | Default     | Description                                                    |
+| ----------- | ------------------------------------------------------------ | ----------- | -------------------------------------------------------------- |
+| `variant`   | `'default' \| 'bordered' \| 'elevated' \| 'flat' \| 'glass'` | `'default'` | Visual style variant                                           |
+| `padding`   | `'none' \| 'sm' \| 'md' \| 'lg' \| 'xl'`                     | `'md'`      | Padding size                                                   |
+| `hoverable` | `boolean`                                                    | `false`     | If true or href provided, adds hover lift effect               |
+| `href`      | `string`                                                     | -           | If provided, renders as anchor tag with href and link behavior |
+| `children`  | `Snippet`                                                    | -           | Card content                                                   |
+| `class`     | `string`                                                     | -           | Additional CSS classes to apply                                |
 
 ### Examples
 
@@ -211,10 +210,10 @@ Container component with multiple visual variants for content grouping. Can rend
 #### All Sizes
 
 ```svelte
-<Card size="sm">Small padding</Card>
-<Card size="md">Medium padding</Card>
-<Card size="lg">Large padding</Card>
-<Card size="xl">Extra large padding</Card>
+<Card padding="sm">Small padding</Card>
+<Card padding="md">Medium padding</Card>
+<Card padding="lg">Large padding</Card>
+<Card padding="xl">Extra large padding</Card>
 <Card padding="none">No padding</Card>
 ```
 
@@ -305,7 +304,6 @@ Text input with error states, icon slots, and clearable functionality. Extends H
 | `clearable` | `boolean`                                               | `false` | If true, shows X button to clear value when not empty        |
 | `left`      | `Snippet`                                               | -       | Left icon slot (displayed before input text)                 |
 | `right`     | `Snippet`                                               | -       | Right icon slot (displayed after input text)                 |
-| `children`  | `Snippet<[HTMLInputAttributes]>`                        | -       | Custom input rendering snippet                               |
 | `class`     | `string`                                                | -       | Additional CSS classes to apply                              |
 | `value`     | `string`                                                | -       | Input value (bindable)                                       |
 | `disabled`  | `boolean`                                               | `false` | Disables input                                               |
@@ -423,6 +421,7 @@ Form label component with required field indicator. Wraps bits-ui.Label.Root for
 
 | Prop       | Type      | Default | Description                                  |
 | ---------- | --------- | ------- | -------------------------------------------- |
+| `for`      | `string`  | -       | id of the associated input                   |
 | `required` | `boolean` | `false` | If true, shows red asterisk (\*) after label |
 | `children` | `Snippet` | -       | Label text and content                       |
 | `class`    | `string`  | -       | Additional CSS classes to apply              |

@@ -77,10 +77,10 @@
 	const colorStyles: Record<AccentVariant, string> = {
 		[AccentVariant.PRIMARY]: 'bg-primary-600 dark:bg-primary-500',
 		[AccentVariant.SECONDARY]: 'bg-secondary-500 dark:bg-secondary-400',
-		[AccentVariant.SUCCESS]: 'bg-green-600 dark:bg-green-500',
-		[AccentVariant.ERROR]: 'bg-red-600 dark:bg-red-500',
-		[AccentVariant.WARNING]: 'bg-yellow-400 dark:bg-yellow-300',
-		[AccentVariant.INFO]: 'bg-blue-600 dark:bg-blue-500'
+		[AccentVariant.SUCCESS]: 'bg-success-600 dark:bg-success-500',
+		[AccentVariant.ERROR]: 'bg-error-600 dark:bg-error-500',
+		[AccentVariant.WARNING]: 'bg-warning-400 dark:bg-warning-300',
+		[AccentVariant.INFO]: 'bg-info-600 dark:bg-info-500'
 	};
 
 	const sizeStyles: Record<string, string> = {

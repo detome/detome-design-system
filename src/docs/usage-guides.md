@@ -1,6 +1,6 @@
 # Usage Guides
 
-Comprehensive guides for using the Requify Design System effectively.
+Comprehensive guides for using the Detome Design System effectively.
 
 ## Table of Contents
 
@@ -17,7 +17,7 @@ Comprehensive guides for using the Requify Design System effectively.
 
 ### Overview
 
-The Requify Design System uses CSS custom properties (variables) for colors, allowing you to fully customize the theme without modifying component code.
+The Detome Design System uses CSS custom properties (variables) for colors, allowing you to fully customize the theme without modifying component code.
 
 ### Color Variables
 
@@ -689,7 +689,7 @@ If you're migrating from custom Tailwind classes:
 
 **Common patterns:**
 
-| Other Library         | Requify Design System             |
+| Other Library         | Detome Design System              |
 | --------------------- | --------------------------------- |
 | `variant="contained"` | `variant={ButtonVariant.PRIMARY}` |
 | `size="small"`        | `size={ComponentSize.SM}`         |

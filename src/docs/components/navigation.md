@@ -56,18 +56,16 @@ Main sidebar navigation component. Provides active URL context for child items.
 
 ```svelte
 <Sidebar>
-	<SidebarGroup title="Main Menu">
-		<SidebarItem href="/dashboard">
+	<SidebarGroup>
+		<SidebarItem label="Dashboard" href="/dashboard">
 			{#snippet icon()}
 				<Home class="h-5 w-5" />
 			{/snippet}
-			Dashboard
 		</SidebarItem>
-		<SidebarItem href="/settings">
+		<SidebarItem label="Settings" href="/settings">
 			{#snippet icon()}
 				<Settings class="h-5 w-5" />
 			{/snippet}
-			Settings
 		</SidebarItem>
 	</SidebarGroup>
 </Sidebar>
@@ -77,9 +75,9 @@ Main sidebar navigation component. Provides active URL context for child items.
 
 ```svelte
 <Sidebar activeUrl="/dashboard">
-	<SidebarGroup title="Menu">
-		<SidebarItem href="/dashboard">Dashboard</SidebarItem>
-		<SidebarItem href="/reports">Reports</SidebarItem>
+	<SidebarGroup>
+		<SidebarItem label="Dashboard" href="/dashboard" />
+		<SidebarItem label="Reports" href="/reports" />
 	</SidebarGroup>
 </Sidebar>
 ```
@@ -88,13 +86,13 @@ Main sidebar navigation component. Provides active URL context for child items.
 
 ```svelte
 <Sidebar>
-	<SidebarGroup title="Main">
-		<SidebarItem href="/">Home</SidebarItem>
-		<SidebarItem href="/dashboard">Dashboard</SidebarItem>
+	<SidebarGroup>
+		<SidebarItem label="Home" href="/" />
+		<SidebarItem label="Dashboard" href="/dashboard" />
 	</SidebarGroup>
-	<SidebarGroup title="Settings">
-		<SidebarItem href="/settings/profile">Profile</SidebarItem>
-		<SidebarItem href="/settings/account">Account</SidebarItem>
+	<SidebarGroup rounded>
+		<SidebarItem label="Profile" href="/settings/profile" />
+		<SidebarItem label="Account" href="/settings/account" />
 	</SidebarGroup>
 </Sidebar>
 ```
@@ -103,11 +101,11 @@ Main sidebar navigation component. Provides active URL context for child items.
 
 ```svelte
 <Sidebar>
-	<SidebarGroup title="Menu">
-		<SidebarItem href="/home">Home</SidebarItem>
-		<SidebarDropdown title="More">
-			<SidebarItem href="/settings">Settings</SidebarItem>
-			<SidebarItem href="/help">Help</SidebarItem>
+	<SidebarGroup>
+		<SidebarItem label="Home" href="/home" />
+		<SidebarDropdown label="More">
+			<SidebarItem label="Settings" href="/settings" />
+			<SidebarItem label="Help" href="/help" />
 		</SidebarDropdown>
 	</SidebarGroup>
 </Sidebar>
@@ -118,7 +116,7 @@ Main sidebar navigation component. Provides active URL context for child items.
 ```svelte
 <Sidebar class="sidebar-custom">
 	<SidebarGroup>
-		<SidebarItem href="/home">Home</SidebarItem>
+		<SidebarItem label="Home" href="/home" />
 	</SidebarGroup>
 </Sidebar>
 ```
@@ -134,7 +132,7 @@ Main sidebar navigation component. Provides active URL context for child items.
 
 ## SidebarGroup
 
-Group container for sidebar items with optional title.
+Group container for sidebar items with optional rounded background styling.
 
 ### Installation
 
@@ -146,17 +144,18 @@ Group container for sidebar items with optional title.
 
 ### Props API
 
-| Prop       | Type      | Default | Description                               |
-| ---------- | --------- | ------- | ----------------------------------------- |
-| `title`    | `string`  | -       | Group title (optional)                    |
-| `children` | `Snippet` | -       | SidebarItem or SidebarDropdown components |
+| Prop       | Type      | Default | Description                                   |
+| ---------- | --------- | ------- | --------------------------------------------- |
+| `rounded`  | `boolean` | `false` | Wraps items in a rounded background container |
+| `children` | `Snippet` | -       | SidebarItem or SidebarDropdown components     |
+| `class`    | `string`  | -       | Additional CSS classes to apply               |
 
 ### Examples
 
 ```svelte
 <Sidebar>
-	<SidebarGroup title="Main Menu">
-		<SidebarItem href="/dashboard">Dashboard</SidebarItem>
+	<SidebarGroup rounded>
+		<SidebarItem label="Dashboard" href="/dashboard" />
 	</SidebarGroup>
 </Sidebar>
 ```
@@ -177,20 +176,22 @@ Individual navigation item in sidebar. Supports icons and active state detection
 
 ### Props API
 
-| Prop       | Type      | Default | Description  |
-| ---------- | --------- | ------- | ------------ |
-| `href`     | `string`  | -       | Link URL     |
-| `icon`     | `Snippet` | -       | Icon snippet |
-| `children` | `Snippet` | -       | Link text    |
+| Prop       | Type      | Default | Description                                      |
+| ---------- | --------- | ------- | ------------------------------------------------ |
+| `label`    | `string`  | -       | Text label for the item (required)               |
+| `href`     | `string`  | -       | Link URL (required)                              |
+| `icon`     | `Snippet` | -       | Leading icon slot                                |
+| `children` | `Snippet` | -       | Extra trailing content displayed after the label |
+| `nested`   | `boolean` | `false` | Adds indentation for nested items                |
+| `class`    | `string`  | -       | Additional CSS classes to apply                  |
 
 ### Examples
 
 ```svelte
-<SidebarItem href="/dashboard">
+<SidebarItem label="Dashboard" href="/dashboard">
 	{#snippet icon()}
 		<Dashboard class="h-5 w-5" />
 	{/snippet}
-	Dashboard
 </SidebarItem>
 ```
 
@@ -198,7 +199,7 @@ Individual navigation item in sidebar. Supports icons and active state detection
 
 ## SidebarDropdown
 
-Dropdown menu within sidebar for nested navigation items.
+Collapsible dropdown section within sidebar for nested navigation items.
 
 ### Installation
 
@@ -210,17 +211,20 @@ Dropdown menu within sidebar for nested navigation items.
 
 ### Props API
 
-| Prop       | Type      | Default | Description            |
-| ---------- | --------- | ------- | ---------------------- |
-| `title`    | `string`  | -       | Dropdown title         |
-| `children` | `Snippet` | -       | SidebarItem components |
+| Prop          | Type      | Default | Description            |
+| ------------- | --------- | ------- | ---------------------- |
+| `label`       | `string`  | -       | Dropdown label         |
+| `icon`        | `Snippet` | -       | Leading icon slot      |
+| `defaultOpen` | `boolean` | `false` | Whether open initially |
+| `children`    | `Snippet` | -       | SidebarItem components |
+| `class`       | `string`  | -       | Additional CSS classes |
 
 ### Examples
 
 ```svelte
-<SidebarDropdown title="Settings">
-	<SidebarItem href="/settings/profile">Profile</SidebarItem>
-	<SidebarItem href="/settings/account">Account</SidebarItem>
+<SidebarDropdown label="Settings">
+	<SidebarItem label="Profile" href="/settings/profile" />
+	<SidebarItem label="Account" href="/settings/account" />
 </SidebarDropdown>
 ```
 
@@ -431,6 +435,7 @@ Individual tab button. Clicking activates the corresponding content panel.
 | Prop       | Type      | Default | Description                               |
 | ---------- | --------- | ------- | ----------------------------------------- |
 | `value`    | `string`  | -       | Unique identifier for this tab (required) |
+| `disabled` | `boolean` | `false` | Disables this tab                         |
 | `children` | `Snippet` | -       | Tab button content                        |
 | `class`    | `string`  | -       | Additional CSS classes to apply           |
 
@@ -582,15 +587,17 @@ Individual breadcrumb item. Last item is typically the current page without a li
 
 ### Props API
 
-| Prop       | Type      | Default | Description                      |
-| ---------- | --------- | ------- | -------------------------------- |
-| `href`     | `string`  | -       | Link URL (omit for current page) |
-| `children` | `Snippet` | -       | Item text or content             |
+| Prop       | Type      | Default | Description                                                |
+| ---------- | --------- | ------- | ---------------------------------------------------------- |
+| `href`     | `string`  | -       | Link URL (omit for current page)                           |
+| `home`     | `boolean` | `false` | If true, suppresses the separator chevron before this item |
+| `children` | `Snippet` | -       | Item text or content                                       |
+| `class`    | `string`  | -       | Additional CSS classes to apply                            |
 
 ### Examples
 
 ```svelte
-<BreadcrumbItem href="/home">Home</BreadcrumbItem>
+<BreadcrumbItem home href="/home">Home</BreadcrumbItem>
 <BreadcrumbItem>Current Page</BreadcrumbItem>
 ```
 
@@ -674,13 +681,14 @@ Pagination controls for data sets with previous/next and page numbers.
 #### With Custom Prev/Next Content
 
 ```svelte
-<Pagination
-  pages={pages}
-  previous={goBack}
-  next={goForward}
-  prevContent={() => <span>Previous</span>}
-  nextContent={() => <span>Next</span>}
-/>
+<Pagination {pages} previous={goBack} next={goForward}>
+	{#snippet prevContent()}
+		<span>Previous</span>
+	{/snippet}
+	{#snippet nextContent()}
+		<span>Next</span>
+	{/snippet}
+</Pagination>
 ```
 
 #### Dynamic Pagination
@@ -768,20 +776,20 @@ Collapsible content panels with keyboard navigation. Supports single or multiple
 
 ### Props API
 
-| Prop       | Type                 | Default | Description                                                                                  |
-| ---------- | -------------------- | ------- | -------------------------------------------------------------------------------------------- |
-| `value`    | `string \| string[]` | -       | Open panel identifier(s). Bindable. For type="single": string; for type="multiple": string[] |
-| `multiple` | `boolean`            | `false` | If true, allows multiple panels open. If false, single panel                                 |
-| `disabled` | `boolean`            | `false` | Disables all accordion interactions                                                          |
-| `children` | `Snippet`            | -       | AccordionItem components                                                                     |
-| `class`    | `string`             | -       | Additional CSS classes to apply                                                              |
+| Prop       | Type                 | Default | Description                                                                                 |
+| ---------- | -------------------- | ------- | ------------------------------------------------------------------------------------------- |
+| `value`    | `string \| string[]` | -       | Open panel identifier(s). Bindable. `string` when `multiple` is false, `string[]` when true |
+| `multiple` | `boolean`            | `false` | If true, allows multiple panels open. If false, single panel                                |
+| `disabled` | `boolean`            | `false` | Disables all accordion interactions                                                         |
+| `children` | `Snippet`            | -       | AccordionItem components                                                                    |
+| `class`    | `string`             | -       | Additional CSS classes to apply                                                             |
 
 ### Examples
 
 #### Single Open Panel
 
 ```svelte
-<Accordion type="single" value="item1">
+<Accordion value="item1">
 	<AccordionItem value="item1" title="Item 1">
 		<p>Content for item 1</p>
 	</AccordionItem>
@@ -794,7 +802,7 @@ Collapsible content panels with keyboard navigation. Supports single or multiple
 #### Multiple Open Panels
 
 ```svelte
-<Accordion type="multiple" value={['item1', 'item3']}>
+<Accordion multiple value={['item1', 'item3']}>
 	<AccordionItem value="item1" title="Item 1">
 		<p>Content</p>
 	</AccordionItem>
@@ -829,7 +837,7 @@ Collapsible content panels with keyboard navigation. Supports single or multiple
 ```svelte
 <h2 class="mb-4 text-xl font-bold">Frequently Asked Questions</h2>
 
-<Accordion type="single">
+<Accordion>
 	<AccordionItem value="faq1" title="How do I get started?">
 		<p>To get started, create an account and follow the onboarding process.</p>
 	</AccordionItem>
@@ -890,11 +898,14 @@ Individual accordion panel with header and collapsible content.
 
 ### Props API
 
-| Prop       | Type      | Default | Description                                 |
-| ---------- | --------- | ------- | ------------------------------------------- |
-| `value`    | `string`  | -       | Unique identifier for this panel (required) |
-| `title`    | `string`  | -       | Panel header title                          |
-| `children` | `Snippet` | -       | Panel content                               |
+| Prop       | Type      | Default | Description                                    |
+| ---------- | --------- | ------- | ---------------------------------------------- |
+| `value`    | `string`  | -       | Unique identifier for this panel (required)    |
+| `disabled` | `boolean` | `false` | Disables panel expansion                       |
+| `title`    | `string`  | -       | Panel header title (alternative to `header`)   |
+| `header`   | `Snippet` | -       | Custom header content (alternative to `title`) |
+| `children` | `Snippet` | -       | Panel content                                  |
+| `class`    | `string`  | -       | Additional CSS classes to apply                |
 
 ### Examples
 
@@ -933,25 +944,25 @@ Dropdown menu with keyboard navigation. Wraps bits-ui.DropdownMenu.Root.
 
 ### Props API
 
-| Prop                     | Type                                     | Default    | Description                                                                       |
-| ------------------------ | ---------------------------------------- | ---------- | --------------------------------------------------------------------------------- |
-| `open`                   | `boolean`                                | `false`    | Dropdown open state (bindable)                                                    |
-| `trigger`                | `Snippet`                                | -          | Trigger element that opens dropdown (required)                                    |
-| `children`               | `Snippet`                                | -          | Dropdown menu items (DropdownItem, DropdownDivider, DropdownHeader, DropdownLink) |
-| `align`                  | `'start' \| 'center' \| 'end'`           | `'start'`  | Horizontal alignment of dropdown                                                  |
-| `side`                   | `'top' \| 'right' \| 'bottom' \| 'left'` | `'bottom'` | Which side of trigger to show on                                                  |
-| `class`                  | `string`                                 | -          | Additional CSS classes to apply                                                   |
-| `updatePositionStrategy` | `'optimized' \| 'always'`                | `'always'` | How to update position                                                            |
-| `hideWhenDetached`       | `boolean`                                | `false`    | Hide when dropdown detaches from DOM                                              |
+| Prop                     | Type                                     | Default    | Description                                                                                                            |
+| ------------------------ | ---------------------------------------- | ---------- | ---------------------------------------------------------------------------------------------------------------------- |
+| `open`                   | `boolean`                                | `false`    | Dropdown open state (bindable)                                                                                         |
+| `trigger`                | `Snippet<[{ props }]>`                   | -          | Trigger content (required). Spread the given `props` onto your own trigger element for correct keyboard/ARIA behavior. |
+| `children`               | `Snippet`                                | -          | Dropdown menu items (DropdownItem, DropdownDivider, DropdownHeader, DropdownLink)                                      |
+| `align`                  | `'start' \| 'center' \| 'end'`           | `'start'`  | Horizontal alignment of dropdown                                                                                       |
+| `side`                   | `'top' \| 'right' \| 'bottom' \| 'left'` | `'bottom'` | Which side of trigger to show on                                                                                       |
+| `class`                  | `string`                                 | -          | Additional CSS classes to apply                                                                                        |
+| `updatePositionStrategy` | `'optimized' \| 'always'`                | `'always'` | How to update position                                                                                                 |
+| `hideWhenDetached`       | `boolean`                                | `false`    | Hide when dropdown detaches from DOM                                                                                   |
 
 ### Examples
 
 #### Basic Usage
 
 ```svelte
-<Dropdown trigger>
-	{#snippet trigger()}
-		<Button>Open Menu</Button>
+<Dropdown>
+	{#snippet trigger({ props })}
+		<Button {...props}>Open Menu</Button>
 	{/snippet}
 	<DropdownItem onclick={handleAction1}>Action 1</DropdownItem>
 	<DropdownItem onclick={handleAction2}>Action 2</DropdownItem>
@@ -964,9 +975,9 @@ Dropdown menu with keyboard navigation. Wraps bits-ui.DropdownMenu.Root.
 #### With Custom Alignment
 
 ```svelte
-<Dropdown align="end" trigger>
-	{#snippet trigger()}
-		<Button variant="outline">Options</Button>
+<Dropdown align="end">
+	{#snippet trigger({ props })}
+		<Button variant="outline" {...props}>Options</Button>
 	{/snippet}
 	<DropdownItem>Option 1</DropdownItem>
 	<DropdownItem>Option 2</DropdownItem>
@@ -976,9 +987,9 @@ Dropdown menu with keyboard navigation. Wraps bits-ui.DropdownMenu.Root.
 #### Right-aligned Dropdown
 
 ```svelte
-<Dropdown side="right" trigger>
-	{#snippet trigger()}
-		<Button>Profile</Button>
+<Dropdown side="right">
+	{#snippet trigger({ props })}
+		<Button {...props}>Profile</Button>
 	{/snippet}
 	<DropdownItem>Settings</DropdownItem>
 	<DropdownItem>Logout</DropdownItem>
@@ -988,9 +999,9 @@ Dropdown menu with keyboard navigation. Wraps bits-ui.DropdownMenu.Root.
 #### User Menu
 
 ```svelte
-<Dropdown trigger>
-	{#snippet trigger()}
-		<Button variant="ghost" icon>
+<Dropdown>
+	{#snippet trigger({ props })}
+		<Button variant="ghost" icon {...props}>
 			{#snippet icon()}
 				<User class="h-4 w-4" />
 			{/snippet}
@@ -1001,16 +1012,16 @@ Dropdown menu with keyboard navigation. Wraps bits-ui.DropdownMenu.Root.
 	<DropdownItem onclick={goToProfile}>Profile</DropdownItem>
 	<DropdownItem onclick={goToSettings}>Settings</DropdownItem>
 	<DropdownDivider />
-	<DropdownItem variant="danger" onclick={logout}>Logout</DropdownItem>
+	<DropdownItem onclick={logout} class="text-error-600">Logout</DropdownItem>
 </Dropdown>
 ```
 
 #### With Links
 
 ```svelte
-<Dropdown trigger>
-	{#snippet trigger()}
-		<Button>Resources</Button>
+<Dropdown>
+	{#snippet trigger({ props })}
+		<Button {...props}>Resources</Button>
 	{/snippet}
 	<DropdownLink href="/docs">Documentation</DropdownLink>
 	<DropdownLink href="/blog">Blog</DropdownLink>
@@ -1021,9 +1032,9 @@ Dropdown menu with keyboard navigation. Wraps bits-ui.DropdownMenu.Root.
 #### Destructive Actions
 
 ```svelte
-<Dropdown trigger>
-	{#snippet trigger()}
-		<Button variant="outline">Actions</Button>
+<Dropdown>
+	{#snippet trigger({ props })}
+		<Button variant="outline" {...props}>Actions</Button>
 	{/snippet}
 	<DropdownItem onclick={edit}>Edit</DropdownItem>
 	<DropdownItem onclick={duplicate}>Duplicate</DropdownItem>

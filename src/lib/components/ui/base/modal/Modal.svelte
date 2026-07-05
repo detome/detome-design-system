@@ -5,8 +5,7 @@
 	import { X } from '@lucide/svelte';
 	import type { Snippet } from 'svelte';
 	import { ModalSize } from '../enums';
-
-	type ModalSizeType = 'sm' | 'md' | 'lg' | 'xl' | 'full';
+	import type { ModalSizeType } from '../enums';
 
 	/**
 	 * Modal component props
@@ -43,7 +42,7 @@
 
 	let {
 		open = $bindable(false),
-		size = 'md',
+		size = ModalSize.MD,
 		dismissible = true,
 		title,
 		description,

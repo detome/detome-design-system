@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { cn } from '$lib/utils/cn';
-	import { CircleAlert, CircleCheckBig, Info, TriangleAlert, X } from '@lucide/svelte';
+	import { X } from '@lucide/svelte';
+	import { statusIcons } from '$lib/utils/status-icons';
 	import { fly } from 'svelte/transition';
 	import type { Snippet } from 'svelte';
 	import { StatusVariant } from '$lib/components/ui/base/enums';
@@ -97,32 +98,25 @@
 
 	const variant = $derived(toast?.variant ?? colorProp ?? StatusVariant.INFO);
 
-	const icons: Record<StatusVariant, any> = {
-		[StatusVariant.INFO]: Info,
-		[StatusVariant.SUCCESS]: CircleCheckBig,
-		[StatusVariant.ERROR]: CircleAlert,
-		[StatusVariant.WARNING]: TriangleAlert
-	};
-
 	const variants: Record<StatusVariant, string> = {
 		[StatusVariant.INFO]:
-			'bg-blue-50 border-blue-200 text-blue-800 dark:bg-blue-900/90 dark:border-blue-700 dark:text-blue-100',
+			'bg-info-50 border-info-200 text-info-800 dark:bg-info-900/90 dark:border-info-700 dark:text-info-100',
 		[StatusVariant.SUCCESS]:
-			'bg-green-50 border-green-200 text-green-800 dark:bg-green-900/90 dark:border-green-700 dark:text-green-100',
+			'bg-success-50 border-success-200 text-success-800 dark:bg-success-900/90 dark:border-success-700 dark:text-success-100',
 		[StatusVariant.ERROR]:
-			'bg-red-50 border-red-200 text-red-800 dark:bg-red-900/90 dark:border-red-700 dark:text-red-100',
+			'bg-error-50 border-error-200 text-error-800 dark:bg-error-900/90 dark:border-error-700 dark:text-error-100',
 		[StatusVariant.WARNING]:
-			'bg-yellow-50 border-yellow-200 text-yellow-800 dark:bg-yellow-900/90 dark:border-yellow-700 dark:text-yellow-100'
+			'bg-warning-50 border-warning-200 text-warning-800 dark:bg-warning-900/90 dark:border-warning-700 dark:text-warning-100'
 	};
 
 	const iconColors: Record<StatusVariant, string> = {
-		[StatusVariant.INFO]: 'text-blue-600 dark:text-blue-400',
-		[StatusVariant.SUCCESS]: 'text-green-600 dark:text-green-400',
-		[StatusVariant.ERROR]: 'text-red-600 dark:text-red-400',
-		[StatusVariant.WARNING]: 'text-yellow-600 dark:text-yellow-400'
+		[StatusVariant.INFO]: 'text-info-600 dark:text-info-400',
+		[StatusVariant.SUCCESS]: 'text-success-600 dark:text-success-400',
+		[StatusVariant.ERROR]: 'text-error-600 dark:text-error-400',
+		[StatusVariant.WARNING]: 'text-warning-600 dark:text-warning-400'
 	};
 
-	const Icon = $derived(icons[variant]);
+	const Icon = $derived(statusIcons[variant]);
 
 	function handleDismiss() {
 		if (toast && onDismiss) {

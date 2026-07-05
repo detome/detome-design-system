@@ -304,18 +304,19 @@ Toggle switch with variants (primary, secondary, success, error, warning, info).
 
 ### Props API
 
-| Prop              | Type                                 | Default     | Description                             |
-| ----------------- | ------------------------------------ | ----------- | --------------------------------------- |
-| `checked`         | `boolean`                            | -           | Current checked state (bindable)        |
-| `variant`         | `AccentVariant \| AccentVariantType` | `'primary'` | Color variant for semantic meaning      |
-| `disabled`        | `boolean`                            | `false`     | Disables switch interaction             |
-| `required`        | `boolean`                            | `false`     | Shows asterisk, form validation hint    |
-| `name`            | `string`                             | -           | HTML name attribute for form submission |
-| `value`           | `string`                             | -           | HTML value attribute                    |
-| `id`              | `string`                             | -           | HTML id for label association           |
-| `children`        | `Snippet`                            | -           | Label content displayed next to switch  |
-| `class`           | `string`                             | -           | Additional CSS classes to apply         |
-| `onCheckedChange` | `(checked: boolean) => void`         | -           | Callback when checked state changes     |
+| Prop              | Type                                 | Default     | Description                                       |
+| ----------------- | ------------------------------------ | ----------- | ------------------------------------------------- |
+| `checked`         | `boolean`                            | -           | Current checked state (bindable)                  |
+| `variant`         | `AccentVariant \| AccentVariantType` | `'primary'` | Color variant for semantic meaning                |
+| `disabled`        | `boolean`                            | `false`     | Disables switch interaction                       |
+| `required`        | `boolean`                            | `false`     | Shows asterisk, form validation hint              |
+| `name`            | `string`                             | -           | HTML name attribute for form submission           |
+| `value`           | `string`                             | -           | HTML value attribute                              |
+| `id`              | `string`                             | -           | HTML id for label association                     |
+| `children`        | `Snippet`                            | -           | Label content displayed next to switch            |
+| `leftLabel`       | `Snippet`                            | -           | Label content displayed to the left of the switch |
+| `class`           | `string`                             | -           | Additional CSS classes to apply                   |
+| `onCheckedChange` | `(checked: boolean) => void`         | -           | Callback when checked state changes               |
 
 ### Examples
 
@@ -502,9 +503,8 @@ Radio button group with single-select functionality. Wraps bits-ui.RadioGroup.Ro
 #### With Labels
 
 ```svelte
-<Label for="shipping">Shipping Method</Label>
+<Label>Shipping Method</Label>
 <RadioGroup
-	id="shipping"
 	bind:value={shippingMethod}
 	options={[
 		{ value: 'standard', label: 'Standard (5-7 days)' },
@@ -512,6 +512,8 @@ Radio button group with single-select functionality. Wraps bits-ui.RadioGroup.Ro
 		{ value: 'overnight', label: 'Overnight (1 day)' }
 	]} />
 ```
+
+Note: RadioGroup has no `id` prop — each individual RadioItem (rendered internally when using `options`) gets its own auto-generated `id`, so label a group with a plain heading/`<Label>` above it rather than `for`/`id` association.
 
 #### Payment Methods
 
@@ -594,12 +596,13 @@ Individual radio button component for use within RadioGroup or standalone.
 
 ### Props API
 
-| Prop       | Type      | Default | Description                             |
-| ---------- | --------- | ------- | --------------------------------------- |
-| `value`    | `string`  | -       | Unique value for this option (required) |
-| `children` | `Snippet` | -       | Label content                           |
-| `class`    | `string`  | -       | Additional CSS classes to apply         |
-| `disabled` | `boolean` | `false` | If true, option is disabled             |
+| Prop             | Type      | Default | Description                                               |
+| ---------------- | --------- | ------- | --------------------------------------------------------- |
+| `value`          | `string`  | -       | Unique value for this option (required)                   |
+| `children`       | `Snippet` | -       | Label content                                             |
+| `id`             | `string`  | -       | HTML id for label association (auto-generated if omitted) |
+| `labelClickable` | `boolean` | `true`  | If true, clicking the label also selects the radio        |
+| `disabled`       | `boolean` | `false` | If true, option is disabled                               |
 
 ### Examples
 
@@ -690,9 +693,11 @@ Single date selection component with custom styling and keyboard support. Wraps 
 #### With Label
 
 ```svelte
-<Label for="birthdate">Birth Date</Label>
-<Datepicker id="birthdate" bind:value={birthdate} />
+<Label>Birth Date</Label>
+<Datepicker bind:value={birthdate} />
 ```
+
+Note: Datepicker has no `id` prop (or any pass-through HTML attributes) — label it with a plain `<Label>` above rather than `for`/`id` association.
 
 #### Past Dates Only
 
@@ -709,8 +714,8 @@ Single date selection component with custom styling and keyboard support. Wraps 
 #### With Helper Text
 
 ```svelte
-<Label for="deadline">Deadline</Label>
-<Datepicker id="deadline" bind:value={deadline} />
+<Label>Deadline</Label>
+<Datepicker bind:value={deadline} />
 <Helper>Select a date at least 7 days from now</Helper>
 ```
 
@@ -721,8 +726,8 @@ Single date selection component with custom styling and keyboard support. Wraps 
 	<h3>Schedule Appointment</h3>
 	<div class="mt-4 space-y-4">
 		<div>
-			<Label for="date">Date</Label>
-			<Datepicker id="date" bind:value={date} />
+			<Label>Date</Label>
+			<Datepicker bind:value={date} />
 		</div>
 		<Button variant={ButtonVariant.PRIMARY} onclick={confirm}>Confirm</Button>
 	</div>
@@ -760,54 +765,51 @@ Date range selection component with two date inputs. Wraps bits-ui.DatePicker fo
 
 ### Props API
 
-| Prop       | Type         | Default | Description                      |
-| ---------- | ------------ | ------- | -------------------------------- |
-| `start`    | `Date`       | -       | Start date of range (bindable)   |
-| `end`      | `Date`       | -       | End date of range (bindable)     |
-| `minStart` | `Date`       | -       | Minimum start date               |
-| `maxEnd`   | `Date`       | -       | Maximum end date                 |
-| `onChange` | `() => void` | -       | Callback when date range changes |
-| `class`    | `string`     | -       | Additional CSS classes to apply  |
+| Prop       | Type                | Default | Description                                                                                                             |
+| ---------- | ------------------- | ------- | ----------------------------------------------------------------------------------------------------------------------- |
+| `value`    | `DateRange \| Date` | -       | Selected date range (bindable). `DateRange` is `{ start?: Date; end?: Date }`; a single `Date` is treated as start-only |
+| `onChange` | `() => void`        | -       | Callback when date range changes                                                                                        |
+| `class`    | `string`            | -       | Additional CSS classes to apply                                                                                         |
+
+Note: there are no separate `start`/`end`/`minStart`/`maxEnd` props — bind a single `value` object instead.
 
 ### Examples
 
 #### Basic Usage
 
 ```svelte
-<DateRangePicker bind:start={startDate} bind:end={endDate} />
-```
+<script>
+	let dateRange = $state({ start: undefined, end: undefined });
+</script>
 
-#### With Date Limits
-
-```svelte
-<DateRangePicker
-	bind:start={checkIn}
-	bind:end={checkOut}
-	minStart={new Date()}
-	maxEnd={new Date(Date.now() + 90 * 24 * 60 * 60 * 1000)} />
+<DateRangePicker bind:value={dateRange} />
 ```
 
 #### With onChange Handler
 
 ```svelte
-<DateRangePicker bind:start={rangeStart} bind:end={rangeEnd} onChange={() => checkAvailability()} />
+<DateRangePicker bind:value={stayDates} onChange={() => checkAvailability()} />
 ```
 
 #### Hotel Booking
 
 ```svelte
+<script>
+	let stayDates = $state({ start: undefined, end: undefined });
+</script>
+
 <Label>Stay Duration</Label>
-<DateRangePicker bind:start={checkIn} bind:end={checkOut} />
+<DateRangePicker bind:value={stayDates} />
 <Helper>
-	{nights} night(s) • {guests} guest(s)
+	{guests} guest(s)
 </Helper>
 ```
 
 ### Accessibility
 
-- Inherits accessibility from Datepicker
-- Screen reader announces date range
-- Keyboard navigation for both dates
+- Full keyboard date navigation for both calendars
+- ARIA datepicker roles with proper labels
+- Screen reader announces the selected range
 
 ---
 
