@@ -110,9 +110,9 @@
 		[ButtonVariant.SECONDARY]:
 			'bg-gradient-to-b from-secondary-500 to-secondary-600 text-white shadow-[0_1px_2px_0_rgb(0_0_0/0.06),0_4px_12px_-2px_rgb(209_106_31/0.15),inset_0_1px_0_0_rgb(255_255_255/0.15)] hover:shadow-[0_2px_4px_0_rgb(0_0_0/0.08),0_8px_24px_-4px_rgb(209_106_31/0.25),inset_0_1px_0_0_rgb(255_255_255/0.2)] hover:-translate-y-0.5 active:translate-y-0 active:shadow-[0_1px_2px_0_rgb(0_0_0/0.1),0_2px_8px_-2px_rgb(209_106_31/0.2),inset_0_1px_0_0_rgb(255_255_255/0.1)]',
 		[ButtonVariant.OUTLINE]:
-			'border-2 border-gray-300 bg-white/80 backdrop-blur-sm text-gray-700 hover:bg-gray-50 hover:border-gray-400 hover:shadow-md active:bg-gray-100 dark:bg-gray-800/80 dark:text-gray-200 dark:border-gray-600 dark:hover:bg-gray-700/80',
+			'border-2 border-gray-300 bg-white/90 text-gray-700 hover:bg-gray-50 hover:border-gray-400 hover:shadow-md active:bg-gray-100 dark:bg-gray-800/90 dark:text-gray-200 dark:border-gray-600 dark:hover:bg-gray-700/80',
 		[ButtonVariant.GHOST]:
-			'text-gray-700 bg-white/5 backdrop-blur-md border border-white/10 hover:bg-white/10 hover:border-white/20 active:bg-white/5 dark:text-gray-300 dark:hover:bg-gray-800/50',
+			'text-gray-700 bg-white/10 border border-white/10 hover:bg-white/20 hover:border-white/20 active:bg-white/10 dark:text-gray-300 dark:hover:bg-gray-800/50',
 		[ButtonVariant.DANGER]:
 			'bg-gradient-to-b from-error-600 to-error-700 text-white shadow-[0_1px_2px_0_rgb(0_0_0/0.06),0_4px_12px_-2px_rgb(220_38_38/0.15),inset_0_1px_0_0_rgb(255_255_255/0.15)] hover:shadow-[0_2px_4px_0_rgb(0_0_0/0.08),0_8px_24px_-4px_rgb(220_38_38/0.25),inset_0_1px_0_0_rgb(255_255_255/0.2)] hover:-translate-y-0.5 active:translate-y-0 active:shadow-[0_1px_2px_0_rgb(0_0_0/0.1),0_2px_8px_-2px_rgb(220_38_38/0.2),inset_0_1px_0_0_rgb(255_255_255/0.1)]',
 		[ButtonVariant.SUCCESS]:
