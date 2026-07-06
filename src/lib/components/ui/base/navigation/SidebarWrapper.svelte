@@ -63,7 +63,7 @@
 	let { children, class: className, ...restProps }: Props = $props();
 
 	const baseStyles =
-		'scrolling-touch top-2 h-full w-full overflow-y-auto bg-white lg:sticky lg:me-0 lg:block lg:h-[calc(100vh-4rem)] dark:bg-gray-800';
+		'top-2 h-full w-full overflow-y-auto bg-white lg:sticky lg:me-0 lg:block lg:h-[calc(100dvh-4rem)] dark:bg-gray-800';
 </script>
 
 <div class={cn(baseStyles, className)} {...restProps}>

@@ -87,7 +87,7 @@
 			'border border-gray-200/60 shadow-[0_2px_4px_0_rgb(0_0_0/0.06),0_8px_16px_-4px_rgb(0_0_0/0.08)] bg-gradient-to-b from-white to-gray-50 dark:from-gray-800 dark:to-gray-850',
 		flat: 'border border-gray-100 dark:border-gray-800',
 		glass:
-			'bg-white/70 dark:bg-gray-800/70 backdrop-blur-xl backdrop-saturate-150 border border-white/80 dark:border-gray-700/80 shadow-[0_4px_6px_-1px_rgb(0_0_0/0.08),0_10px_24px_-6px_rgb(0_0_0/0.1),inset_0_1px_0_0_rgba(255_255_255/0.9)]'
+			'bg-white/85 dark:bg-gray-800/85 backdrop-blur-xl backdrop-saturate-150 border border-white/80 dark:border-gray-700/80 shadow-[0_4px_6px_-1px_rgb(0_0_0/0.08),0_10px_24px_-6px_rgb(0_0_0/0.1),inset_0_1px_0_0_rgba(255_255_255/0.9)]'
 	};
 
 	const paddings: Record<string, string> = {

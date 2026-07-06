@@ -130,7 +130,7 @@
 	const showDismissButton = $derived(dismissable || (toast && onDismiss));
 
 	const baseStyles =
-		'flex items-center gap-3 rounded-lg border p-4 shadow-lg backdrop-blur-sm min-w-[300px] max-w-md';
+		'flex items-center gap-3 rounded-lg border p-4 shadow-lg min-w-[300px] max-w-md';
 	const computedClass = $derived(cn(baseStyles, variants[variant] as string, className));
 </script>
 
