@@ -111,3 +111,19 @@
 		0 4px 8px 0 rgb(0 0 0 / 0.1), 0 16px 32px -6px rgb(15 91 238 / 0.3),
 		inset 0 1px 0 0 rgb(255 255 255 / 0.25);
 }
+
+/*
+  Tailwind v4 compiles `rounded-full` to `border-radius: calc(infinity * 1px)`.
+  Firefox for Android mis-clamps an infinite radius on high-aspect-ratio (wide)
+  boxes and paints square corners — so full-width pill buttons render a hard
+  rectangle around the rounded fill, while narrow/auto-width pills look fine.
+  Chrome and desktop Firefox handle `infinity` correctly.
+
+  A large *finite* radius still clamps to a perfect pill/circle (it caps at half
+  the shorter side) but renders correctly everywhere. Left unlayered so it wins
+  over Tailwind's layered `.rounded-full` without needing !important. Consuming
+  apps get this automatically via `@import '@requify/requify-design-system/theme.css'`.
+*/
+.rounded-full {
+	border-radius: 9999px;
+}
