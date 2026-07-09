@@ -9,18 +9,18 @@
    can be declared in a separate `@theme` block in the consuming app; the
    blocks merge. */
 @theme {
-	/* PRIMARY - Vibrant Blue (professional, trustworthy) */
-	--color-primary-50: #f3f7fe;
-	--color-primary-100: #e2ebfd;
-	--color-primary-200: #c3d6fb;
-	--color-primary-300: #93b5f7;
-	--color-primary-400: #6394f4;
-	--color-primary-500: #3374f1;
-	--color-primary-600: #0f5bee;
-	--color-primary-700: #0e44b3;
-	--color-primary-800: #0c2d79;
-	--color-primary-900: #0b1640;
-	--color-primary-950: #070f2c;
+	/* PRIMARY - Cognac Brown (bookish, timeless — a nod to "detome", from a book of knowledge) */
+	--color-primary-50: #fbf7f4;
+	--color-primary-100: #f6ede4;
+	--color-primary-200: #edd7c5;
+	--color-primary-300: #dfb290;
+	--color-primary-400: #d28a56;
+	--color-primary-500: #c2692e;
+	--color-primary-600: #a05222;
+	--color-primary-700: #763e1e;
+	--color-primary-800: #532d18;
+	--color-primary-900: #361e12;
+	--color-primary-950: #21130d;
 
 	/* SECONDARY - Orange (action, energy) */
 	--color-secondary-50: #fff7ed;
@@ -102,13 +102,13 @@
 
 	/* COLORED SHADOWS - For primary actions with depth */
 	--shadow-primary-sm:
-		0 1px 2px 0 rgb(0 0 0 / 0.06), 0 4px 12px -2px rgb(15 91 238 / 0.15),
+		0 1px 2px 0 rgb(0 0 0 / 0.06), 0 4px 12px -2px rgb(160 82 34 / 0.15),
 		inset 0 1px 0 0 rgb(255 255 255 / 0.15);
 	--shadow-primary-md:
-		0 2px 4px 0 rgb(0 0 0 / 0.08), 0 8px 24px -4px rgb(15 91 238 / 0.25),
+		0 2px 4px 0 rgb(0 0 0 / 0.08), 0 8px 24px -4px rgb(160 82 34 / 0.25),
 		inset 0 1px 0 0 rgb(255 255 255 / 0.2);
 	--shadow-primary-lg:
-		0 4px 8px 0 rgb(0 0 0 / 0.1), 0 16px 32px -6px rgb(15 91 238 / 0.3),
+		0 4px 8px 0 rgb(0 0 0 / 0.1), 0 16px 32px -6px rgb(160 82 34 / 0.3),
 		inset 0 1px 0 0 rgb(255 255 255 / 0.25);
 }
 
