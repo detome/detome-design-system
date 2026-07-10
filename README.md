@@ -107,7 +107,7 @@ The design system uses CSS variables for colors, making it easy to customize the
 
 ### Default Color Palette
 
-- **Primary**: Cognac Brown (bookish, timeless)
+- **Primary**: Slate Blue (professional, trustworthy)
 - **Secondary**: Warm Amber (action, energy)
 - **Accent**: Vibrant Teal (success undertones)
 - **Semantic**: Success, Error, Warning, Info colors

@@ -4,7 +4,7 @@
 
 	/**
 	 * Detome brand mark (the "d" icon) for use on light backgrounds.
-	 * Espresso mark with cognac accent on a transparent background.
+	 * Navy mark with blue accent on a transparent background.
 	 *
 	 * The SVG is imported from `detome-icon-light.svg` (single source of truth).
 	 *

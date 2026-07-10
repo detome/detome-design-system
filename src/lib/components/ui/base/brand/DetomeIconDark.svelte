@@ -4,7 +4,7 @@
 
 	/**
 	 * Detome brand mark (the "d" icon) for use on dark backgrounds.
-	 * Parchment mark with cognac accent on a transparent background.
+	 * White mark with blue accent on a transparent background.
 	 *
 	 * The SVG is imported from `detome-icon-dark.svg` (single source of truth).
 	 *

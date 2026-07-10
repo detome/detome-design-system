@@ -4,7 +4,7 @@
 
 	/**
 	 * Detome wordmark logo for use on dark backgrounds.
-	 * Parchment text with cognac accents on a transparent background.
+	 * White text with blue accents on a transparent background.
 	 *
 	 * The SVG is imported from `detome-logo-dark.svg` (single source of truth).
 	 * Both the dark and light wordmarks share an identical aspect ratio, so

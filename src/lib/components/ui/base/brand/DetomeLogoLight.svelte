@@ -4,7 +4,7 @@
 
 	/**
 	 * Detome wordmark logo for use on light backgrounds.
-	 * Espresso text with cognac accent on a transparent background.
+	 * Navy text with blue accent on a transparent background.
 	 *
 	 * The SVG is imported from `detome-logo-light.svg` (single source of truth).
 	 * Both the dark and light wordmarks share an identical aspect ratio, so

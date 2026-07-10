@@ -104,7 +104,7 @@
 	const errorStyles = $derived(
 		error
 			? 'border-transparent shadow-[0_0_0_3px_rgba(220,38,38,0.1),0_2px_4px_0_rgb(220_38_38/0.1)] focus:border-transparent focus:bg-[linear-gradient(white,white)_padding-box,linear-gradient(90deg,rgb(220_38_38),rgb(239_68_68))_border-box] focus:shadow-[0_0_0_3px_rgba(220,38,38,0.1),0_2px_4px_0_rgb(220_38_38/0.1)] dark:focus:bg-[linear-gradient(rgb(31_41_55),rgb(31_41_55))_padding-box,linear-gradient(90deg,rgb(220_38_38),rgb(239_68_68))_border-box]'
-			: 'border-gray-300 dark:border-gray-600 focus:border-transparent focus:bg-[linear-gradient(white,white)_padding-box,linear-gradient(90deg,var(--color-primary-500),var(--color-accent-500))_border-box] focus:shadow-[0_0_0_3px_rgba(15,91,238,0.1),0_2px_4px_0_rgb(0_0_0/0.04)] dark:focus:bg-[linear-gradient(rgb(31_41_55),rgb(31_41_55))_padding-box,linear-gradient(90deg,var(--color-primary-500),var(--color-accent-500))_border-box]'
+			: 'border-gray-300 dark:border-gray-600 focus:border-transparent focus:bg-[linear-gradient(white,white)_padding-box,linear-gradient(90deg,var(--color-primary-500),var(--color-accent-500))_border-box] focus:shadow-[0_0_0_3px_rgba(57,97,145,0.1),0_2px_4px_0_rgb(0_0_0/0.04)] dark:focus:bg-[linear-gradient(rgb(31_41_55),rgb(31_41_55))_padding-box,linear-gradient(90deg,var(--color-primary-500),var(--color-accent-500))_border-box]'
 	);
 
 	const computedClass = $derived(
