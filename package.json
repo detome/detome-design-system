@@ -1,6 +1,6 @@
 {
 	"name": "@requify/requify-design-system",
-	"version": "1.9.3",
+	"version": "1.9.4",
 	"description": "A professional, customizable design system for Requify built with Svelte 5, Tailwind CSS, and bits-ui",
 	"keywords": [
 		"svelte",

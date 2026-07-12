@@ -150,26 +150,3 @@ body {
 		@apply text-4xl font-bold tracking-tight lg:text-5xl;
 	}
 }
-
-/*
-  Firefox for Android (WebRender) mis-rasterizes box-shadows on pill-shaped
-  elements. Rounded-rect shadows are drawn as 9-patch segments, and when
-  border-radius >= half the box height (any `rounded-full` pill) the edge
-  segments degenerate; scrolling then paints garbage bands in the corner
-  regions and smears the inset highlight across the pill (artifact colors
-  match the buttons' colored glow shadows). Chrome and desktop Firefox are
-  unaffected. This is independent of the radius *value* — it happens with a
-  finite 9999px too — so the theme.css `rounded-full: 9999px` override alone
-  does not prevent it.
-
-  Scope: Gecko only (@supports -moz-appearance) on touch devices
-  (pointer: coarse). Trades the subtle shadow/glow for correct rendering.
-  Kept unlayered so it beats Tailwind's layered shadow/ring utilities.
-*/
-@supports (-moz-appearance: none) {
-	@media (pointer: coarse) {
-		.rounded-full {
-			box-shadow: none;
-		}
-	}
-}
