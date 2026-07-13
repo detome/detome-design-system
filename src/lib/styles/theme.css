@@ -129,24 +129,51 @@
 }
 
 /*
-  Firefox for Android (WebRender) mis-rasterizes box-shadows on pill-shaped
-  elements. Rounded-rect shadows are drawn as 9-patch segments, and when
-  border-radius >= half the box height (any `rounded-full` pill) the edge
-  segments degenerate; scrolling then paints garbage bands in the corner
-  regions and smears the inset highlight across the pill (artifact colors
-  match the buttons' colored glow shadows). Chrome and desktop Firefox are
-  unaffected. This is independent of the radius *value* — it happens with a
-  finite 9999px too — so the theme.css `rounded-full: 9999px` override alone
-  does not prevent it.
+  Firefox for Android garbles OKLAB-interpolated gradients — Tailwind v4's
+  default for bg-gradient-to-* (`--tw-gradient-position: … in oklab`) —
+  whenever the scene adds an aggravator: a backdrop-filter overlay anywhere
+  (e.g. a drawer's backdrop-blur, even if the gradient element is not under
+  the blur), or a box-shadow on the first paint of a freshly loaded page.
+  The element paints as garbage bands/stripes, typically on pill-shaped
+  (rounded-full) buttons; any repaint heals it. sRGB gradients and solid
+  fills never garble. Chrome and desktop Firefox are unaffected. Bisected
+  on-device 2026-07-12 (Firefox 152, Android 17).
+
+  Overriding the position var drops the ` in oklab` keyword, forcing sRGB
+  interpolation — visually near-identical for close-hue gradients. With sRGB
+  gradients, box-shadows are safe again (verified on-device in both
+  aggravator contexts), so nothing else needs disabling.
 
   Scope: Gecko only (@supports -moz-appearance) on touch devices
-  (pointer: coarse). Trades the subtle shadow/glow for correct rendering.
-  Kept unlayered so it beats Tailwind's layered shadow/ring utilities.
+  (pointer: coarse). Kept unlayered so it beats Tailwind's layered
+  gradient utilities without !important. Consuming apps get this
+  automatically via `@import '@requify/requify-design-system/theme.css'`.
 */
 @supports (-moz-appearance: none) {
 	@media (pointer: coarse) {
-		.rounded-full {
-			box-shadow: none;
+		.bg-gradient-to-t {
+			--tw-gradient-position: to top;
+		}
+		.bg-gradient-to-tr {
+			--tw-gradient-position: to top right;
+		}
+		.bg-gradient-to-r {
+			--tw-gradient-position: to right;
+		}
+		.bg-gradient-to-br {
+			--tw-gradient-position: to bottom right;
+		}
+		.bg-gradient-to-b {
+			--tw-gradient-position: to bottom;
+		}
+		.bg-gradient-to-bl {
+			--tw-gradient-position: to bottom left;
+		}
+		.bg-gradient-to-l {
+			--tw-gradient-position: to left;
+		}
+		.bg-gradient-to-tl {
+			--tw-gradient-position: to top left;
 		}
 	}
 }
