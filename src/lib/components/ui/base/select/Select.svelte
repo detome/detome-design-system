@@ -5,6 +5,7 @@
 	import type { Snippet } from 'svelte';
 	import { safeValueToString, findOptionByValue } from '$lib/utils/bits-ui-utils';
 	import { SELECT_ITEM_CLASS } from './select-item-styles';
+	import { ComponentSize, type ComponentSizeType } from '../enums';
 
 	/**
 	 * Select option interface
@@ -30,6 +31,11 @@
 		options?: SelectOption[];
 		/** Placeholder text when no option is selected */
 		placeholder?: string;
+		/**
+		 * Trigger size. Matches the same size on Button, so the two line up when
+		 * placed side by side. Default: ComponentSize.MD
+		 */
+		size?: ComponentSize | ComponentSizeType;
 		/** Whether the select is disabled */
 		disabled?: boolean;
 		/** Whether the select is required */
@@ -50,6 +56,7 @@
 		value = $bindable(),
 		options = [],
 		placeholder = 'Select an option',
+		size = ComponentSize.MD,
 		disabled = false,
 		required = false,
 		error,
@@ -95,7 +102,25 @@
 	}
 
 	const baseStyles =
-		'flex h-10 w-full items-center justify-between rounded-md border bg-white px-4 text-sm text-gray-900 transition-all duration-200 dark:text-gray-50';
+		'flex w-full items-center justify-between rounded-md border bg-white text-gray-900 transition-all duration-200 dark:text-gray-50';
+
+	/**
+	 * Heights mirror Button's `sizes` so a Select and a Button of the same size
+	 * line up in a row. Button sets `min-h-*` because its label can wrap; a
+	 * trigger renders a single line, so a fixed `h-*` of the same value matches.
+	 *
+	 * MD reproduces the pre-size styling (`h-10 px-4 text-sm`) and stays the
+	 * default, so existing usages are unaffected.
+	 */
+	const sizes: Record<string, string> = {
+		[ComponentSize.XS]: 'h-7 px-2.5 text-xs',
+		[ComponentSize.SM]: 'h-8 px-3 text-sm',
+		[ComponentSize.MD]: 'h-10 px-4 text-sm',
+		[ComponentSize.LG]: 'h-11 px-6 text-base',
+		[ComponentSize.XL]: 'h-12 px-8 text-lg'
+	};
+
+	const sizeStyles = $derived(sizes[size] ?? sizes[ComponentSize.MD]);
 	const normalStyles =
 		'border-gray-300 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-800 dark:hover:bg-gray-700';
 	const errorStyles = $derived(
@@ -113,7 +138,7 @@
 		{disabled}>
 		<BitsSelect.Trigger
 			{id}
-			class={cn(baseStyles, errorStyles, normalStyles, disabledStyles, classValue)}>
+			class={cn(baseStyles, sizeStyles, errorStyles, normalStyles, disabledStyles, classValue)}>
 			<span class={cn('flex-1 text-left', valueStyles)}>
 				{selected?.label ?? placeholder}
 			</span>

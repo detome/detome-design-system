@@ -101,8 +101,14 @@
 		...restProps
 	}: Props = $props();
 
+	/**
+	 * Every variant carries the same 2px border — transparent unless a variant
+	 * colours it. Without this, bordered variants (outline, ghost) stood 4px
+	 * taller than filled ones at the same `size`, so a row of mixed-variant
+	 * buttons never lined up.
+	 */
 	const baseStyles =
-		'inline-flex items-center justify-center gap-2 font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 focus-visible:ring-offset-3 disabled:pointer-events-none disabled:opacity-50 whitespace-normal overflow-hidden';
+		'inline-flex items-center justify-center gap-2 border-2 border-transparent font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 focus-visible:ring-offset-3 disabled:pointer-events-none disabled:opacity-50 whitespace-normal overflow-hidden';
 
 	const variants: Record<string, string> = {
 		[ButtonVariant.PRIMARY]:
@@ -110,21 +116,30 @@
 		[ButtonVariant.SECONDARY]:
 			'bg-gradient-to-b from-secondary-500 to-secondary-600 text-white shadow-[0_1px_2px_0_rgb(0_0_0/0.06),0_4px_12px_-2px_rgb(209_106_31/0.15),inset_0_1px_0_0_rgb(255_255_255/0.15)] hover:shadow-[0_2px_4px_0_rgb(0_0_0/0.08),0_8px_24px_-4px_rgb(209_106_31/0.25),inset_0_1px_0_0_rgb(255_255_255/0.2)] hover:-translate-y-0.5 active:translate-y-0 active:shadow-[0_1px_2px_0_rgb(0_0_0/0.1),0_2px_8px_-2px_rgb(209_106_31/0.2),inset_0_1px_0_0_rgb(255_255_255/0.1)]',
 		[ButtonVariant.OUTLINE]:
-			'border-2 border-gray-300 bg-white/90 text-gray-700 hover:bg-gray-50 hover:border-gray-400 hover:shadow-md active:bg-gray-100 dark:bg-gray-800/90 dark:text-gray-200 dark:border-gray-600 dark:hover:bg-gray-700/80',
+			'border-gray-300 bg-white/90 text-gray-700 hover:bg-gray-50 hover:border-gray-400 hover:shadow-md active:bg-gray-100 dark:bg-gray-800/90 dark:text-gray-200 dark:border-gray-600 dark:hover:bg-gray-700/80',
 		[ButtonVariant.GHOST]:
-			'text-gray-700 bg-white/10 border border-white/10 hover:bg-white/20 hover:border-white/20 active:bg-white/10 dark:text-gray-300 dark:hover:bg-gray-800/50',
+			'text-gray-700 bg-white/10 border-white/10 hover:bg-white/20 hover:border-white/20 active:bg-white/10 dark:text-gray-300 dark:hover:bg-gray-800/50',
 		[ButtonVariant.DANGER]:
 			'bg-gradient-to-b from-error-600 to-error-700 text-white shadow-[0_1px_2px_0_rgb(0_0_0/0.06),0_4px_12px_-2px_rgb(220_38_38/0.15),inset_0_1px_0_0_rgb(255_255_255/0.15)] hover:shadow-[0_2px_4px_0_rgb(0_0_0/0.08),0_8px_24px_-4px_rgb(220_38_38/0.25),inset_0_1px_0_0_rgb(255_255_255/0.2)] hover:-translate-y-0.5 active:translate-y-0 active:shadow-[0_1px_2px_0_rgb(0_0_0/0.1),0_2px_8px_-2px_rgb(220_38_38/0.2),inset_0_1px_0_0_rgb(255_255_255/0.1)]',
 		[ButtonVariant.SUCCESS]:
 			'bg-gradient-to-b from-success-600 to-success-700 text-white shadow-[0_1px_2px_0_rgb(0_0_0/0.06),0_4px_12px_-2px_rgb(22_163_74/0.15),inset_0_1px_0_0_rgb(255_255_255/0.15)] hover:shadow-[0_2px_4px_0_rgb(0_0_0/0.08),0_8px_24px_-4px_rgb(22_163_74/0.25),inset_0_1px_0_0_rgb(255_255_255/0.2)] hover:-translate-y-0.5 active:translate-y-0 active:shadow-[0_1px_2px_0_rgb(0_0_0/0.1),0_2px_8px_-2px_rgb(22_163_74/0.2),inset_0_1px_0_0_rgb(255_255_255/0.1)]'
 	};
 
+	/**
+	 * `min-h-*` is the height contract, and Select matches it at the same size.
+	 *
+	 * Padding is deliberately small enough that a single line of text plus the
+	 * border fits inside `min-h-*`, so a normal button is exactly that height.
+	 * Padding used to overshoot — a md button asked for 40px and rendered 44 —
+	 * which left `min-h-*` inert and every size 4-8px off its nominal value.
+	 * A label that wraps still grows the button past the minimum, as before.
+	 */
 	const sizes: Record<string, string> = {
-		[ComponentSize.XS]: 'min-h-7 h-auto py-1.5 px-2.5 text-xs rounded-md',
-		[ComponentSize.SM]: 'min-h-8 h-auto py-2 px-3 text-sm rounded-md',
-		[ComponentSize.MD]: 'min-h-10 h-auto py-2.5 px-4 text-base rounded-md',
-		[ComponentSize.LG]: 'min-h-11 h-auto py-3 px-6 text-base rounded-md',
-		[ComponentSize.XL]: 'min-h-12 h-auto py-3.5 px-8 text-lg rounded-md'
+		[ComponentSize.XS]: 'min-h-7 h-auto py-1 px-2.5 text-xs rounded-md',
+		[ComponentSize.SM]: 'min-h-8 h-auto py-1 px-3 text-sm rounded-md',
+		[ComponentSize.MD]: 'min-h-10 h-auto py-1.5 px-4 text-base rounded-md',
+		[ComponentSize.LG]: 'min-h-11 h-auto py-2 px-6 text-base rounded-md',
+		[ComponentSize.XL]: 'min-h-12 h-auto py-2 px-8 text-lg rounded-md'
 	};
 
 	const computedClass = $derived(
