@@ -139,7 +139,17 @@
 		<BitsSelect.Trigger
 			{id}
 			class={cn(baseStyles, sizeStyles, errorStyles, normalStyles, disabledStyles, classValue)}>
-			<span class={cn('flex-1 text-left', valueStyles)}>
+			<!--
+				`truncate` is what keeps the fixed `h-*` above honest. Left to wrap, a
+				label squeezed by a flex row breaks onto a second line inside a box that
+				can't grow, and that line is simply cut off.
+				Nowrap alone would trade the clipping for the label spilling out of a
+				caller-fixed width; truncate holds it to one line and ellipsises it
+				instead. It also raises the trigger's floor in a flex row from its
+				longest word to its whole label, so a row that has the space shows the
+				label in full and only one that doesn't ellipsises.
+			-->
+			<span class={cn('flex-1 truncate text-left', valueStyles)}>
 				{selected?.label ?? placeholder}
 			</span>
 			<ChevronDown class="h-4 w-4 opacity-50" />
