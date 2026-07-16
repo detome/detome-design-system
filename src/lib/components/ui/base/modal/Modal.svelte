@@ -93,7 +93,15 @@
 			{/snippet}
 		</Dialog.Overlay>
 
-		<!-- Content -->
+		<!--
+			Content: a full-screen flex wrapper that centres the panel
+			*without* a CSS transform. A transform here would make it the containing
+			block for any `position: fixed` descendant (e.g. a filterable user
+			picker's dropdown), so those popovers would be offset by the modal's box
+			instead of the viewport. `pointer-events-none` lets clicks in the padding
+			fall through to the overlay so outside-click-to-close still works, while
+			the panel itself re-enables pointer events.
+		-->
 		<Dialog.Content
 			forceMount
 			onInteractOutside={(e) => {
@@ -106,60 +114,62 @@
 					e.preventDefault();
 				}
 			}}
-			class={cn(
-				'fixed top-1/2 left-1/2 z-50 w-full -translate-x-1/2 -translate-y-1/2 rounded-lg bg-white p-6 shadow-xl dark:bg-gray-800',
-				sizes[size] as string,
-				classValue
-			)}
+			class="pointer-events-none fixed inset-0 z-50 flex items-center justify-center"
 			{...restProps}>
 			{#snippet child({ props, open })}
 				{#if open}
-					<div
-						{...props}
-						transition:scale={{
-							duration: 250,
-							start: 0.95,
-							opacity: 0,
-							easing: (t) => t * (2 - t)
-						}}>
-						{#if title || header || dismissible}
-							<div class="mb-4 flex items-start justify-between">
-								{#if header}
-									{@render header()}
-								{:else if title}
-									<Dialog.Title class="text-xl font-semibold text-gray-900 dark:text-gray-50">
-										{title}
-									</Dialog.Title>
-								{/if}
+					<div {...props}>
+						<div
+							class={cn(
+								'pointer-events-auto w-full rounded-lg bg-white p-6 shadow-xl dark:bg-gray-800',
+								sizes[size] as string,
+								classValue
+							)}
+							transition:scale={{
+								duration: 250,
+								start: 0.95,
+								opacity: 0,
+								easing: (t) => t * (2 - t)
+							}}>
+							{#if title || header || dismissible}
+								<div class="mb-4 flex items-start justify-between">
+									{#if header}
+										{@render header()}
+									{:else if title}
+										<Dialog.Title class="text-xl font-semibold text-gray-900 dark:text-gray-50">
+											{title}
+										</Dialog.Title>
+									{/if}
 
-								{#if dismissible}
-									<Dialog.Close
-										class="rounded-md p-1 text-gray-400 transition-colors hover:bg-gray-100 hover:text-gray-600 dark:hover:bg-gray-700 dark:hover:text-gray-300">
-										<X class="h-5 w-5" />
-										<span class="sr-only">Close</span>
-									</Dialog.Close>
-								{/if}
-							</div>
-						{/if}
+									{#if dismissible}
+										<Dialog.Close
+											class="rounded-md p-1 text-gray-400 transition-colors hover:bg-gray-100 hover:text-gray-600 dark:hover:bg-gray-700 dark:hover:text-gray-300">
+											<X class="h-5 w-5" />
+											<span class="sr-only">Close</span>
+										</Dialog.Close>
+									{/if}
+								</div>
+							{/if}
 
-						{#if description}
-							<Dialog.Description class="mb-4 text-sm text-gray-600 dark:text-gray-400">
-								{description}
-							</Dialog.Description>
-						{/if}
+							{#if description}
+								<Dialog.Description class="mb-4 text-sm text-gray-600 dark:text-gray-400">
+									{description}
+								</Dialog.Description>
+							{/if}
 
-						{#if children}
-							<div class="modal-body">
-								{@render children()}
-							</div>
-						{/if}
+							{#if children}
+								<div class="modal-body">
+									{@render children()}
+								</div>
+							{/if}
 
-						{#if footer}
-							<div
-								class="modal-footer mt-6 flex items-center justify-end gap-3 border-t border-gray-200 pt-4 dark:border-gray-700">
-								{@render footer()}
-							</div>
-						{/if}
+							{#if footer}
+								<div
+									class="modal-footer mt-6 flex items-center justify-end gap-3 border-t border-gray-200 pt-4 dark:border-gray-700">
+									{@render footer()}
+								</div>
+							{/if}
+						</div>
 					</div>
 				{/if}
 			{/snippet}
