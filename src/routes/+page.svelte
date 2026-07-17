@@ -133,6 +133,11 @@
 				Tabs
 			</a>
 			<a
+				href="#highlight"
+				class="bg-primary-100 text-primary-700 hover:bg-primary-200 dark:bg-primary-900 dark:text-primary-300 dark:hover:bg-primary-800 rounded-full px-3 py-1 text-sm font-medium">
+				Highlight
+			</a>
+			<a
 				href="#brand"
 				class="bg-primary-100 text-primary-700 hover:bg-primary-200 dark:bg-primary-900 dark:text-primary-300 dark:hover:bg-primary-800 rounded-full px-3 py-1 text-sm font-medium">
 				Brand
@@ -510,6 +515,61 @@
 						</div>
 					</TabsContent>
 				</Tabs>
+			</Card>
+		</section>
+
+		<section id="highlight">
+			<h2 class="mb-6 text-2xl font-semibold text-gray-900 dark:text-gray-50">Search Highlight</h2>
+
+			<Card variant="default">
+				<p class="mb-4 text-sm text-gray-600 dark:text-gray-400">
+					The <code class="rounded bg-gray-100 px-1 py-0.5 text-xs dark:bg-gray-800">
+						&lt;mark&gt;
+					</code>
+					element is styled globally by the theme so highlighted search matches read as a soft, brand-tinted
+					chip in both light and dark modes — replacing the browser's harsh default yellow. SQLite FTS5
+					<code class="rounded bg-gray-100 px-1 py-0.5 text-xs dark:bg-gray-800">highlight()</code>
+					/
+					<code class="rounded bg-gray-100 px-1 py-0.5 text-xs dark:bg-gray-800">snippet()</code>
+					output wraps matches in this element, so it picks up the styling automatically.
+				</p>
+
+				<div class="space-y-4">
+					<div>
+						<h4 class="mb-2 text-sm font-semibold text-gray-500 dark:text-gray-400">
+							Inline match
+						</h4>
+						<p class="text-gray-900 dark:text-gray-100">
+							The <mark>requirement</mark>
+							must be traceable to at least one verified test case.
+						</p>
+					</div>
+
+					<div>
+						<h4 class="mb-2 text-sm font-semibold text-gray-500 dark:text-gray-400">
+							Snippet with multiple matches
+						</h4>
+						<p class="text-gray-900 dark:text-gray-100">
+							…the <mark>system</mark>
+							shall log every
+							<mark>system</mark>
+							event so that each
+							<mark>system</mark>
+							state change is auditable…
+						</p>
+					</div>
+
+					<div>
+						<h4 class="mb-2 text-sm font-semibold text-gray-500 dark:text-gray-400">
+							Multi-line match (rounded corners on each line)
+						</h4>
+						<p class="max-w-sm text-gray-900 dark:text-gray-100">
+							Results wrap a longer phrase such as
+							<mark>the authentication service refresh token rotation policy</mark>
+							that spans more than one line.
+						</p>
+					</div>
+				</div>
 			</Card>
 		</section>
 

@@ -113,6 +113,36 @@
 }
 
 /*
+  Search-match highlight. The browser's UA default for <mark> is a harsh flat
+  yellow. Anything that highlights matched text with <mark> (e.g. SQLite FTS5
+  highlight()/snippet() output rendered via {@html}) gets a soft brand-tinted
+  chip instead: a primary-tinted fill plus deep primary text and a light weight
+  bump, so the match pops through contrast rather than raw brightness. Text is
+  emphasized without a jarring color, and box-decoration-break keeps the rounded
+  corners on each line of a multi-line match.
+
+  Dark mode uses a lighter primary shade at higher opacity so the chip reads on
+  dark surfaces. Scoped to `.dark` to match the consuming app's class-based dark
+  strategy. Left unlayered so it wins over the UA default without !important.
+  Consuming apps get this automatically via
+  `@import '@requify/requify-design-system/theme.css'`.
+*/
+mark {
+	background-color: color-mix(in srgb, var(--color-primary-500) 38%, transparent);
+	color: color-mix(in srgb, var(--color-primary-950) 85%, currentColor);
+	font-weight: 600;
+	border-radius: 0.25em;
+	padding: 0.05em 0.2em;
+	box-decoration-break: clone;
+	-webkit-box-decoration-break: clone;
+}
+
+.dark mark {
+	background-color: color-mix(in srgb, var(--color-primary-400) 45%, transparent);
+	color: color-mix(in srgb, var(--color-primary-50) 90%, currentColor);
+}
+
+/*
   Tailwind v4 compiles `rounded-full` to `border-radius: calc(infinity * 1px)`.
   Firefox for Android mis-clamps an infinite radius on high-aspect-ratio (wide)
   boxes and paints square corners — so full-width pill buttons render a hard
