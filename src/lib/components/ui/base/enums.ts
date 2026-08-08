@@ -272,3 +272,4 @@ export type OrientationType = `${Orientation}`;
 export type TextColorType = `${TextColor}`;
 export type StatusVariantType = `${StatusVariant}`;
 export type AccentVariantType = `${AccentVariant}`;
+export type ToastPositionType = `${ToastPosition}`;

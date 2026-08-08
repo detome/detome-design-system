@@ -53,28 +53,3 @@ export function findOptionByValue(
 	const valueString = safeValueToString(value);
 	return options.find((opt) => safeValueToString(opt.value) === valueString);
 }
-
-/**
- * Standardizes prop naming for consistency across components
- * Converts various naming conventions to a standard format
- * @param props - Component props object
- * @param propMappings - Mapping of prop name variations to standard name
- * @returns Object with standardized prop names
- */
-export function standardizeProps(
-	props: Record<string, unknown>,
-	propMappings: Record<string, string[]>
-): Record<string, unknown> {
-	const result: Record<string, unknown> = {};
-
-	for (const [standardName, variations] of Object.entries(propMappings)) {
-		for (const variation of variations) {
-			if (variation in props) {
-				result[standardName] = props[variation];
-				break;
-			}
-		}
-	}
-
-	return result;
-}

@@ -9,8 +9,7 @@ export {
 	dateToCalendarDate,
 	calendarDateToDate,
 	safeValueToString,
-	findOptionByValue,
-	standardizeProps
+	findOptionByValue
 } from './utils/bits-ui-utils.js';
 
 // Re-export enums (already included in components/ui/base/index.js but kept for clarity)

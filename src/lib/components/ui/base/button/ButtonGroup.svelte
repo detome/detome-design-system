@@ -63,7 +63,7 @@
 	let { children, class: className }: Props = $props();
 
 	const baseStyles =
-		'inline-flex rounded-lg shadow-sm [&>*:first-child]:rounded-l-lg [&>*:first-child]:rounded-r-none [&>*:last-child]:rounded-l-none [&>*:last-child]:rounded-r-lg [&>*:not(:first-child):not(:last-child)]:rounded-none [&>*:not(:last-child)]:border-r-0';
+		'inline-flex rounded-md shadow-sm [&>*:first-child]:rounded-l-md [&>*:first-child]:rounded-r-none [&>*:last-child]:rounded-l-none [&>*:last-child]:rounded-r-md [&>*:not(:first-child):not(:last-child)]:rounded-none [&>*:not(:last-child)]:border-r-0';
 </script>
 
 <div class={cn(baseStyles, className)} role="group">

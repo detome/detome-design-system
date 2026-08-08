@@ -88,7 +88,8 @@
 		...restProps
 	}: Props = $props();
 
-	const finalSize = $derived(size);
+	const generatedErrorId = $props.id();
+	const errorId = $derived(id ? `${id}-error` : generatedErrorId);
 
 	const baseStyles =
 		'w-full rounded-md border-[1.5px] bg-white text-gray-900 transition-all duration-200 placeholder:text-gray-400 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50 dark:bg-gray-800 dark:text-gray-100 shadow-[0_1px_2px_0_rgb(0_0_0/0.02),inset_0_1px_2px_0_rgb(0_0_0/0.02)]';
@@ -110,7 +111,7 @@
 	const computedClass = $derived(
 		cn(
 			baseStyles,
-			sizes[finalSize] as string,
+			sizes[size] as string,
 			errorStyles,
 			left && 'pl-10',
 			(right || clearable) && 'pr-10',
@@ -136,6 +137,7 @@
 		{disabled}
 		{type}
 		{id}
+		aria-describedby={error ? errorId : undefined}
 		{placeholder}
 		{name}
 		{autocomplete}
@@ -157,5 +159,5 @@
 </div>
 
 {#if error}
-	<p class="text-error-600 dark:text-error-400 mt-1 text-sm">{error}</p>
+	<p id={errorId} class="text-error-600 dark:text-error-400 mt-1 text-sm">{error}</p>
 {/if}

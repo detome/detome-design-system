@@ -1,19 +1,14 @@
 <script lang="ts">
 	import Toast from './Toast.svelte';
 	import type { Snippet } from 'svelte';
-	import { StatusVariant } from '$lib/components/ui/base/enums';
-
-	interface ToastData {
-		id: string;
-		variant?: StatusVariant;
-		message?: string;
-	}
+	import { ToastPosition } from '$lib/components/ui/base/enums';
+	import type { ToastPositionType } from '$lib/components/ui/base/enums';
+	import type { ToastData } from './types';
 
 	interface Props {
 		children?: Snippet;
 		toasts?: ToastData[];
-		position?:
-			'top-left' | 'top-center' | 'top-right' | 'bottom-left' | 'bottom-center' | 'bottom-right';
+		position?: ToastPosition | ToastPositionType;
 		onDismiss?: (id: string) => void;
 	}
 

@@ -7,6 +7,7 @@
 	import { StatusVariant } from '$lib/components/ui/base/enums';
 	import type { StatusVariantType } from '$lib/components/ui/base/enums';
 	import { ButtonVariant } from '$lib/components/ui/base/enums';
+	import type { ToastData } from './types';
 
 	/**
 	 * Toast notification component with multiple variants and dismissible option.
@@ -70,12 +71,6 @@
 	 * - Fly-in animation respects prefers-reduced-motion
 	 * - High contrast colors for all variants
 	 */
-	interface ToastData {
-		id: string;
-		variant?: StatusVariant;
-		message?: string;
-	}
-
 	interface Props {
 		toast?: ToastData;
 		onDismiss?: (id: string) => void;

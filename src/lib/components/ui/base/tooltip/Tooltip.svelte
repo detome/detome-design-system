@@ -13,41 +13,51 @@
 	 * @example Basic tooltip
 	 * ```svelte
 	 * <Tooltip content="This is a tooltip">
-	 *   <Button>Hover me</Button>
+	 *   {#snippet children({ props })}
+	 *     <Button {...props}>Hover me</Button>
+	 *   {/snippet}
 	 * </Tooltip>
 	 * ```
 	 *
 	 * @example With custom placement
 	 * ```svelte
 	 * <Tooltip content="Tooltip on right" side="right">
-	 *   <Button>Hover me</Button>
+	 *   {#snippet children({ props })}
+	 *     <Button {...props}>Hover me</Button>
+	 *   {/snippet}
 	 * </Tooltip>
 	 * ```
 	 *
 	 * @example With custom alignment
 	 * ```svelte
 	 * <Tooltip content="Start aligned" side="bottom" align="start">
-	 *   <Button>Hover me</Button>
+	 *   {#snippet children({ props })}
+	 *     <Button {...props}>Hover me</Button>
+	 *   {/snippet}
 	 * </Tooltip>
 	 * ```
 	 *
 	 * @example With custom content
 	 * ```svelte
 	 * <Tooltip>
+	 *   {#snippet children({ props })}
+	 *     <Button {...props}>Hover me</Button>
+	 *   {/snippet}
 	 *   {#snippet content()}
 	 *     <div>
 	 *       <p class="font-bold">Custom Tooltip</p>
 	 *       <p class="text-sm">Rich content</p>
 	 *     </div>
 	 *   {/snippet}
-	 *   <Button>Hover me</Button>
 	 * </Tooltip>
 	 * ```
 	 *
 	 * @example With no delay
 	 * ```svelte
 	 * <Tooltip content="Instant tooltip" delayDuration={0}>
-	 *   <Button>Hover me</Button>
+	 *   {#snippet children({ props })}
+	 *     <Button {...props}>Hover me</Button>
+	 *   {/snippet}
 	 * </Tooltip>
 	 * ```
 	 *
@@ -57,7 +67,9 @@
 	 *   content="Click to dismiss"
 	 *   disableHoverableContent={false}
 	 * >
-	 *   <Button>Hover me</Button>
+	 *   {#snippet children({ props })}
+	 *     <Button {...props}>Hover me</Button>
+	 *   {/snippet}
 	 * </Tooltip>
 	 * ```
 	 *
@@ -85,7 +97,7 @@
 		/** Tooltip content (string or snippet) */
 		content?: string | Snippet;
 		/** Trigger element content */
-		children: Snippet;
+		children: Snippet<[{ props: Record<string, unknown> }]>;
 		/** Tooltip placement side */
 		side?: Side | SideType;
 		/** Tooltip alignment */
@@ -118,7 +130,9 @@
 <BitsTooltip.Provider {disableHoverableContent}>
 	<BitsTooltip.Root {delayDuration}>
 		<BitsTooltip.Trigger>
-			{@render children()}
+			{#snippet child({ props })}
+				{@render children({ props })}
+			{/snippet}
 		</BitsTooltip.Trigger>
 
 		<BitsTooltip.Content forceMount {side} {align} {...restProps}>

@@ -90,28 +90,9 @@
 	const baseStyles = 'text-gray-900 dark:text-gray-50';
 </script>
 
-{#if tag === 'h1'}
-	<h1 class={cn(baseStyles, customSize || sizeStyles.h1, className)} {...restProps}>
-		{#if children}{@render children()}{/if}
-	</h1>
-{:else if tag === 'h2'}
-	<h2 class={cn(baseStyles, customSize || sizeStyles.h2, className)} {...restProps}>
-		{#if children}{@render children()}{/if}
-	</h2>
-{:else if tag === 'h3'}
-	<h3 class={cn(baseStyles, customSize || sizeStyles.h3, className)} {...restProps}>
-		{#if children}{@render children()}{/if}
-	</h3>
-{:else if tag === 'h4'}
-	<h4 class={cn(baseStyles, customSize || sizeStyles.h4, className)} {...restProps}>
-		{#if children}{@render children()}{/if}
-	</h4>
-{:else if tag === 'h5'}
-	<h5 class={cn(baseStyles, customSize || sizeStyles.h5, className)} {...restProps}>
-		{#if children}{@render children()}{/if}
-	</h5>
-{:else}
-	<h6 class={cn(baseStyles, customSize || sizeStyles.h6, className)} {...restProps}>
-		{#if children}{@render children()}{/if}
-	</h6>
-{/if}
+<svelte:element
+	this={tag}
+	class={cn(baseStyles, customSize || sizeStyles[tag] || sizeStyles.h1, className)}
+	{...restProps}>
+	{#if children}{@render children()}{/if}
+</svelte:element>

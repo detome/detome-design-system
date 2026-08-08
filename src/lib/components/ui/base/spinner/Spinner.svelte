@@ -38,8 +38,8 @@
 	 * @see {@link Button} - Use Button with loading prop for integrated spinner
 	 *
 	 * @accessibility
-	 * - aria-label="Loading" for screen readers
-	 * - Not focusable (decorative loading indicator)
+	 * - role="status" with aria-label="Loading" announces loading state to screen readers
+	 * - Not focusable (visual indicator only; pair with a live region for announcements)
 	 * - Smooth animation, respectful of prefers-reduced-motion
 	 */
 	interface Props {

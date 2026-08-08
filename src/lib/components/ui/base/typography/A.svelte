@@ -89,7 +89,7 @@
 	}: Props = $props();
 
 	const colorStyles: Record<TextColor, string> = {
-		[TextColor.DEFAULT]: 'text-blue-600 dark:text-blue-400',
+		[TextColor.DEFAULT]: 'text-primary-600 dark:text-primary-400',
 		[TextColor.PRIMARY]: 'text-primary-600 dark:text-primary-400',
 		[TextColor.SECONDARY]: 'text-secondary-600 dark:text-secondary-400',
 		[TextColor.MUTED]: 'text-gray-600 dark:text-gray-400',
@@ -105,7 +105,7 @@
 	};
 
 	const baseStyles =
-		'font-medium hover:underline transition-colors focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 rounded';
+		'font-medium hover:underline transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 focus-visible:ring-offset-2 rounded';
 </script>
 
 <a
