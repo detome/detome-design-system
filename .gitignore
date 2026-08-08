@@ -13,3 +13,4 @@ __screenshots__/
 .turbo/
 .vercel/
 .netlify/
+.vitest-attachments/
