@@ -110,6 +110,88 @@
 	--shadow-primary-lg:
 		0 4px 8px 0 rgb(0 0 0 / 0.1), 0 16px 32px -6px rgb(57 97 145 / 0.3),
 		inset 0 1px 0 0 rgb(255 255 255 / 0.25);
+
+	/* SEMANTIC TOKENS — light mode defaults.
+	   These map intent (surface, foreground, border) onto the raw palette so
+	   components never reference gray-* directly. Dark-mode remaps live under
+	   `.dark` below. */
+
+	/* Surfaces */
+	--color-surface: #ffffff;
+	--color-surface-raised: #f9fafb;
+	--color-surface-overlay: #f3f4f6;
+	--color-surface-sunken: #e5e7eb;
+
+	/* Foregrounds */
+	--color-fg-default: #111827;
+	--color-fg-muted: #4b5563;
+	--color-fg-faint: #9ca3af;
+	--color-fg-inverse: #ffffff;
+
+	/* Borders */
+	--color-border-default: #e5e7eb;
+	--color-border-strong: #d1d5db;
+	--color-border-subtle: #f3f4f6;
+
+	/* Brand aliases */
+	--color-brand: var(--color-primary-600);
+	--color-brand-hover: var(--color-primary-700);
+	--color-brand-active: var(--color-primary-800);
+	--color-brand-subtle: var(--color-primary-50);
+	--color-brand-fg: var(--color-primary-700);
+	--color-accent-brand: var(--color-accent-500);
+	--color-accent-brand-hover: var(--color-accent-600);
+
+	/* State aliases */
+	--color-success-bg: var(--color-success-50);
+	--color-success-fg: var(--color-success-700);
+	--color-error-bg: var(--color-error-50);
+	--color-error-fg: var(--color-error-700);
+	--color-warning-bg: var(--color-warning-50);
+	--color-warning-fg: var(--color-warning-700);
+	--color-info-bg: var(--color-info-50);
+	--color-info-fg: var(--color-info-700);
+
+	/* TYPOGRAPHY — display font for headings, mono for identifiers.
+	   Body text uses the consuming app's body font (e.g. Readex Pro). */
+	--font-display: 'Readex Pro Variable', ui-sans-serif, system-ui, sans-serif;
+	--font-mono-id: 'JetBrains Mono', ui-monospace, 'Cascadia Code', 'Fira Code', monospace;
+}
+
+/* Dark-mode semantic token remaps. Raw palette stays constant; only the
+   intent mappings shift. Components that use semantic tokens get dark mode
+   for free without per-component dark: classes. */
+.dark {
+	--color-surface: #1f2937;
+	--color-surface-raised: #111827;
+	--color-surface-overlay: #374151;
+	--color-surface-sunken: #0f172a;
+
+	--color-fg-default: #f9fafb;
+	--color-fg-muted: #9ca3af;
+	--color-fg-faint: #6b7280;
+	--color-fg-inverse: #111827;
+
+	--color-border-default: #374151;
+	--color-border-strong: #4b5563;
+	--color-border-subtle: #1f2937;
+
+	--color-brand: var(--color-primary-400);
+	--color-brand-hover: var(--color-primary-300);
+	--color-brand-active: var(--color-primary-200);
+	--color-brand-subtle: color-mix(in srgb, var(--color-primary-900) 40%, transparent);
+	--color-brand-fg: var(--color-primary-300);
+	--color-accent-brand: var(--color-accent-400);
+	--color-accent-brand-hover: var(--color-accent-300);
+
+	--color-success-bg: color-mix(in srgb, var(--color-success-900) 30%, transparent);
+	--color-success-fg: var(--color-success-300);
+	--color-error-bg: color-mix(in srgb, var(--color-error-900) 30%, transparent);
+	--color-error-fg: var(--color-error-300);
+	--color-warning-bg: color-mix(in srgb, var(--color-warning-900) 30%, transparent);
+	--color-warning-fg: var(--color-warning-300);
+	--color-info-bg: color-mix(in srgb, var(--color-info-900) 30%, transparent);
+	--color-info-fg: var(--color-info-300);
 }
 
 /*

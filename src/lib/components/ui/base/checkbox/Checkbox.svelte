@@ -91,7 +91,7 @@
 	}: Props = $props();
 
 	const baseStyles =
-		'peer h-5 w-5 shrink-0 rounded-md border-2 border-gray-300 bg-white transition-all duration-200 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary-500/20 disabled:cursor-not-allowed disabled:opacity-50 dark:border-gray-600 dark:bg-gray-800 hover:border-primary-400 hover:shadow-[0_0_0_4px_rgb(57_97_145/0.08)]';
+		'peer h-5 w-5 shrink-0 rounded-md border-2 border-border-strong bg-surface transition-all duration-200 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary-500/20 disabled:cursor-not-allowed disabled:opacity-50 hover:border-primary-400 hover:shadow-[0_0_0_4px_rgb(57_97_145/0.08)]';
 	const checkedStyles =
 		'data-[state=checked]:bg-gradient-to-br data-[state=checked]:from-primary-600 data-[state=checked]:to-primary-500 data-[state=checked]:border-primary-600 data-[state=checked]:text-white data-[state=checked]:shadow-[0_2px_4px_0_rgb(57_97_145/0.3),inset_0_1px_0_0_rgb(255_255_255/0.2)] data-[state=checked]:scale-105';
 	const indeterminateStyles =

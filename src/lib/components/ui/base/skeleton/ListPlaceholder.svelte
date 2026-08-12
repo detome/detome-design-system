@@ -12,16 +12,10 @@
 <div class={cn('animate-pulse space-y-3', className)}>
 	{#each Array(rows) as _, i (i)}
 		<div class="flex items-center space-x-4">
-			<div class="h-10 w-10 rounded-full bg-gray-300 dark:bg-gray-600"></div>
+			<div class="bg-surface-overlay h-10 w-10 rounded-full"></div>
 			<div class="flex-1 space-y-2">
-				<div
-					class="h-4 rounded bg-gray-300 dark:bg-gray-600"
-					style="width: {60 + Math.random() * 30}%">
-				</div>
-				<div
-					class="h-3 rounded bg-gray-200 dark:bg-gray-700"
-					style="width: {40 + Math.random() * 40}%">
-				</div>
+				<div class="bg-surface-overlay h-4 rounded" style="width: {60 + Math.random() * 30}%"></div>
+				<div class="bg-surface-sunken h-3 rounded" style="width: {40 + Math.random() * 40}%"></div>
 			</div>
 		</div>
 	{/each}

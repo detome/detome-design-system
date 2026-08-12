@@ -75,7 +75,7 @@
 		...restProps
 	}: Props = $props();
 
-	const baseStyles = 'text-gray-900 dark:text-white';
+	const baseStyles = 'text-fg-default';
 </script>
 
 <td class={cn(padding, baseStyles, className)} {colspan} {...restProps}>

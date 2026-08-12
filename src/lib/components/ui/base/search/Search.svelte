@@ -81,12 +81,12 @@
 	};
 
 	const baseStyles =
-		'w-full rounded-lg border border-gray-300 bg-gray-50 pl-10 pr-4 text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500';
+		'w-full rounded-lg border border-border-strong bg-surface-raised pl-10 pr-4 text-fg-default placeholder:text-fg-faint focus:border-primary-500 focus:ring-primary-500';
 </script>
 
 <div class="relative">
 	<div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-		<SearchIcon class={cn('text-gray-500 dark:text-gray-400', iconSizes[size] as string)} />
+		<SearchIcon class={cn('text-fg-muted', iconSizes[size] as string)} />
 	</div>
 	<input
 		type="search"

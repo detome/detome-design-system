@@ -102,7 +102,7 @@
 	}
 
 	const baseStyles =
-		'flex w-full items-center justify-between rounded-md border bg-white text-gray-900 transition-all duration-200 dark:text-gray-50';
+		'flex w-full items-center justify-between rounded-md border bg-surface text-fg-default transition-all duration-200';
 
 	/**
 	 * Heights mirror Button's `sizes` so a Select and a Button of the same size
@@ -124,12 +124,12 @@
 	const generatedErrorId = $props.id();
 	const errorId = $derived(id ? `${id}-error` : generatedErrorId);
 	const normalStyles =
-		'border-gray-300 hover:bg-gray-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 dark:border-gray-600 dark:bg-gray-800 dark:hover:bg-gray-700';
+		'border-border-strong hover:bg-surface-raised focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-400';
 	const errorStyles = $derived(
-		error ? 'border-error-500 focus-visible:ring-error-400' : 'border-gray-300 dark:border-gray-600'
+		error ? 'border-error-500 focus-visible:ring-error-400' : 'border-border-strong'
 	);
 	const disabledStyles = 'disabled:cursor-not-allowed disabled:opacity-50';
-	const valueStyles = $derived(selected ? '' : 'text-gray-400 dark:text-gray-500');
+	const valueStyles = $derived(selected ? '' : 'text-fg-faint');
 </script>
 
 <div class="w-full">
@@ -160,7 +160,7 @@
 
 		<BitsSelect.Portal>
 			<BitsSelect.Content
-				class="z-50 max-h-96 w-[var(--bits-select-anchor-width)] overflow-auto rounded-md border border-gray-200 bg-white shadow-lg dark:border-gray-700 dark:bg-gray-800">
+				class="border-border-default bg-surface z-50 max-h-96 w-[var(--bits-select-anchor-width)] overflow-auto rounded-md border shadow-lg">
 				{#if children}
 					{@render children()}
 				{:else if options.length > 0}

@@ -125,7 +125,7 @@
 							{...props}
 							transition:scale={{ duration: 100, start: 0.95 }}
 							class={cn(
-								'z-50 min-w-32 overflow-hidden rounded-md border border-gray-200 bg-white p-1 shadow-md dark:border-gray-700 dark:bg-gray-800',
+								'border-border-default bg-surface z-50 min-w-32 overflow-hidden rounded-md border p-1 shadow-md',
 								classValue
 							)}>
 							{#if children}

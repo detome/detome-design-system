@@ -83,9 +83,9 @@
 	let isOpen = $state(defaultOpen === undefined ? true : defaultOpen);
 
 	const triggerStyles =
-		'flex items-center w-full px-3 py-2.5 text-base font-medium transition-all duration-200 rounded-lg group text-gray-900 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700 hover:scale-[1.01] hover:shadow-md';
+		'flex items-center w-full px-3 py-2.5 text-base font-medium transition-all duration-200 rounded-lg group text-fg-default hover:bg-surface-overlay hover:scale-[1.01] hover:shadow-md';
 	const iconClass =
-		'shrink-0 w-7 h-7 text-gray-500 transition-colors duration-200 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white';
+		'shrink-0 w-7 h-7 text-fg-muted transition-colors duration-200 group-hover:text-fg-default';
 </script>
 
 <Collapsible.Root bind:open={isOpen} class={cn('space-y-2', className)} {...restProps}>

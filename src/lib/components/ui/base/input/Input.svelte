@@ -92,7 +92,7 @@
 	const errorId = $derived(id ? `${id}-error` : generatedErrorId);
 
 	const baseStyles =
-		'w-full rounded-md border-[1.5px] bg-white text-gray-900 transition-all duration-200 placeholder:text-gray-400 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50 dark:bg-gray-800 dark:text-gray-100 shadow-[0_1px_2px_0_rgb(0_0_0/0.02),inset_0_1px_2px_0_rgb(0_0_0/0.02)]';
+		'w-full rounded-md border-[1.5px] bg-surface text-fg-default transition-all duration-200 placeholder:text-fg-faint focus:outline-none disabled:cursor-not-allowed disabled:opacity-50 shadow-[0_1px_2px_0_rgb(0_0_0/0.02),inset_0_1px_2px_0_rgb(0_0_0/0.02)]';
 
 	const sizes = {
 		[ComponentSize.XS]: 'h-7 px-2.5 text-xs',
@@ -104,8 +104,8 @@
 
 	const errorStyles = $derived(
 		error
-			? 'border-transparent shadow-[0_0_0_3px_rgba(220,38,38,0.1),0_2px_4px_0_rgb(220_38_38/0.1)] focus:border-transparent focus:bg-[linear-gradient(white,white)_padding-box,linear-gradient(90deg,rgb(220_38_38),rgb(239_68_68))_border-box] focus:shadow-[0_0_0_3px_rgba(220,38,38,0.1),0_2px_4px_0_rgb(220_38_38/0.1)] dark:focus:bg-[linear-gradient(rgb(31_41_55),rgb(31_41_55))_padding-box,linear-gradient(90deg,rgb(220_38_38),rgb(239_68_68))_border-box]'
-			: 'border-gray-300 dark:border-gray-600 focus:border-transparent focus:bg-[linear-gradient(white,white)_padding-box,linear-gradient(90deg,var(--color-primary-500),var(--color-accent-500))_border-box] focus:shadow-[0_0_0_3px_rgba(57,97,145,0.1),0_2px_4px_0_rgb(0_0_0/0.04)] dark:focus:bg-[linear-gradient(rgb(31_41_55),rgb(31_41_55))_padding-box,linear-gradient(90deg,var(--color-primary-500),var(--color-accent-500))_border-box]'
+			? 'border-transparent shadow-[0_0_0_3px_rgba(220,38,38,0.1),0_2px_4px_0_rgb(220_38_38/0.1)] focus:border-transparent focus:bg-[linear-gradient(var(--color-surface),var(--color-surface))_padding-box,linear-gradient(90deg,rgb(220_38_38),rgb(239_68_68))_border-box] focus:shadow-[0_0_0_3px_rgba(220,38,38,0.1),0_2px_4px_0_rgb(220_38_38/0.1)]'
+			: 'border-border-strong focus:border-transparent focus:bg-[linear-gradient(var(--color-surface),var(--color-surface))_padding-box,linear-gradient(90deg,var(--color-primary-500),var(--color-accent-500))_border-box] focus:shadow-[0_0_0_3px_rgba(57,97,145,0.1),0_2px_4px_0_rgb(0_0_0/0.04)]'
 	);
 
 	const computedClass = $derived(
@@ -126,7 +126,7 @@
 
 <div class="relative w-full">
 	{#if left}
-		<div class="absolute top-1/2 left-3 -translate-y-1/2 text-gray-400">
+		<div class="text-fg-faint absolute top-1/2 left-3 -translate-y-1/2">
 			{@render left()}
 		</div>
 	{/if}
@@ -144,15 +144,15 @@
 		{...restProps} />
 
 	{#if right}
-		<div class="absolute top-1/2 right-3 -translate-y-1/2 text-gray-400">
+		<div class="text-fg-faint absolute top-1/2 right-3 -translate-y-1/2">
 			{@render right()}
 		</div>
 	{:else if clearable && value}
 		<button
 			type="button"
-			class="absolute top-1/2 right-3 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+			class="text-fg-faint hover:text-fg-muted absolute top-1/2 right-3 -translate-y-1/2"
 			onclick={handleClear}
-			tabindex="-1">
+			aria-label="Clear input">
 			<X class="h-4 w-4" />
 		</button>
 	{/if}

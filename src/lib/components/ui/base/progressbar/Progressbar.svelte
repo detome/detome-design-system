@@ -92,14 +92,14 @@
 	};
 
 	const sizeClass = $derived(sizeStyles[size] ?? size);
-	const barBg = 'bg-gray-200 dark:bg-gray-700';
+	const barBg = 'bg-surface-sunken';
 	const progressValue = $derived(Math.min(Math.max(progress, 0), 100));
 </script>
 
 <div class="w-full">
 	{#if labelOutside}
 		<div class="mb-1 flex justify-between">
-			<span class="text-sm font-medium text-gray-700 dark:text-gray-300">{progressValue}%</span>
+			<span class="text-fg-default text-sm font-medium">{progressValue}%</span>
 		</div>
 	{/if}
 	<div

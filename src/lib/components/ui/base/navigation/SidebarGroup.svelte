@@ -63,7 +63,7 @@
 	let { children, class: className, rounded = false, ...restProps }: Props = $props();
 
 	const baseStyles = 'space-y-2';
-	const roundedStyles = $derived(rounded ? 'bg-gray-50 dark:bg-gray-800 rounded-xl p-4' : '');
+	const roundedStyles = $derived(rounded ? 'bg-surface-raised rounded-xl p-4' : '');
 </script>
 
 <div class={cn(baseStyles, roundedStyles, className)} {...restProps}>

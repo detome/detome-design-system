@@ -175,7 +175,7 @@
 				handleCancel();
 			}}
 			class={cn(
-				'fixed top-1/2 left-1/2 z-50 w-full max-w-sm -translate-x-1/2 -translate-y-1/2 rounded-lg bg-white p-6 shadow-xl dark:bg-gray-800',
+				'bg-surface fixed top-1/2 left-1/2 z-50 w-full max-w-sm -translate-x-1/2 -translate-y-1/2 rounded-lg p-6 shadow-xl',
 				className
 			)}>
 			{#snippet child({ props, open: contentOpen })}
@@ -190,18 +190,16 @@
 						}}>
 						<div class="text-center">
 							<div
-								class="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-gray-100 dark:bg-gray-700">
+								class="bg-surface-overlay mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full">
 								<Icon class="h-6 w-6 {iconColors[variant]}" />
 							</div>
 
-							<AlertDialogPrimitive.Title
-								class="mb-2 text-lg font-semibold text-gray-900 dark:text-gray-50">
+							<AlertDialogPrimitive.Title class="text-fg-default mb-2 text-lg font-semibold">
 								{title}
 							</AlertDialogPrimitive.Title>
 
 							{#if description}
-								<AlertDialogPrimitive.Description
-									class="mb-5 text-sm text-gray-600 dark:text-gray-400">
+								<AlertDialogPrimitive.Description class="text-fg-muted mb-5 text-sm">
 									{description}
 								</AlertDialogPrimitive.Description>
 							{/if}

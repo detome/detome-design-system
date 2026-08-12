@@ -147,7 +147,7 @@
 								opacity: 0
 							}}
 							class={cn(
-								'z-50 overflow-hidden rounded-md border border-gray-200 bg-white px-3 py-1.5 text-sm text-gray-900 shadow-md dark:border-gray-700 dark:bg-gray-800 dark:text-gray-50',
+								'border-border-default bg-surface text-fg-default z-50 overflow-hidden rounded-md border px-3 py-1.5 text-sm shadow-md',
 								classValue
 							)}>
 							{#if hasContent}
@@ -157,7 +157,7 @@
 									{@render (content as Snippet)()}
 								{/if}
 							{/if}
-							<BitsTooltip.Arrow class="fill-white dark:fill-gray-800" />
+							<BitsTooltip.Arrow class="fill-surface" />
 						</div>
 					</div>
 				{/if}
