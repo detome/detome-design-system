@@ -54,7 +54,7 @@
 	let { value, disabled = false, children, class: className, ...restProps }: Props = $props();
 
 	const baseStyles =
-		'relative inline-flex items-center justify-center whitespace-nowrap rounded-md px-8 py-3.5 text-sm font-medium tracking-wide ring-offset-surface transition-all duration-200 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 data-[state=inactive]:text-fg-muted data-[state=inactive]:hover:text-fg-default data-[state=inactive]:hover:bg-surface/60 data-[state=active]:bg-surface data-[state=active]:text-fg-default data-[state=active]:shadow-sm after:content-[""] after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[3px] after:rounded-t-md after:transition-all after:duration-200 after:ease-out data-[state=inactive]:after:bg-transparent data-[state=inactive]:hover:after:bg-primary-200 data-[state=active]:after:bg-[linear-gradient(90deg,var(--color-primary-500),var(--color-accent-500))] first:after:rounded-tl-lg last:after:rounded-tr-lg dark:ring-offset-surface-raised dark:data-[state=inactive]:hover:after:bg-primary-700 dark:data-[state=active]:after:bg-[linear-gradient(90deg,var(--color-primary-400),var(--color-accent-400))]';
+		'relative -mb-px inline-flex items-center justify-center whitespace-nowrap px-5 pt-2 pb-2.5 text-sm font-medium tracking-wide transition-colors duration-150 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 focus-visible:ring-offset-surface disabled:pointer-events-none disabled:opacity-50 data-[state=inactive]:text-fg-muted data-[state=inactive]:hover:text-fg-default data-[state=active]:text-fg-default dark:focus-visible:ring-offset-surface-raised';
 </script>
 
 <BitsTabs.Trigger {value} {disabled} class={cn(baseStyles, className)} {...restProps}>
@@ -62,3 +62,43 @@
 		{@render children()}
 	{/if}
 </BitsTabs.Trigger>
+
+<style>
+	/* Separator between tabs: an absolutely-positioned 1px bar at each
+	   trigger's right edge, so it lands exactly on the boundary between two
+	   adjacent tabs — equidistant from the label on either side (px-5 padding
+	   both ways). Absolute positioning keeps it out of the flex flow, so it
+	   never displaces the centered label (a flex-child ::before did). Hidden on
+	   the last tab so there's no trailing divider. The list carries no gap, so
+	   the boundary is centered between the two labels. bits-ui sets
+	   data-tabs-trigger at runtime, so this selector is intentionally global. */
+	:global([data-tabs-trigger]:not(:last-child))::before {
+		content: '';
+		position: absolute;
+		right: 0;
+		top: 50%;
+		transform: translateY(-50%);
+		height: 1rem;
+		width: 1px;
+		background: var(--color-fg-faint);
+	}
+
+	/* Active underline: an absolutely-positioned bar pinned to the trigger's
+	   bottom edge at left:0 / right:0, so it spans the full border-box width —
+	   flush on both the left and right edges. It sits above the baseline rule
+	   via the trigger's -mb-px. bits-ui sets data-state at runtime, so these
+	   selectors are intentionally global. */
+	:global([data-tabs-trigger][data-state='active'])::after {
+		content: '';
+		position: absolute;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		height: 2px;
+		background: linear-gradient(90deg, var(--color-primary-500), var(--color-accent-500));
+	}
+
+	:global(.dark [data-tabs-trigger][data-state='active'])::after {
+		background: linear-gradient(90deg, var(--color-primary-400), var(--color-accent-400));
+	}
+</style>

@@ -125,7 +125,7 @@
 	/* Foregrounds */
 	--color-fg-default: #111827;
 	--color-fg-muted: #4b5563;
-	--color-fg-faint: #9ca3af;
+	--color-fg-faint: #858b95;
 	--color-fg-inverse: #ffffff;
 
 	/* Borders */
@@ -169,7 +169,7 @@
 
 	--color-fg-default: #f9fafb;
 	--color-fg-muted: #9ca3af;
-	--color-fg-faint: #6b7280;
+	--color-fg-faint: #9a9ea8;
 	--color-fg-inverse: #111827;
 
 	--color-border-default: #374151;
