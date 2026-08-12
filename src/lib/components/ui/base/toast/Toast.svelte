@@ -53,7 +53,7 @@
 	 * <Toast variant={StatusVariant.WARNING} message="This is a warning" />
 	 * ```
 	 *
-	 * @param {ToastData} toast - Toast data object containing id, variant, and message
+	 * @param {ToastData} toast - Toast data object containing id, variant, and message; `toast.action` renders an optional action button (e.g. Undo) that dismisses the toast on click
 	 * @param {(id: string) => void} onDismiss - Callback when toast is dismissed via close button
 	 * @param {boolean} dismissable - If true, shows dismiss button. Auto-detected from toast/onDismiss. Default: false
 	 * @param {() => void} onclose - Callback when toast is closed or dismissed
@@ -122,6 +122,13 @@
 		}
 	}
 
+	function handleAction() {
+		if (toast?.action) {
+			toast.action.onclick(toast.id);
+		}
+		handleDismiss();
+	}
+
 	const showDismissButton = $derived(dismissable || (toast && onDismiss));
 
 	const baseStyles =
@@ -147,6 +154,15 @@
 			{toast?.message ?? ''}
 		{/if}
 	</div>
+
+	{#if toast?.action}
+		<button
+			type="button"
+			onclick={handleAction}
+			class="flex-shrink-0 rounded-md px-2 py-1 text-sm font-bold underline underline-offset-2 hover:bg-black/10 dark:hover:bg-white/10">
+			{toast.action.label}
+		</button>
+	{/if}
 
 	{#if showDismissButton}
 		<button

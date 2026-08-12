@@ -50,6 +50,8 @@
 		id?: string;
 		/** Callback when selection changes */
 		onChange?: (value: string | number | null | undefined) => void;
+		/** Allow additional HTML attributes (e.g. aria-label) on the trigger */
+		[key: string]: unknown;
 	}
 
 	let {
@@ -141,6 +143,7 @@
 		<BitsSelect.Trigger
 			{id}
 			aria-describedby={error ? errorId : undefined}
+			{...restProps}
 			class={cn(baseStyles, sizeStyles, errorStyles, normalStyles, disabledStyles, classValue)}>
 			<!--
 				`truncate` is what keeps the fixed `h-*` above honest. Left to wrap, a

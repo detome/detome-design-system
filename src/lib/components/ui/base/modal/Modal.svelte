@@ -142,8 +142,11 @@
 									{/if}
 
 									{#if dismissible}
+										<!-- ml-auto keeps the close button on the right when the
+											modal has no title/header (justify-between with a single
+											child would otherwise park it at the left). -->
 										<Dialog.Close
-											class="text-fg-faint hover:bg-surface-overlay hover:text-fg-muted rounded-md p-1 transition-colors">
+											class="text-fg-faint hover:bg-surface-overlay hover:text-fg-muted ml-auto rounded-md p-1 transition-colors">
 											<X class="h-5 w-5" />
 											<span class="sr-only">Close</span>
 										</Dialog.Close>
