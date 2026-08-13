@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { AlertDialog as AlertDialogPrimitive } from 'bits-ui';
-	import { StatusVariant, ButtonVariant } from '$lib/components/ui/base/enums';
+	import { StatusVariant, ButtonVariant, LucideIconSize } from '$lib/components/ui/base/enums';
 	import type { StatusVariantType } from '$lib/components/ui/base/enums';
 	import { cn } from '$lib/utils/cn';
 	import { fade, scale } from 'svelte/transition';
@@ -191,7 +191,7 @@
 						<div class="text-center">
 							<div
 								class="bg-surface-overlay mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full">
-								<Icon class="h-6 w-6 {iconColors[variant]}" />
+								<Icon size={LucideIconSize.XL} class={iconColors[variant]} />
 							</div>
 
 							<AlertDialogPrimitive.Title class="text-fg-default mb-2 text-lg font-semibold">

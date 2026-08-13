@@ -3,6 +3,7 @@
 	import { cn } from '$lib/utils/cn';
 	import { fade, scale } from 'svelte/transition';
 	import { X } from '@lucide/svelte';
+	import { LucideIconSize } from '../enums';
 	import type { Snippet } from 'svelte';
 	import { ModalSize } from '../enums';
 	import type { ModalSizeType } from '../enums';
@@ -147,7 +148,7 @@
 											child would otherwise park it at the left). -->
 										<Dialog.Close
 											class="text-fg-faint hover:bg-surface-overlay hover:text-fg-muted ml-auto rounded-md p-1 transition-colors">
-											<X class="h-5 w-5" />
+											<X size={LucideIconSize.LG} />
 											<span class="sr-only">Close</span>
 										</Dialog.Close>
 									{/if}

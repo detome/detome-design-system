@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { cn } from '$lib/utils/cn';
 	import { AlertTriangle, Link2Off } from '@lucide/svelte';
+	import { LucideIconSize } from '../enums';
 
 	interface Props {
 		class?: string;
@@ -17,6 +18,6 @@
 	)}
 	role="status"
 	aria-label={label}>
-	<AlertTriangle class="h-3 w-3" aria-hidden="true" />
+	<AlertTriangle size={LucideIconSize.XS} aria-hidden="true" />
 	<span>{label}</span>
 </span>

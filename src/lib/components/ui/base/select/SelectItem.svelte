@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { Select as BitsSelect } from 'bits-ui';
 	import { Check } from '@lucide/svelte';
+	import { LucideIconSize } from '../enums';
 	import type { Snippet } from 'svelte';
 	import { SELECT_ITEM_CLASS } from './select-item-styles';
 
@@ -70,7 +71,7 @@
 
 <BitsSelect.Item {value} {label} {disabled} class={SELECT_ITEM_CLASS}>
 	<span class="check-icon absolute left-2 hidden">
-		<Check class="h-4 w-4" />
+		<Check size={LucideIconSize.MD} />
 	</span>
 	{#if children}
 		{@render children()}

@@ -3,6 +3,7 @@
 	import type { DateValue } from '@internationalized/date';
 	import { cn } from '$lib/utils/cn';
 	import { Calendar } from '@lucide/svelte';
+	import { LucideIconSize } from '../enums';
 	import { dateToCalendarDate, calendarDateToDate } from '$lib/utils/bits-ui-utils';
 
 	/**
@@ -108,7 +109,7 @@
 			{/each}
 			<DatePicker.Trigger
 				class="text-fg-muted hover:bg-surface-overlay hover:text-fg-default ml-auto inline-flex size-8 items-center justify-center rounded-lg transition-all">
-				<Calendar class="h-4 w-4" />
+				<Calendar size={LucideIconSize.MD} />
 			</DatePicker.Trigger>
 		{/snippet}
 	</DatePicker.Input>

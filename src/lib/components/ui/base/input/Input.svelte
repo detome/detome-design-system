@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { cn } from '$lib/utils/cn';
 	import { X } from '@lucide/svelte';
+	import { LucideIconSize } from '../enums';
 	import type { Snippet } from 'svelte';
 	import type { HTMLInputAttributes } from 'svelte/elements';
 
@@ -153,7 +154,7 @@
 			class="text-fg-faint hover:text-fg-muted absolute top-1/2 right-3 -translate-y-1/2"
 			onclick={handleClear}
 			aria-label="Clear input">
-			<X class="h-4 w-4" />
+			<X size={LucideIconSize.MD} />
 		</button>
 	{/if}
 </div>

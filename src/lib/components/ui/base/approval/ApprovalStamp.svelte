@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { cn } from '$lib/utils/cn';
 	import { ShieldCheck } from '@lucide/svelte';
+	import { LucideIconSize } from '../enums';
 
 	interface Props {
 		name: string;
@@ -31,7 +32,7 @@
 	{/if}
 	<div class="flex flex-col">
 		<div class="flex items-center gap-1.5">
-			<ShieldCheck class="text-success-600 dark:text-success-400 h-3.5 w-3.5" aria-hidden="true" />
+			<ShieldCheck size={LucideIconSize.SM} class="text-success-600 dark:text-success-400" aria-hidden="true" />
 			<span class="text-success-800 dark:text-success-300 text-sm font-semibold">
 				Approved by {name}
 			</span>

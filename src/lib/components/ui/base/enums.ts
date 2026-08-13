@@ -81,6 +81,28 @@ export enum CardVariant {
 // ============================================================================
 
 /**
+ * Standardized icon sizes for Lucide icons.
+ * Pass these as the `size` prop on @lucide/svelte components
+ * instead of hardcoding pixel values or Tailwind classes.
+ *
+ * @example
+ * ```svelte
+ * import { LucideIconSize } from '@requify/requify-design-system';
+ * import { ChevronRight } from '@lucide/svelte';
+ *
+ * <ChevronRight size={LucideIconSize.MD} />
+ * ```
+ */
+export enum LucideIconSize {
+	XS = 12,
+	SM = 14,
+	MD = 16,
+	LG = 20,
+	XL = 24,
+	XXL = 32
+}
+
+/**
  * Standard component size scale (xs, sm, md, lg, xl)
  * Used by Button, Badge, Input, and other form controls
  */
@@ -258,6 +280,7 @@ export type ButtonVariantType = `${ButtonVariant}`;
 export type BadgeVariantType = `${BadgeVariant}`;
 export type CardVariantType = `${CardVariant}`;
 export type CardPaddingType = `${CardPadding}`;
+export type LucideIconSizeType = LucideIconSize;
 export type ComponentSizeType = `${ComponentSize}`;
 export type ModalSizeType = `${ModalSize}`;
 export type SwitchSizeType = `${SwitchSize}`;

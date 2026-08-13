@@ -2,6 +2,7 @@
 	import { cn } from '$lib/utils/cn';
 	import type { Snippet } from 'svelte';
 	import { Inbox } from '@lucide/svelte';
+	import { LucideIconSize } from '../enums';
 
 	interface Props {
 		title: string;
@@ -20,7 +21,7 @@
 		{#if icon}
 			{@render icon()}
 		{:else}
-			<Inbox class="h-8 w-8" aria-hidden="true" />
+			<Inbox size={LucideIconSize.XXL} aria-hidden="true" />
 		{/if}
 	</div>
 	<h3 class="text-fg-default mb-1 text-lg font-semibold">{title}</h3>

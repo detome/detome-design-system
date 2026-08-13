@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { cn } from '$lib/utils/cn';
 	import { Copy, Check } from '@lucide/svelte';
+	import { LucideIconSize } from '../enums';
 
 	interface Props {
 		value: string;
@@ -35,9 +36,9 @@
 		title="Click to copy">
 		<span>{value}</span>
 		{#if copied}
-			<Check class="text-success-600 dark:text-success-400 h-3 w-3" />
+			<Check size={LucideIconSize.XS} class="text-success-600 dark:text-success-400" />
 		{:else}
-			<Copy class="h-3 w-3 opacity-50" />
+			<Copy size={LucideIconSize.XS} class="opacity-50" />
 		{/if}
 	</button>
 {:else}

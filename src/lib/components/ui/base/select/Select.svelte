@@ -2,6 +2,7 @@
 	import { Select as BitsSelect } from 'bits-ui';
 	import { cn } from '$lib/utils/cn';
 	import { ChevronDown, Check } from '@lucide/svelte';
+	import { LucideIconSize } from '../enums';
 	import type { Snippet } from 'svelte';
 	import { safeValueToString, findOptionByValue } from '$lib/utils/bits-ui-utils';
 	import { SELECT_ITEM_CLASS } from './select-item-styles';
@@ -158,7 +159,7 @@
 			<span class={cn('flex-1 truncate text-left', valueStyles)}>
 				{selected?.label ?? placeholder}
 			</span>
-			<ChevronDown class="h-4 w-4 opacity-50" />
+			<ChevronDown size={LucideIconSize.MD} class="opacity-50" />
 		</BitsSelect.Trigger>
 
 		<BitsSelect.Portal>
@@ -174,7 +175,7 @@
 							disabled={option.disabled}
 							class={SELECT_ITEM_CLASS}>
 							<span class="check-icon absolute left-2 hidden">
-								<Check class="h-4 w-4" />
+								<Check size={LucideIconSize.MD} />
 							</span>
 							{option.label}
 						</BitsSelect.Item>

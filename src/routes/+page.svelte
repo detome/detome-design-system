@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { ModalSize, ComponentSize } from '$lib/components/ui/base/enums';
+	import { ModalSize, ComponentSize, LucideIconSize } from '$lib/components/ui/base/enums';
 	import {
 		Button,
 		Card,
@@ -269,7 +269,7 @@
 							<Label for="input-icon-left">Input with Left Icon</Label>
 							<Input id="input-icon-left" placeholder="Search...">
 								{#snippet left()}
-									<Search class="h-4 w-4" />
+									<Search size={LucideIconSize.MD} />
 								{/snippet}
 							</Input>
 						</div>
@@ -313,28 +313,28 @@
 			<div class="space-y-4">
 				<Alert variant="info">
 					{#snippet icon()}
-						<Info class="h-5 w-5" />
+						<Info size={LucideIconSize.LG} />
 					{/snippet}
 					This is an informational alert with additional context.
 				</Alert>
 
 				<Alert variant="success">
 					{#snippet icon()}
-						<CircleCheckBig class="h-5 w-5" />
+						<CircleCheckBig size={LucideIconSize.LG} />
 					{/snippet}
 					Operation completed successfully!
 				</Alert>
 
 				<Alert variant="warning">
 					{#snippet icon()}
-						<TriangleAlert class="h-5 w-5" />
+						<TriangleAlert size={LucideIconSize.LG} />
 					{/snippet}
 					Please review this important warning before proceeding.
 				</Alert>
 
 				<Alert variant="error" dismissible>
 					{#snippet icon()}
-						<CircleX class="h-5 w-5" />
+						<CircleX size={LucideIconSize.LG} />
 					{/snippet}
 					An error occurred. This alert is dismissible.
 				</Alert>

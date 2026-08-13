@@ -4,6 +4,7 @@
 	import {
 		BadgeVariant,
 		ComponentSize,
+		LucideIconSize,
 		type BadgeVariantType,
 		type ComponentSizeType
 	} from '../enums';
@@ -127,7 +128,7 @@
 				onclick={onclose}
 				class="ml-1 inline-flex items-center rounded-sm p-0.5 hover:bg-black/10"
 				aria-label="Remove">
-				<X class="h-3 w-3" />
+				<X size={LucideIconSize.XS} />
 			</button>
 		{/if}
 	</a>
@@ -142,7 +143,7 @@
 				onclick={onclose}
 				class="ml-1 inline-flex items-center rounded-sm p-0.5 hover:bg-black/10"
 				aria-label="Remove">
-				<X class="h-3 w-3" />
+				<X size={LucideIconSize.XS} />
 			</button>
 		{/if}
 	</span>

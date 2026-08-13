@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { cn } from '$lib/utils/cn';
 	import { Check } from '@lucide/svelte';
+	import { LucideIconSize } from '../enums';
 	import type { Snippet } from 'svelte';
 
 	/**
@@ -118,7 +119,7 @@
 						isCurrent(i) && glow ? 'shadow-primary-500/50 shadow-lg' : ''
 					)}>
 					{#if isCompleted(i)}
-						<Check class="h-5 w-5" />
+						<Check size={LucideIconSize.LG} />
 					{:else if children}
 						{@render children({ step: i + 1, label: step })}
 					{:else}

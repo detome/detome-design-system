@@ -2,6 +2,7 @@
 	import { Checkbox as BitsCheckbox } from 'bits-ui';
 	import { cn } from '$lib/utils/cn';
 	import { Check, Minus } from '@lucide/svelte';
+	import { LucideIconSize } from '../enums';
 	import type { Snippet } from 'svelte';
 
 	/**
@@ -111,9 +112,9 @@
 		class={cn(baseStyles, checkedStyles, indeterminateStyles, classValue)}>
 		{#snippet children(props)}
 			{#if props.indeterminate}
-				<Minus class="h-4 w-4" />
+				<Minus size={LucideIconSize.MD} />
 			{:else if props.checked}
-				<Check class="h-4 w-4" />
+				<Check size={LucideIconSize.MD} />
 			{/if}
 		{/snippet}
 	</BitsCheckbox.Root>

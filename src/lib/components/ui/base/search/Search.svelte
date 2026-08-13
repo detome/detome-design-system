@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { cn } from '$lib/utils/cn';
-	import { ComponentSize } from '../enums';
+	import { ComponentSize, LucideIconSize } from '../enums';
 	import type { ComponentSizeType } from '../enums';
 	import { Search as SearchIcon } from '@lucide/svelte';
 	import type { HTMLInputAttributes } from 'svelte/elements';
@@ -72,12 +72,12 @@
 		[ComponentSize.XL]: 'h-14 text-lg'
 	};
 
-	const iconSizes: Record<ComponentSize, string> = {
-		[ComponentSize.XS]: 'h-3 w-3',
-		[ComponentSize.SM]: 'h-4 w-4',
-		[ComponentSize.MD]: 'h-5 w-5',
-		[ComponentSize.LG]: 'h-6 w-6',
-		[ComponentSize.XL]: 'h-7 w-7'
+	const iconSizes: Record<ComponentSize, number> = {
+		[ComponentSize.XS]: LucideIconSize.XS,
+		[ComponentSize.SM]: LucideIconSize.MD,
+		[ComponentSize.MD]: LucideIconSize.LG,
+		[ComponentSize.LG]: LucideIconSize.XL,
+		[ComponentSize.XL]: LucideIconSize.XXL
 	};
 
 	const baseStyles =
@@ -86,7 +86,7 @@
 
 <div class="relative">
 	<div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-		<SearchIcon class={cn('text-fg-muted', iconSizes[size] as string)} />
+		<SearchIcon size={iconSizes[size] as number} class="text-fg-muted" />
 	</div>
 	<input
 		type="search"

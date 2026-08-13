@@ -3,6 +3,7 @@
 	import { cn } from '$lib/utils/cn';
 	import { slide } from 'svelte/transition';
 	import { ChevronDown } from '@lucide/svelte';
+	import { LucideIconSize } from '../enums';
 	import type { Snippet } from 'svelte';
 
 	/**
@@ -97,8 +98,9 @@
 		{/if}
 		<span class="ms-3 flex-1 text-left whitespace-nowrap">{label}</span>
 		<ChevronDown
+			size={LucideIconSize.LG}
 			class={cn(
-				'h-5 w-5 transition-transform duration-300 ease-out',
+				'transition-transform duration-300 ease-out',
 				isOpen ? 'rotate-180 transform' : ''
 			)} />
 	</Collapsible.Trigger>

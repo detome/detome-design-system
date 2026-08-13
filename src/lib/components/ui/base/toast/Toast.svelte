@@ -2,6 +2,7 @@
 	import { cn } from '$lib/utils/cn';
 	import { X } from '@lucide/svelte';
 	import { statusIcons } from '$lib/utils/status-icons';
+	import { LucideIconSize } from '../enums';
 	import { fly } from 'svelte/transition';
 	import type { Snippet } from 'svelte';
 	import { StatusVariant } from '$lib/components/ui/base/enums';
@@ -143,7 +144,7 @@
 	aria-live="polite">
 	{#if !children}
 		<div class="flex-shrink-0 {iconColors[variant]}">
-			<Icon class="h-5 w-5" />
+			<Icon size={LucideIconSize.LG} />
 		</div>
 	{/if}
 
@@ -170,7 +171,7 @@
 			onclick={handleDismiss}
 			class="flex-shrink-0 rounded-md p-1 hover:bg-black/10 dark:hover:bg-white/10"
 			aria-label="Dismiss">
-			<X class="h-4 w-4" />
+			<X size={LucideIconSize.MD} />
 		</button>
 	{/if}
 </div>

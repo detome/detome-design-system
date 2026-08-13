@@ -2,6 +2,7 @@
 	import { DateRangePicker, type DateRange as BitsDateRange } from 'bits-ui';
 	import { cn } from '$lib/utils/cn';
 	import { Calendar } from '@lucide/svelte';
+	import { LucideIconSize } from '../enums';
 	import { dateToCalendarDate, calendarDateToDate } from '$lib/utils/bits-ui-utils';
 
 	/**
@@ -108,7 +109,7 @@
 					'focus:ring-primary-500 hover:bg-surface-raised focus:ring-2 focus:outline-none',
 					classValue
 				)}>
-				<Calendar class="text-fg-muted h-4 w-4 flex-shrink-0" />
+				<Calendar size={LucideIconSize.MD} class="text-fg-muted flex-shrink-0" />
 				{#if normalizedValue.start && normalizedValue.end}
 					<span class="font-medium">
 						{formatDate(normalizedValue.start)} - {formatDate(normalizedValue.end)}

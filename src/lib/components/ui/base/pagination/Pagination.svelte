@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { cn } from '$lib/utils/cn';
-	import { ComponentSize } from '../enums';
+	import { ComponentSize, LucideIconSize } from '../enums';
 	import type { ComponentSizeType } from '../enums';
 	import { ChevronLeft, ChevronRight } from '@lucide/svelte';
 	import type { Snippet } from 'svelte';
@@ -91,7 +91,7 @@
 			{#if prevContent}
 				{@render prevContent()}
 			{:else}
-				<ChevronLeft class="h-5 w-5" />
+				<ChevronLeft size={LucideIconSize.LG} />
 			{/if}
 		</button>
 	{/if}
@@ -114,7 +114,7 @@
 			{#if nextContent}
 				{@render nextContent()}
 			{:else}
-				<ChevronRight class="h-5 w-5" />
+				<ChevronRight size={LucideIconSize.LG} />
 			{/if}
 		</button>
 	{/if}

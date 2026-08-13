@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { cn } from '$lib/utils/cn';
 	import { ChevronRight } from '@lucide/svelte';
+	import { LucideIconSize } from '../enums';
 	import type { Snippet } from 'svelte';
 	import type { HTMLAttributes } from 'svelte/elements';
 
@@ -61,7 +62,7 @@
 
 <li class="inline-flex items-center">
 	{#if !home}
-		<ChevronRight class="mx-1 h-5 w-5 text-gray-400" />
+		<ChevronRight size={LucideIconSize.LG} class="mx-1 text-gray-400" />
 	{/if}
 
 	{#if href}
