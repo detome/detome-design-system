@@ -3,6 +3,7 @@
 	import { cn } from '$lib/utils/cn';
 	import { fade, scale } from 'svelte/transition';
 	import { X } from '@lucide/svelte';
+	import { LucideIconSize } from '../enums';
 	import type { Snippet } from 'svelte';
 	import { ModalSize } from '../enums';
 	import type { ModalSizeType } from '../enums';
@@ -121,7 +122,7 @@
 					<div {...props}>
 						<div
 							class={cn(
-								'pointer-events-auto w-full rounded-lg bg-white p-6 shadow-xl dark:bg-gray-800',
+								'bg-surface pointer-events-auto w-full rounded-lg p-6 shadow-xl',
 								sizes[size] as string,
 								classValue
 							)}
@@ -136,15 +137,18 @@
 									{#if header}
 										{@render header()}
 									{:else if title}
-										<Dialog.Title class="text-xl font-semibold text-gray-900 dark:text-gray-50">
+										<Dialog.Title class="text-fg-default text-xl font-semibold">
 											{title}
 										</Dialog.Title>
 									{/if}
 
 									{#if dismissible}
+										<!-- ml-auto keeps the close button on the right when the
+											modal has no title/header (justify-between with a single
+											child would otherwise park it at the left). -->
 										<Dialog.Close
-											class="rounded-md p-1 text-gray-400 transition-colors hover:bg-gray-100 hover:text-gray-600 dark:hover:bg-gray-700 dark:hover:text-gray-300">
-											<X class="h-5 w-5" />
+											class="text-fg-faint hover:bg-surface-overlay hover:text-fg-muted ml-auto rounded-md p-1 transition-colors">
+											<X size={LucideIconSize.LG} />
 											<span class="sr-only">Close</span>
 										</Dialog.Close>
 									{/if}
@@ -152,7 +156,7 @@
 							{/if}
 
 							{#if description}
-								<Dialog.Description class="mb-4 text-sm text-gray-600 dark:text-gray-400">
+								<Dialog.Description class="text-fg-muted mb-4 text-sm">
 									{description}
 								</Dialog.Description>
 							{/if}
@@ -165,7 +169,7 @@
 
 							{#if footer}
 								<div
-									class="modal-footer mt-6 flex items-center justify-end gap-3 border-t border-gray-200 pt-4 dark:border-gray-700">
+									class="modal-footer border-border-default mt-6 flex items-center justify-end gap-3 border-t pt-4">
 									{@render footer()}
 								</div>
 							{/if}

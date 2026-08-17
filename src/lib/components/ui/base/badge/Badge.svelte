@@ -4,6 +4,7 @@
 	import {
 		BadgeVariant,
 		ComponentSize,
+		LucideIconSize,
 		type BadgeVariantType,
 		type ComponentSizeType
 	} from '../enums';
@@ -86,8 +87,7 @@
 		'inline-flex items-center text-center justify-center font-medium rounded-full border';
 
 	const variants: Record<string, string> = {
-		[BadgeVariant.DEFAULT]:
-			'bg-gray-100 text-gray-800 border-gray-200 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-600',
+		[BadgeVariant.DEFAULT]: 'bg-surface-overlay text-fg-default border-border-default',
 		[BadgeVariant.PRIMARY]:
 			'bg-primary-100 text-primary-800 border-primary-200 dark:bg-primary-900/30 dark:text-primary-300 dark:border-primary-700',
 		[BadgeVariant.SECONDARY]:
@@ -126,9 +126,9 @@
 			<button
 				type="button"
 				onclick={onclose}
-				class="ml-1 inline-flex items-center rounded-sm p-0.5 hover:bg-black/10 dark:hover:bg-white/10"
+				class="ml-1 inline-flex items-center rounded-sm p-0.5 hover:bg-black/10"
 				aria-label="Remove">
-				<X class="h-3 w-3" />
+				<X size={LucideIconSize.XS} />
 			</button>
 		{/if}
 	</a>
@@ -141,9 +141,9 @@
 			<button
 				type="button"
 				onclick={onclose}
-				class="ml-1 inline-flex items-center rounded-sm p-0.5 hover:bg-black/10 dark:hover:bg-white/10"
+				class="ml-1 inline-flex items-center rounded-sm p-0.5 hover:bg-black/10"
 				aria-label="Remove">
-				<X class="h-3 w-3" />
+				<X size={LucideIconSize.XS} />
 			</button>
 		{/if}
 	</span>

@@ -65,9 +65,8 @@
 
 	let { children, class: className, onclick, ...restProps }: Props = $props();
 
-	const baseStyles =
-		'border-b dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 transition-colors';
-	const bgStyles = 'bg-white dark:bg-gray-800';
+	const baseStyles = 'border-b border-border-default hover:bg-surface-raised transition-colors';
+	const bgStyles = 'bg-surface';
 </script>
 
 <tr class={cn(baseStyles, bgStyles, className)} {onclick} {...restProps}>

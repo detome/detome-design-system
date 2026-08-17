@@ -63,10 +63,10 @@
 	const errorId = $derived(id ? `${id}-error` : generatedErrorId);
 
 	const baseStyles =
-		'w-full rounded-md border bg-white text-gray-900 transition-all duration-200 placeholder:text-gray-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 focus-visible:border-transparent disabled:cursor-not-allowed disabled:opacity-50 dark:bg-gray-800 dark:text-gray-100 px-4 py-3 text-base resize-y min-h-[100px]';
+		'w-full rounded-md border bg-surface text-fg-default transition-all duration-200 placeholder:text-fg-faint focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 focus-visible:border-transparent disabled:cursor-not-allowed disabled:opacity-50 px-4 py-3 text-base resize-y min-h-[100px]';
 
 	const errorStyles = $derived(
-		error ? 'border-error-500 focus-visible:ring-error-400' : 'border-gray-300 dark:border-gray-600'
+		error ? 'border-error-500 focus-visible:ring-error-400' : 'border-border-strong'
 	);
 
 	const computedClass = $derived(cn(baseStyles, errorStyles, className));

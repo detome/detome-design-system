@@ -128,7 +128,7 @@
 								easing: (t) => t * (2 - t)
 							}}
 							class={cn(
-								'z-50 rounded-lg border border-gray-200 bg-white p-4 shadow-lg dark:border-gray-700 dark:bg-gray-800',
+								'border-border-default bg-surface z-50 rounded-lg border p-4 shadow-lg',
 								className
 							)}>
 							{#if children}

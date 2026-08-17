@@ -2,6 +2,7 @@
 	import { DateRangePicker, type DateRange as BitsDateRange } from 'bits-ui';
 	import { cn } from '$lib/utils/cn';
 	import { Calendar } from '@lucide/svelte';
+	import { LucideIconSize } from '../enums';
 	import { dateToCalendarDate, calendarDateToDate } from '$lib/utils/bits-ui-utils';
 
 	/**
@@ -104,12 +105,11 @@
 			<button
 				{...props}
 				class={cn(
-					'inline-flex items-center gap-2 rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm',
-					'focus:ring-primary-500 hover:bg-gray-50 focus:ring-2 focus:outline-none',
-					'dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:hover:bg-gray-700',
+					'border-border-strong bg-surface inline-flex items-center gap-2 rounded-lg border px-3 py-2 text-sm',
+					'focus:ring-primary-500 hover:bg-surface-raised focus:ring-2 focus:outline-none',
 					classValue
 				)}>
-				<Calendar class="h-4 w-4 flex-shrink-0 text-gray-500 dark:text-gray-400" />
+				<Calendar size={LucideIconSize.MD} class="text-fg-muted flex-shrink-0" />
 				{#if normalizedValue.start && normalizedValue.end}
 					<span class="font-medium">
 						{formatDate(normalizedValue.start)} - {formatDate(normalizedValue.end)}
@@ -123,14 +123,14 @@
 						Until {formatDate(normalizedValue.end)}
 					</span>
 				{:else}
-					<span class="text-gray-500 dark:text-gray-400">Select date range</span>
+					<span class="text-fg-muted">Select date range</span>
 				{/if}
 			</button>
 		{/snippet}
 	</DateRangePicker.Trigger>
 
 	<DateRangePicker.Content
-		class="z-50 rounded-lg border border-gray-200 bg-white p-4 shadow-lg dark:border-gray-700 dark:bg-gray-800"
+		class="border-border-default bg-surface z-50 rounded-lg border p-4 shadow-lg"
 		sideOffset={8}>
 		<DateRangePicker.Calendar>
 			{#snippet children({ months, weekdays })}
@@ -138,7 +138,7 @@
 					<div class="space-y-4">
 						<DateRangePicker.Header class="flex items-center justify-between">
 							<DateRangePicker.PrevButton
-								class="inline-flex h-10 w-10 items-center justify-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700">
+								class="hover:bg-surface-overlay inline-flex h-10 w-10 items-center justify-center rounded-lg">
 								<svg
 									xmlns="http://www.w3.org/2000/svg"
 									width="20"
@@ -152,10 +152,9 @@
 									<polyline points="15 18 9 12 15 6" />
 								</svg>
 							</DateRangePicker.PrevButton>
-							<DateRangePicker.Heading
-								class="text-base font-semibold text-gray-900 dark:text-white" />
+							<DateRangePicker.Heading class="text-fg-default text-base font-semibold" />
 							<DateRangePicker.NextButton
-								class="inline-flex h-10 w-10 items-center justify-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700">
+								class="hover:bg-surface-overlay inline-flex h-10 w-10 items-center justify-center rounded-lg">
 								<svg
 									xmlns="http://www.w3.org/2000/svg"
 									width="20"
@@ -176,7 +175,7 @@
 								<DateRangePicker.GridRow class="flex">
 									{#each weekdays as day}
 										<DateRangePicker.HeadCell
-											class="w-10 text-center text-xs font-medium text-gray-500 dark:text-gray-400">
+											class="text-fg-muted w-10 text-center text-xs font-medium">
 											{day.slice(0, 2)}
 										</DateRangePicker.HeadCell>
 									{/each}
@@ -193,10 +192,10 @@
 												<DateRangePicker.Day
 													class={cn(
 														'inline-flex h-10 w-10 items-center justify-center rounded-lg text-sm',
-														'hover:bg-gray-100 dark:hover:bg-gray-700',
+														'hover:bg-surface-overlay',
 														'data-[selected]:bg-primary-600 data-[selected]:text-white',
 														'data-[disabled]:cursor-not-allowed data-[disabled]:opacity-50',
-														'data-[outside-month]:text-gray-400 dark:data-[outside-month]:text-gray-600'
+														'data-[outside-month]:text-fg-faint'
 													)}>
 													{date.day}
 												</DateRangePicker.Day>

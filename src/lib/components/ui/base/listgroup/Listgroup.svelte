@@ -76,7 +76,7 @@
 	let { active = false, children, class: className, ...restProps }: Props = $props();
 
 	const baseStyles =
-		'w-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-800 dark:border-gray-700 dark:text-white';
+		'w-full text-sm font-medium text-fg-default bg-surface border border-border-default rounded-lg';
 </script>
 
 <div class={cn(baseStyles, className)} {...restProps}>

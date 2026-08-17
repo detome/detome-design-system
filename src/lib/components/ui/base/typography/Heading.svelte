@@ -87,7 +87,7 @@
 		h6: 'text-sm font-semibold'
 	};
 
-	const baseStyles = 'text-gray-900 dark:text-gray-50';
+	const baseStyles = 'text-fg-default font-[family-name:var(--font-display)]';
 </script>
 
 <svelte:element

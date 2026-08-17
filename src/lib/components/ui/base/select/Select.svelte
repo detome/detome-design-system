@@ -2,6 +2,7 @@
 	import { Select as BitsSelect } from 'bits-ui';
 	import { cn } from '$lib/utils/cn';
 	import { ChevronDown, Check } from '@lucide/svelte';
+	import { LucideIconSize } from '../enums';
 	import type { Snippet } from 'svelte';
 	import { safeValueToString, findOptionByValue } from '$lib/utils/bits-ui-utils';
 	import { SELECT_ITEM_CLASS } from './select-item-styles';
@@ -50,6 +51,8 @@
 		id?: string;
 		/** Callback when selection changes */
 		onChange?: (value: string | number | null | undefined) => void;
+		/** Allow additional HTML attributes (e.g. aria-label) on the trigger */
+		[key: string]: unknown;
 	}
 
 	let {
@@ -102,7 +105,7 @@
 	}
 
 	const baseStyles =
-		'flex w-full items-center justify-between rounded-md border bg-white text-gray-900 transition-all duration-200 dark:text-gray-50';
+		'flex w-full items-center justify-between rounded-md border bg-surface text-fg-default transition-all duration-200';
 
 	/**
 	 * Heights mirror Button's `sizes` so a Select and a Button of the same size
@@ -124,12 +127,12 @@
 	const generatedErrorId = $props.id();
 	const errorId = $derived(id ? `${id}-error` : generatedErrorId);
 	const normalStyles =
-		'border-gray-300 hover:bg-gray-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 dark:border-gray-600 dark:bg-gray-800 dark:hover:bg-gray-700';
+		'border-border-strong hover:bg-surface-raised focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-400';
 	const errorStyles = $derived(
-		error ? 'border-error-500 focus-visible:ring-error-400' : 'border-gray-300 dark:border-gray-600'
+		error ? 'border-error-500 focus-visible:ring-error-400' : 'border-border-strong'
 	);
 	const disabledStyles = 'disabled:cursor-not-allowed disabled:opacity-50';
-	const valueStyles = $derived(selected ? '' : 'text-gray-400 dark:text-gray-500');
+	const valueStyles = $derived(selected ? '' : 'text-fg-faint');
 </script>
 
 <div class="w-full">
@@ -141,6 +144,7 @@
 		<BitsSelect.Trigger
 			{id}
 			aria-describedby={error ? errorId : undefined}
+			{...restProps}
 			class={cn(baseStyles, sizeStyles, errorStyles, normalStyles, disabledStyles, classValue)}>
 			<!--
 				`truncate` is what keeps the fixed `h-*` above honest. Left to wrap, a
@@ -155,12 +159,12 @@
 			<span class={cn('flex-1 truncate text-left', valueStyles)}>
 				{selected?.label ?? placeholder}
 			</span>
-			<ChevronDown class="h-4 w-4 opacity-50" />
+			<ChevronDown size={LucideIconSize.MD} class="opacity-50" />
 		</BitsSelect.Trigger>
 
 		<BitsSelect.Portal>
 			<BitsSelect.Content
-				class="z-50 max-h-96 w-[var(--bits-select-anchor-width)] overflow-auto rounded-md border border-gray-200 bg-white shadow-lg dark:border-gray-700 dark:bg-gray-800">
+				class="border-border-default bg-surface z-50 max-h-96 w-[var(--bits-select-anchor-width)] overflow-auto rounded-md border shadow-lg">
 				{#if children}
 					{@render children()}
 				{:else if options.length > 0}
@@ -171,7 +175,7 @@
 							disabled={option.disabled}
 							class={SELECT_ITEM_CLASS}>
 							<span class="check-icon absolute left-2 hidden">
-								<Check class="h-4 w-4" />
+								<Check size={LucideIconSize.MD} />
 							</span>
 							{option.label}
 						</BitsSelect.Item>

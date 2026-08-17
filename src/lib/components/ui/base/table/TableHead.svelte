@@ -61,8 +61,7 @@
 
 	let { children, class: className, defaultRow = true, ...restProps }: Props = $props();
 
-	const baseStyles =
-		'text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400';
+	const baseStyles = 'text-xs text-fg-muted uppercase bg-surface-raised';
 </script>
 
 <thead class={cn(baseStyles, className)} {...restProps}>

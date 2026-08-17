@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { cn } from '$lib/utils/cn';
 	import { X } from '@lucide/svelte';
+	import { LucideIconSize } from '../enums';
 	import { statusIcons } from '$lib/utils/status-icons';
 	import type { Snippet } from 'svelte';
 	import type { HTMLAttributes } from 'svelte/elements';
@@ -65,7 +66,7 @@
 			{#if icon}
 				{@render icon()}
 			{:else}
-				<DefaultIcon class="h-5 w-5" />
+				<DefaultIcon size={LucideIconSize.LG} />
 			{/if}
 		</div>
 
@@ -81,7 +82,7 @@
 				onclick={handleDismiss}
 				class="flex-shrink-0 rounded-md p-1 hover:bg-black/10 dark:hover:bg-white/10"
 				aria-label="Dismiss">
-				<X class="h-4 w-4" />
+				<X size={LucideIconSize.MD} />
 			</button>
 		{/if}
 	</div>

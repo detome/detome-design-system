@@ -77,17 +77,17 @@
 		...restProps
 	}: Props = $props();
 
-	const baseStyles = 'rounded-xl bg-white dark:bg-gray-800 transition-all duration-200';
+	const baseStyles = 'rounded-xl bg-surface transition-all duration-200';
 
 	const variants = {
 		default:
-			'border border-gray-200/80 shadow-[0_1px_2px_0_rgb(0_0_0/0.04),0_0_0_1px_rgb(0_0_0/0.02)] dark:border-gray-700/80',
-		bordered: 'border-2 border-gray-300 dark:border-gray-600',
+			'border border-border-default shadow-[0_1px_2px_0_rgb(0_0_0/0.04),0_0_0_1px_rgb(0_0_0/0.02)]',
+		bordered: 'border-2 border-border-strong',
 		elevated:
-			'border border-gray-200/60 shadow-[0_2px_4px_0_rgb(0_0_0/0.06),0_8px_16px_-4px_rgb(0_0_0/0.08)] bg-gradient-to-b from-white to-gray-50 dark:from-gray-800 dark:to-gray-850',
-		flat: 'border border-gray-100 dark:border-gray-800',
+			'border border-border-default shadow-[0_2px_4px_0_rgb(0_0_0/0.06),0_8px_16px_-4px_rgb(0_0_0/0.08)] bg-gradient-to-b from-surface to-surface-raised',
+		flat: 'border border-border-subtle',
 		glass:
-			'bg-white/85 dark:bg-gray-800/85 backdrop-blur-xl backdrop-saturate-150 border border-white/80 dark:border-gray-700/80 shadow-[0_4px_6px_-1px_rgb(0_0_0/0.08),0_10px_24px_-6px_rgb(0_0_0/0.1),inset_0_1px_0_0_rgba(255_255_255/0.9)]'
+			'bg-surface/85 backdrop-blur-xl backdrop-saturate-150 border border-border-default/80 shadow-[0_4px_6px_-1px_rgb(0_0_0/0.08),0_10px_24px_-6px_rgb(0_0_0/0.1),inset_0_1px_0_0_rgba(255_255_255/0.9)]'
 	};
 
 	const paddings: Record<string, string> = {
@@ -104,7 +104,7 @@
 			variants[variant] as string,
 			paddings[padding] as string,
 			(hoverable || href) &&
-				'hover:-translate-y-0.5 hover:shadow-[0_4px_8px_0_rgb(0_0_0/0.08),0_12px_24px_-4px_rgb(0_0_0/0.12)] hover:border-gray-300 dark:hover:border-gray-600 cursor-pointer active:translate-y-0 active:shadow-[0_1px_2px_0_rgb(0_0_0/0.06),0_4px_8px_-2px_rgb(0_0_0/0.08)]',
+				'hover:-translate-y-0.5 hover:shadow-[0_4px_8px_0_rgb(0_0_0/0.08),0_12px_24px_-4px_rgb(0_0_0/0.12)] hover:border-border-strong cursor-pointer active:translate-y-0 active:shadow-[0_1px_2px_0_rgb(0_0_0/0.06),0_4px_8px_-2px_rgb(0_0_0/0.08)]',
 			href && 'block no-underline',
 			className
 		)

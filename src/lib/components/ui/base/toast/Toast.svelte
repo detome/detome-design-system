@@ -2,6 +2,7 @@
 	import { cn } from '$lib/utils/cn';
 	import { X } from '@lucide/svelte';
 	import { statusIcons } from '$lib/utils/status-icons';
+	import { LucideIconSize } from '../enums';
 	import { fly } from 'svelte/transition';
 	import type { Snippet } from 'svelte';
 	import { StatusVariant } from '$lib/components/ui/base/enums';
@@ -53,7 +54,7 @@
 	 * <Toast variant={StatusVariant.WARNING} message="This is a warning" />
 	 * ```
 	 *
-	 * @param {ToastData} toast - Toast data object containing id, variant, and message
+	 * @param {ToastData} toast - Toast data object containing id, variant, and message; `toast.action` renders an optional action button (e.g. Undo) that dismisses the toast on click
 	 * @param {(id: string) => void} onDismiss - Callback when toast is dismissed via close button
 	 * @param {boolean} dismissable - If true, shows dismiss button. Auto-detected from toast/onDismiss. Default: false
 	 * @param {() => void} onclose - Callback when toast is closed or dismissed
@@ -122,6 +123,13 @@
 		}
 	}
 
+	function handleAction() {
+		if (toast?.action) {
+			toast.action.onclick(toast.id);
+		}
+		handleDismiss();
+	}
+
 	const showDismissButton = $derived(dismissable || (toast && onDismiss));
 
 	const baseStyles =
@@ -136,7 +144,7 @@
 	aria-live="polite">
 	{#if !children}
 		<div class="flex-shrink-0 {iconColors[variant]}">
-			<Icon class="h-5 w-5" />
+			<Icon size={LucideIconSize.LG} />
 		</div>
 	{/if}
 
@@ -148,13 +156,22 @@
 		{/if}
 	</div>
 
+	{#if toast?.action}
+		<button
+			type="button"
+			onclick={handleAction}
+			class="flex-shrink-0 rounded-md px-2 py-1 text-sm font-bold underline underline-offset-2 hover:bg-black/10 dark:hover:bg-white/10">
+			{toast.action.label}
+		</button>
+	{/if}
+
 	{#if showDismissButton}
 		<button
 			type="button"
 			onclick={handleDismiss}
 			class="flex-shrink-0 rounded-md p-1 hover:bg-black/10 dark:hover:bg-white/10"
 			aria-label="Dismiss">
-			<X class="h-4 w-4" />
+			<X size={LucideIconSize.MD} />
 		</button>
 	{/if}
 </div>

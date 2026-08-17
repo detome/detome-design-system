@@ -2,6 +2,7 @@
 	import { Accordion as BitsAccordion } from 'bits-ui';
 	import { cn } from '$lib/utils/cn';
 	import { ChevronDown } from '@lucide/svelte';
+	import { LucideIconSize } from '../enums';
 	import { slide } from 'svelte/transition';
 	import type { Snippet } from 'svelte';
 
@@ -96,7 +97,7 @@
 			{:else}
 				{title}
 			{/if}
-			<ChevronDown class="h-4 w-4 shrink-0 transition-transform duration-200" />
+			<ChevronDown size={LucideIconSize.MD} class="shrink-0 transition-transform duration-200" />
 		</BitsAccordion.Trigger>
 	</BitsAccordion.Header>
 

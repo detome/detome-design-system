@@ -95,10 +95,10 @@
 	}: Props = $props();
 
 	const placementStyles: Record<DrawerPlacement, string> = {
-		left: 'fixed left-0 top-0 h-full w-80 m-0 rounded-none bg-white dark:bg-gray-800 p-4',
-		right: 'fixed right-0 top-0 h-full w-80 m-0 rounded-none bg-white dark:bg-gray-800 p-4',
-		top: 'fixed left-0 top-0 w-full h-auto m-0 rounded-none bg-white dark:bg-gray-800 p-4',
-		bottom: 'fixed bottom-0 left-0 w-full h-auto m-0 rounded-none bg-white dark:bg-gray-800 p-4'
+		left: 'fixed left-0 top-0 h-full w-80 m-0 rounded-none bg-surface p-4',
+		right: 'fixed right-0 top-0 h-full w-80 m-0 rounded-none bg-surface p-4',
+		top: 'fixed left-0 top-0 w-full h-auto m-0 rounded-none bg-surface p-4',
+		bottom: 'fixed bottom-0 left-0 w-full h-auto m-0 rounded-none bg-surface p-4'
 	};
 
 	const getTransition = (placement: DrawerPlacement | DrawerPlacementType) => {
@@ -121,7 +121,7 @@
 						<div
 							{...props}
 							transition:fade={{ duration: 200 }}
-							class="fixed inset-0 z-30 bg-gray-900/50 dark:bg-gray-900/80">
+							class="fixed inset-0 z-30 bg-black/50 dark:bg-black/80">
 						</div>
 					{/if}
 				{/snippet}

@@ -122,7 +122,7 @@
 		...restProps
 	}: Props = $props();
 
-	const baseStyles = 'w-full text-sm text-left text-gray-500 dark:text-gray-400';
+	const baseStyles = 'w-full text-sm text-left text-fg-muted';
 	const borderStyles = $derived(noborder ? '' : 'border-collapse');
 	const shadowStyles = $derived(shadow ? 'shadow-md' : '');
 </script>

@@ -61,7 +61,7 @@
 		...restProps
 	}: Props = $props();
 
-	const baseStyles = 'font-medium text-gray-900 dark:text-white';
+	const baseStyles = 'font-medium text-fg-default';
 </script>
 
 <th scope="col" class={cn(padding, baseStyles, className)} {onclick} {...restProps}>

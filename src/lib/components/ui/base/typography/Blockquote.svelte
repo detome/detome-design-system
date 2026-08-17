@@ -90,11 +90,9 @@
 		...restProps
 	}: Props = $props();
 
-	const baseStyles = 'text-gray-900 dark:text-white';
-	const borderStyles = $derived(
-		border ? 'border-l-2 border-gray-300 pl-4 dark:border-gray-700' : ''
-	);
-	const bgStyles = $derived(bg ? 'bg-gray-50 p-4 dark:bg-gray-800' : '');
+	const baseStyles = 'text-fg-default';
+	const borderStyles = $derived(border ? 'border-l-2 border-border-strong pl-4' : '');
+	const bgStyles = $derived(bg ? 'bg-surface-raised p-4' : '');
 	const italicStyles = $derived(italic ? 'italic' : '');
 </script>
 

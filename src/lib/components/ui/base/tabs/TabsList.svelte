@@ -30,7 +30,7 @@
 	let { children, class: className, ...restProps }: Props = $props();
 
 	const baseStyles =
-		'inline-flex h-12 items-center justify-center gap-0.5 rounded-lg bg-gray-50 border border-gray-200 py-0.5 text-gray-600 dark:bg-gray-900 dark:border-gray-800 dark:text-gray-400';
+		'inline-flex items-end justify-start border-b border-border-default text-fg-muted';
 </script>
 
 <BitsTabs.List class={cn(baseStyles, className)} {...restProps}>
