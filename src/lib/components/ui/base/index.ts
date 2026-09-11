@@ -25,6 +25,8 @@ export { default as Checkbox } from './checkbox/Checkbox.svelte';
 export { default as Switch } from './switch/Switch.svelte';
 export { default as RadioGroup } from './radio/RadioGroup.svelte';
 export { default as RadioItem } from './radio/RadioItem.svelte';
+export { default as SegmentedControl } from './segmentedcontrol/SegmentedControl.svelte';
+export type { SegmentedControlOption } from './segmentedcontrol/SegmentedControl.svelte';
 export { default as Datepicker } from './datepicker/Datepicker.svelte';
 export { default as DateRangePicker } from './datepicker/DateRangePicker.svelte';
 export { default as Search } from './search/Search.svelte';

@@ -235,6 +235,30 @@ Individual radio button item for RadioGroup.
 - `labelClickable`: boolean (if true, clicking the label also selects the radio, default: true)
 - `children`: Snippet (label content)
 
+#### SegmentedControl
+Attached pill-style control for choosing exactly one option from a small set (e.g. AND/OR combinators, view switchers). Wraps bits-ui.RadioGroup.Root.
+
+**Props:**
+- `value`: string (bindable)
+- `options`: SegmentedControlOption[] (required)
+- `size`: ComponentSize ('xs' | 'sm' | 'md' | 'lg' | 'xl', default: 'sm')
+- `disabled`: boolean (default: false)
+- `name`: string
+- `ariaLabel`: string (accessible label for the group, recommended)
+- `onChange`: (value: string) => void
+- `class`: string (additional CSS classes)
+
+**Interface:**
+```typescript
+interface SegmentedControlOption {
+  value: string;
+  label: string;
+  disabled?: boolean;
+}
+```
+
+**Accessibility:** Radio group semantics (exactly one segment always selected), roving tabindex, arrow-key navigation.
+
 #### Datepicker
 Date selection component with custom styling and keyboard support. Wraps bits-ui.DatePicker with @internationalized/date.
 

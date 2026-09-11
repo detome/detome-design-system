@@ -9,6 +9,7 @@ Form components provide a comprehensive set of controls for collecting user inpu
 - [Switch](#switch)
 - [RadioGroup](#radiogroup)
 - [RadioItem](#radioitem)
+- [SegmentedControl](#segmentedcontrol)
 - [Datepicker](#datepicker)
 - [DateRangePicker](#daterangepicker)
 - [Search](#search)
@@ -636,6 +637,96 @@ Individual radio button component for use within RadioGroup or standalone.
 
 - Inherits accessibility from RadioGroup when used as child
 - Standalone use requires proper name and label association
+
+---
+
+## SegmentedControl
+
+Attached pill-style control for choosing exactly one option from a small set. Wraps bits-ui.RadioGroup.Root for accessibility.
+
+### When to Use
+
+- Mutually exclusive choices with 2-5 options (AND/OR combinators, view switchers)
+- Choices that benefit from always-visible options rather than a dropdown
+- Binary toggles where both labels matter (unlike Switch, which is on/off)
+
+Use Select when there are many options, and RadioGroup when options need descriptions or a vertical layout.
+
+### Installation
+
+```svelte
+<script>
+	import { SegmentedControl } from 'requify-design-system';
+</script>
+```
+
+### Props API
+
+| Prop        | Type                       | Default            | Description                                  |
+| ----------- | -------------------------- | ------------------ | -------------------------------------------- |
+| `value`     | `string`                   | -                  | Currently selected value (bindable)          |
+| `options`   | `SegmentedControlOption[]` | -                  | Segments to render (required)                |
+| `size`      | `ComponentSize`            | `ComponentSize.SM` | Control size (`xs` through `xl`)             |
+| `disabled`  | `boolean`                  | `false`            | Disables the whole control                   |
+| `name`      | `string`                   | -                  | HTML name attribute for form grouping        |
+| `ariaLabel` | `string`                   | -                  | Accessible label for the group (recommended) |
+| `onChange`  | `(value: string) => void`  | -                  | Callback when the selection changes          |
+| `class`     | `string`                   | -                  | Additional CSS classes to apply              |
+
+#### SegmentedControlOption Interface
+
+| Property   | Type      | Description                  |
+| ---------- | --------- | ---------------------------- |
+| `value`    | `string`  | Unique value for this option |
+| `label`    | `string`  | Display label text           |
+| `disabled` | `boolean` | If true, option is disabled  |
+
+### Examples
+
+#### Basic Usage
+
+```svelte
+<SegmentedControl
+	bind:value={combinator}
+	ariaLabel="Filter combinator"
+	options={[
+		{ value: 'and', label: 'AND' },
+		{ value: 'or', label: 'OR' }
+	]} />
+```
+
+#### Extra Small Size
+
+```svelte
+<SegmentedControl bind:value={mode} size={ComponentSize.XS} options={modes} />
+```
+
+#### With Change Handler
+
+```svelte
+<SegmentedControl bind:value={view} options={views} onChange={(v) => persist(v)} />
+```
+
+#### With Disabled Option
+
+```svelte
+<SegmentedControl
+	bind:value={plan}
+	ariaLabel="Plan"
+	options={[
+		{ value: 'free', label: 'Free' },
+		{ value: 'pro', label: 'Pro' },
+		{ value: 'enterprise', label: 'Enterprise', disabled: true }
+	]} />
+```
+
+### Accessibility
+
+- Radio group semantics: exactly one segment is always selected
+- Arrow keys to navigate between segments, Space or Enter to select
+- Roving tabindex keeps the group a single tab stop
+- Visible focus indicator
+- Always provide `ariaLabel` (or wrap with a labelled group) so screen readers announce the group's purpose
 
 ---
 

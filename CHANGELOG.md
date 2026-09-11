@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.1.0] - 2026-09-10
+
+### Added
+
+- **SegmentedControl**: Attached pill-style control for choosing exactly one option from a small set (e.g. AND/OR combinators, view switchers). Built on bits-ui RadioGroup so exactly one segment is always selected, with roving tabindex and arrow-key navigation. Supports `xs` through `xl` sizes, per-option `disabled`, `bind:value`, and `onChange`. Exported alongside a `SegmentedControlOption` type.
+
 ## [0.1.0] - 2025-01-01
 
 ### Added
