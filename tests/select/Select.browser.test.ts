@@ -11,12 +11,12 @@ const options = [
 ];
 
 test('shows the placeholder when no option is selected', async () => {
-	const screen = render(Select, { options, placeholder: 'Choose one' });
+	const screen = await render(Select, { options, placeholder: 'Choose one' });
 	await expect.element(screen.getByText('Choose one')).toBeVisible();
 });
 
 test('opens the listbox and shows options when the trigger is clicked', async () => {
-	const screen = render(Select, { options, value: 'a' });
+	const screen = await render(Select, { options, value: 'a' });
 	await expectNotExists(page.getByRole('option', { name: 'Option B' }));
 
 	await screen.getByRole('button').click();
@@ -25,7 +25,7 @@ test('opens the listbox and shows options when the trigger is clicked', async ()
 });
 
 test('updates the displayed label when a new option is selected', async () => {
-	const screen = render(Select, { options, value: 'a' });
+	const screen = await render(Select, { options, value: 'a' });
 	await screen.getByRole('button').click();
 
 	await page.getByRole('option', { name: 'Option B' }).click();
@@ -37,7 +37,7 @@ test('updates the displayed label when a new option is selected', async () => {
 // `data-[state=checked]`, but bits-ui's Select.Item never sets `data-state` -
 // it sets `data-selected` instead, so the checkmark never appeared.
 test('shows the checkmark on the selected custom SelectItem only', async () => {
-	render(SelectChildrenHarness, { value: 'a' });
+	await render(SelectChildrenHarness, { value: 'a' });
 	await page.getByRole('button').click();
 
 	const selectedItem = page.getByRole('option', { name: 'Option A' });
@@ -63,7 +63,7 @@ test('shows the checkmark on the selected custom SelectItem only', async () => {
 test('renders trigger and item text in a non-black color when dark mode is active', async () => {
 	document.documentElement.classList.add('dark');
 	try {
-		const screen = render(Select, { options, value: 'a' });
+		const screen = await render(Select, { options, value: 'a' });
 		const trigger = screen.getByRole('button');
 		await trigger.click();
 

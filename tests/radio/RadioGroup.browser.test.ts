@@ -12,7 +12,7 @@ const options = [
 // forwarded to BitsRadioGroup.Root, so the hidden input never actually
 // carried the `required` attribute needed for HTML5 form validation.
 test('forwards the required prop to the underlying bits-ui radio group', async () => {
-	const screen = render(RadioGroup, { options, name: 'plan', required: true, value: 'a' });
+	const screen = await render(RadioGroup, { options, name: 'plan', required: true, value: 'a' });
 
 	const hiddenInput = screen.container.querySelector('input[name="plan"]');
 	expect(hiddenInput).not.toBeNull();
@@ -20,7 +20,7 @@ test('forwards the required prop to the underlying bits-ui radio group', async (
 });
 
 test('selects the option that is clicked', async () => {
-	render(RadioGroup, { options, name: 'plan', value: 'a' });
+	await render(RadioGroup, { options, name: 'plan', value: 'a' });
 
 	await page.getByRole('radio', { name: 'Option B' }).click();
 
