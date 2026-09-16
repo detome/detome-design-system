@@ -32,7 +32,10 @@
 	{/if}
 	<div class="flex flex-col">
 		<div class="flex items-center gap-1.5">
-			<ShieldCheck size={LucideIconSize.SM} class="text-success-600 dark:text-success-400" aria-hidden="true" />
+			<ShieldCheck
+				size={LucideIconSize.SM}
+				class="text-success-600 dark:text-success-400"
+				aria-hidden="true" />
 			<span class="text-success-800 dark:text-success-300 text-sm font-semibold">
 				Approved by {name}
 			</span>
