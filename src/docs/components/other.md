@@ -29,7 +29,7 @@ Image component with consistent styling and loading behavior.
 
 ```svelte
 <script>
-	import { Img } from 'requify-design-system';
+	import { Img } from '@detome/detome-design-system';
 </script>
 ```
 
@@ -92,7 +92,7 @@ Horizontal rule component for visual separation.
 
 ```svelte
 <script>
-	import { Hr } from 'requify-design-system';
+	import { Hr } from '@detome/detome-design-system';
 </script>
 ```
 
@@ -150,7 +150,7 @@ Toolbar container for organizing action buttons and tools. Flexible horizontal l
 
 ```svelte
 <script>
-	import { Toolbar, ToolbarButton, ToolbarGroup } from 'requify-design-system';
+	import { Toolbar, ToolbarButton, ToolbarGroup } from '@detome/detome-design-system';
 </script>
 ```
 
@@ -240,7 +240,7 @@ Individual toolbar button with icon support.
 
 ```svelte
 <script>
-	import { ToolbarButton } from 'requify-design-system';
+	import { ToolbarButton } from '@detome/detome-design-system';
 </script>
 ```
 
@@ -270,7 +270,7 @@ Grouped toolbar buttons with visual connection.
 
 ```svelte
 <script>
-	import { ToolbarGroup } from 'requify-design-system';
+	import { ToolbarGroup } from '@detome/detome-design-system';
 </script>
 ```
 
@@ -308,7 +308,7 @@ Helper text component for form fields and descriptions. Provides contextual info
 
 ```svelte
 <script>
-	import { Helper } from 'requify-design-system';
+	import { Helper } from '@detome/detome-design-system';
 </script>
 ```
 
@@ -403,7 +403,7 @@ Helper component designed specifically for form fields. Works seamlessly with In
 
 ```svelte
 <script>
-	import { Helper } from 'requify-design-system';
+	import { Helper } from '@detome/detome-design-system';
 </script>
 ```
 

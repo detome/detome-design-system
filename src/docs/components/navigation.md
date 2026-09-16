@@ -38,7 +38,12 @@ Main sidebar navigation component. Provides active URL context for child items.
 
 ```svelte
 <script>
-	import { Sidebar, SidebarGroup, SidebarItem, SidebarDropdown } from 'requify-design-system';
+	import {
+		Sidebar,
+		SidebarGroup,
+		SidebarItem,
+		SidebarDropdown
+	} from '@detome/detome-design-system';
 </script>
 ```
 
@@ -138,7 +143,7 @@ Group container for sidebar items with optional rounded background styling.
 
 ```svelte
 <script>
-	import { SidebarGroup } from 'requify-design-system';
+	import { SidebarGroup } from '@detome/detome-design-system';
 </script>
 ```
 
@@ -170,7 +175,7 @@ Individual navigation item in sidebar. Supports icons and active state detection
 
 ```svelte
 <script>
-	import { SidebarItem } from 'requify-design-system';
+	import { SidebarItem } from '@detome/detome-design-system';
 </script>
 ```
 
@@ -205,7 +210,7 @@ Collapsible dropdown section within sidebar for nested navigation items.
 
 ```svelte
 <script>
-	import { SidebarDropdown } from 'requify-design-system';
+	import { SidebarDropdown } from '@detome/detome-design-system';
 </script>
 ```
 
@@ -245,7 +250,7 @@ Tabbed interface with keyboard navigation. Wraps bits-ui.Tabs.Root.
 
 ```svelte
 <script>
-	import { Tabs, TabsList, TabsTrigger, TabsContent } from 'requify-design-system';
+	import { Tabs, TabsList, TabsTrigger, TabsContent } from '@detome/detome-design-system';
 </script>
 ```
 
@@ -393,7 +398,7 @@ Container for tab trigger buttons. Provides horizontal scrolling when needed.
 
 ```svelte
 <script>
-	import { TabsList } from 'requify-design-system';
+	import { TabsList } from '@detome/detome-design-system';
 </script>
 ```
 
@@ -426,7 +431,7 @@ Individual tab button. Clicking activates the corresponding content panel.
 
 ```svelte
 <script>
-	import { TabsTrigger } from 'requify-design-system';
+	import { TabsTrigger } from '@detome/detome-design-system';
 </script>
 ```
 
@@ -456,7 +461,7 @@ Content panel for a tab. Shows when its corresponding trigger is active.
 
 ```svelte
 <script>
-	import { TabsContent } from 'requify-design-system';
+	import { TabsContent } from '@detome/detome-design-system';
 </script>
 ```
 
@@ -494,7 +499,7 @@ Hierarchical navigation trail for showing page hierarchy. Container for Breadcru
 
 ```svelte
 <script>
-	import { Breadcrumb, BreadcrumbItem } from 'requify-design-system';
+	import { Breadcrumb, BreadcrumbItem } from '@detome/detome-design-system';
 </script>
 ```
 
@@ -581,7 +586,7 @@ Individual breadcrumb item. Last item is typically the current page without a li
 
 ```svelte
 <script>
-	import { BreadcrumbItem } from 'requify-design-system';
+	import { BreadcrumbItem } from '@detome/detome-design-system';
 </script>
 ```
 
@@ -618,7 +623,7 @@ Pagination controls for data sets with previous/next and page numbers.
 
 ```svelte
 <script>
-	import { Pagination } from 'requify-design-system';
+	import { Pagination } from '@detome/detome-design-system';
 </script>
 ```
 
@@ -770,7 +775,7 @@ Collapsible content panels with keyboard navigation. Supports single or multiple
 
 ```svelte
 <script>
-	import { Accordion, AccordionItem } from 'requify-design-system';
+	import { Accordion, AccordionItem } from '@detome/detome-design-system';
 </script>
 ```
 
@@ -892,7 +897,7 @@ Individual accordion panel with header and collapsible content.
 
 ```svelte
 <script>
-	import { AccordionItem } from 'requify-design-system';
+	import { AccordionItem } from '@detome/detome-design-system';
 </script>
 ```
 
@@ -938,7 +943,7 @@ Dropdown menu with keyboard navigation. Wraps bits-ui.DropdownMenu.Root.
 		DropdownDivider,
 		DropdownHeader,
 		DropdownLink
-	} from 'requify-design-system';
+	} from '@detome/detome-design-system';
 </script>
 ```
 
@@ -1061,7 +1066,7 @@ Individual dropdown menu item.
 
 ```svelte
 <script>
-	import { DropdownItem } from 'requify-design-system';
+	import { DropdownItem } from '@detome/detome-design-system';
 </script>
 ```
 
@@ -1090,7 +1095,7 @@ Visual separator for dropdown menus.
 
 ```svelte
 <script>
-	import { DropdownDivider } from 'requify-design-system';
+	import { DropdownDivider } from '@detome/detome-design-system';
 </script>
 ```
 
@@ -1118,7 +1123,7 @@ Section header for dropdown menus.
 
 ```svelte
 <script>
-	import { DropdownHeader } from 'requify-design-system';
+	import { DropdownHeader } from '@detome/detome-design-system';
 </script>
 ```
 
@@ -1147,7 +1152,7 @@ Link variant of dropdown item.
 
 ```svelte
 <script>
-	import { DropdownLink } from 'requify-design-system';
+	import { DropdownLink } from '@detome/detome-design-system';
 </script>
 ```
 

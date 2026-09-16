@@ -21,11 +21,11 @@ Before installing this package, ensure you have set up:
 - CSS custom properties in your global CSS file
 
 ```bash
-npm install @requify/requify-design-system
+npm install @detome/detome-design-system
 # or
-yarn add @requify/requify-design-system
+yarn add @detome/detome-design-system
 # or
-pnpm add @requify/requify-design-system
+pnpm add @detome/detome-design-system
 ```
 
 ### Tailwind CSS Setup
@@ -42,7 +42,7 @@ pnpm add @requify/requify-design-system
    @import 'tailwindcss';
 
    /* Import design system styles - REQUIRED for components to work properly */
-   @source '../node_modules/@requify/requify-design-system/**/*.{svelte,js}';
+   @source '../node_modules/@detome/detome-design-system/**/*.{svelte,js}';
 
    @layer base {
    	:root {
@@ -70,16 +70,16 @@ pnpm add @requify/requify-design-system
 
 ```typescript
 // In your Svelte component
-import { Button, Card, Input, Label } from '@requify/requify-design-system';
-import { ButtonVariant } from '@requify/requify-design-system';
+import { Button, Card, Input, Label } from '@detome/detome-design-system';
+import { ButtonVariant } from '@detome/detome-design-system';
 ```
 
 ### Example Components
 
 ```svelte
 <script lang="ts">
-	import { Button, Card, Input, Label } from 'requify-design-system';
-	import { ButtonVariant, ComponentSize } from 'requify-design-system';
+	import { Button, Card, Input, Label } from '@detome/detome-design-system';
+	import { ButtonVariant, ComponentSize } from '@detome/detome-design-system';
 
 	let inputValue = '';
 </script>

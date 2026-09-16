@@ -2,7 +2,7 @@
    This is the single source of truth for the brand palette, radii, and
    colored shadows. Consuming apps import it via:
 
-       @import '@requify/requify-design-system/theme.css';
+       @import '@detome/detome-design-system/theme.css';
 
    so colors stay in sync with the design system without hand-maintaining
    duplicate values. App-specific tokens (surfaces, neutral shadows, etc.)
@@ -206,8 +206,8 @@
   Dark mode uses a lighter primary shade at higher opacity so the chip reads on
   dark surfaces. Scoped to `.dark` to match the consuming app's class-based dark
   strategy. Left unlayered so it wins over the UA default without !important.
-  Consuming apps get this automatically via
-  `@import '@requify/requify-design-system/theme.css'`.
+   Consuming apps get this automatically via
+   `@import '@detome/detome-design-system/theme.css'`.
 */
 mark {
 	background-color: color-mix(in srgb, var(--color-primary-500) 38%, transparent);
@@ -234,7 +234,7 @@ mark {
   A large *finite* radius still clamps to a perfect pill/circle (it caps at half
   the shorter side) but renders correctly everywhere. Left unlayered so it wins
   over Tailwind's layered `.rounded-full` without needing !important. Consuming
-  apps get this automatically via `@import '@requify/requify-design-system/theme.css'`.
+  apps get this automatically via `@import '@detome/detome-design-system/theme.css'`.
 */
 .rounded-full {
 	border-radius: 9999px;
@@ -259,7 +259,7 @@ mark {
   Scope: Gecko only (@supports -moz-appearance) on touch devices
   (pointer: coarse). Kept unlayered so it beats Tailwind's layered
   gradient utilities without !important. Consuming apps get this
-  automatically via `@import '@requify/requify-design-system/theme.css'`.
+  automatically via `@import '@detome/detome-design-system/theme.css'`.
 */
 @supports (-moz-appearance: none) {
 	@media (pointer: coarse) {

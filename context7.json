@@ -30,7 +30,7 @@
 	],
 	"rules": [
 		"Use Svelte 5 runes ($props, $state, $derived, $effect) for reactivity",
-		"Import enums from '@requify/requify-design-system' for type-safe variants and sizes",
+		"Import enums from '@detome/detome-design-system' for type-safe variants and sizes",
 		"Always use TypeScript strict mode with comprehensive type definitions",
 		"Follow existing component patterns for consistency",
 		"Use CSS custom properties for theming, never hardcode colors",

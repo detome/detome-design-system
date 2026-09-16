@@ -14,11 +14,11 @@ A professional, customizable design system built with Svelte 5, Tailwind CSS, an
 ## Installation
 
 ```bash
-npm install @requify/requify-design-system
+npm install @detome/detome-design-system
 # or
-yarn add @requify/requify-design-system
+yarn add @detome/detome-design-system
 # or
-pnpm add @requify/requify-design-system
+pnpm add @detome/detome-design-system
 ```
 
 ## Quick Start
@@ -29,21 +29,21 @@ First, add the CSS import to your global CSS file (e.g., `app.css`):
 @import 'tailwindcss';
 
 /* Import design system styles - REQUIRED for components to work properly */
-@source '../node_modules/@requify/requify-design-system/**/*.{svelte,js}';
+@source '../node_modules/@detome/detome-design-system/**/*.{svelte,js}';
 ```
 
 Then import components and enums:
 
 ```typescript
 // Import components and enums
-import { Button, Card, Input } from '@requify/requify-design-system';
-import { ButtonVariant, ComponentSize } from '@requify/requify-design-system';
+import { Button, Card, Input } from '@detome/detome-design-system';
+import { ButtonVariant, ComponentSize } from '@detome/detome-design-system';
 ```
 
 ```svelte
 <script lang="ts">
-  import { Button, Card, Input, Label } from '@requify/requify-design-system';
-  import { ButtonVariant } from '@requify/requify-design-system';
+  import { Button, Card, Input, Label } from '@detome/detome-design-system';
+  import { ButtonVariant } from '@detome/detome-design-system';
 
   let inputValue = '';
 </script>
@@ -890,7 +890,7 @@ All components use CSS custom properties for colors, allowing easy theming.
 @import 'tailwindcss';
 
 /* Import design system styles - REQUIRED for components to work properly */
-@source '../node_modules/@requify/requify-design-system/**/*.{svelte,js}';
+@source '../node_modules/@detome/detome-design-system/**/*.{svelte,js}';
 
 :root {
   /* Override primary brand color */

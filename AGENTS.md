@@ -586,7 +586,7 @@ npm login
 npm publish
 
 # Verify on npm
-npm view requify-design-system
+npm view @detome/detome-design-system
 ```
 
 ## Agent Best Practices

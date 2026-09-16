@@ -87,7 +87,7 @@ export enum CardVariant {
  *
  * @example
  * ```svelte
- * import { LucideIconSize } from '@requify/requify-design-system';
+ * import { LucideIconSize } from '@detome/detome-design-system';
  * import { ChevronRight } from '@lucide/svelte';
  *
  * <ChevronRight size={LucideIconSize.MD} />

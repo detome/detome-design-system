@@ -27,7 +27,7 @@ Semantic heading component with predefined sizes and tracking. Renders appropria
 
 ```svelte
 <script>
-	import { Heading } from 'requify-design-system';
+	import { Heading } from '@detome/detome-design-system';
 </script>
 ```
 
@@ -147,7 +147,7 @@ Paragraph component with configurable size, weight, and color. Semantic p elemen
 
 ```svelte
 <script>
-	import { P } from 'requify-design-system';
+	import { P } from '@detome/detome-design-system';
 </script>
 ```
 
@@ -285,7 +285,7 @@ Link component with default styling and hover effects. Semantic anchor element.
 
 ```svelte
 <script>
-	import { A } from 'requify-design-system';
+	import { A } from '@detome/detome-design-system';
 </script>
 ```
 
@@ -414,7 +414,7 @@ Blockquote component for quoted text. Provides proper styling and semantic marku
 
 ```svelte
 <script>
-	import { Blockquote } from 'requify-design-system';
+	import { Blockquote } from '@detome/detome-design-system';
 </script>
 ```
 

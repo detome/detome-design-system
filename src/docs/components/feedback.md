@@ -31,7 +31,7 @@ Alert component with multiple variants for displaying contextual information. Su
 
 ```svelte
 <script>
-	import { Alert, StatusVariant } from 'requify-design-system';
+	import { Alert, StatusVariant } from '@detome/detome-design-system';
 </script>
 ```
 
@@ -171,7 +171,7 @@ Toast notification component with multiple variants and dismissible option. Supp
 
 ```svelte
 <script>
-	import { Toast, StatusVariant } from 'requify-design-system';
+	import { Toast, StatusVariant } from '@detome/detome-design-system';
 </script>
 ```
 
@@ -301,7 +301,7 @@ Provider component for toast state management. Wraps multiple Toast components a
 
 ```svelte
 <script>
-	import { ToastProvider, Toast, StatusVariant } from 'requify-design-system';
+	import { ToastProvider, Toast, StatusVariant } from '@detome/detome-design-system';
 </script>
 ```
 
@@ -362,7 +362,7 @@ Modal dialog component for displaying content in an overlay. Supports multiple s
 
 ```svelte
 <script>
-	import { Modal, ModalSize } from 'requify-design-system';
+	import { Modal, ModalSize } from '@detome/detome-design-system';
 </script>
 ```
 
@@ -555,7 +555,7 @@ Alert dialog for critical confirmations, built directly on bits-ui's native `Ale
 
 ```svelte
 <script>
-	import { AlertDialog, StatusVariant } from 'requify-design-system';
+	import { AlertDialog, StatusVariant } from '@detome/detome-design-system';
 </script>
 ```
 
@@ -652,7 +652,7 @@ Slide-out drawer/sheet component from any edge of viewport. Wraps bits-ui Dialog
 
 ```svelte
 <script>
-	import { Drawer } from 'requify-design-system';
+	import { Drawer } from '@detome/detome-design-system';
 </script>
 ```
 
@@ -788,7 +788,7 @@ Tooltip component for displaying contextual information on hover/focus. Wraps bi
 
 ```svelte
 <script>
-	import { Tooltip } from 'requify-design-system';
+	import { Tooltip } from '@detome/detome-design-system';
 </script>
 ```
 
@@ -936,7 +936,7 @@ Popover component for displaying rich, interactive content on demand. Wraps bits
 
 ```svelte
 <script>
-	import { Popover } from 'requify-design-system';
+	import { Popover } from '@detome/detome-design-system';
 </script>
 ```
 

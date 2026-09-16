@@ -41,7 +41,7 @@ Table container component with responsive scrolling and visual variants. Wraps s
 		TableBodyRow,
 		TableBodyCell,
 		TableHeadCell
-	} from 'requify-design-system';
+	} from '@detome/detome-design-system';
 </script>
 ```
 
@@ -236,7 +236,7 @@ Table header container. Contains TableHeadCell components.
 
 ```svelte
 <script>
-	import { TableHead } from 'requify-design-system';
+	import { TableHead } from '@detome/detome-design-system';
 </script>
 ```
 
@@ -267,7 +267,7 @@ Table body container. Contains TableBodyRow components.
 
 ```svelte
 <script>
-	import { TableBody } from 'requify-design-system';
+	import { TableBody } from '@detome/detome-design-system';
 </script>
 ```
 
@@ -298,7 +298,7 @@ Individual table row. Can be clickable for interactive tables.
 
 ```svelte
 <script>
-	import { TableBodyRow } from 'requify-design-system';
+	import { TableBodyRow } from '@detome/detome-design-system';
 </script>
 ```
 
@@ -329,7 +329,7 @@ Individual table data cell.
 
 ```svelte
 <script>
-	import { TableBodyCell } from 'requify-design-system';
+	import { TableBodyCell } from '@detome/detome-design-system';
 </script>
 ```
 
@@ -358,7 +358,7 @@ Table header cell. Automatically adds proper scope attribute.
 
 ```svelte
 <script>
-	import { TableHeadCell } from 'requify-design-system';
+	import { TableHeadCell } from '@detome/detome-design-system';
 </script>
 ```
 
@@ -400,7 +400,7 @@ Progress bar component for displaying completion percentage. Supports multiple c
 
 ```svelte
 <script>
-	import { Progressbar, AccentVariant, ComponentSize } from 'requify-design-system';
+	import { Progressbar, AccentVariant, ComponentSize } from '@detome/detome-design-system';
 </script>
 ```
 
@@ -525,7 +525,7 @@ List group container for organizing related list items. Provides consistent styl
 
 ```svelte
 <script>
-	import { Listgroup, ListgroupItem } from 'requify-design-system';
+	import { Listgroup, ListgroupItem } from '@detome/detome-design-system';
 </script>
 ```
 
@@ -670,7 +670,7 @@ Individual list item component. Supports rich content and click handlers.
 
 ```svelte
 <script>
-	import { ListgroupItem } from 'requify-design-system';
+	import { ListgroupItem } from '@detome/detome-design-system';
 </script>
 ```
 
@@ -706,7 +706,7 @@ Step indicator for multi-step workflows and wizards. Visual progress tracker wit
 
 ```svelte
 <script>
-	import { StepIndicator } from 'requify-design-system';
+	import { StepIndicator } from '@detome/detome-design-system';
 </script>
 ```
 
@@ -848,7 +848,7 @@ Status indicator badge for notifications, alerts, and status markers. Absolute p
 
 ```svelte
 <script>
-	import { Indicator } from 'requify-design-system';
+	import { Indicator } from '@detome/detome-design-system';
 </script>
 ```
 

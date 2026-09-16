@@ -43,7 +43,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Technical
 
-- Scoped npm package: @requify/requify-design-system
+- Scoped npm package: @detome/detome-design-system
 - Trusted Publishing configuration via GitHub Actions
 - Provenance support for npm registry
 - Type definitions for full IDE support

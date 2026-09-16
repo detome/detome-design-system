@@ -32,7 +32,7 @@ Interactive button component with multiple visual variants, sizes, and states. W
 
 ```svelte
 <script>
-	import { Button, ButtonVariant, ComponentSize } from 'requify-design-system';
+	import { Button, ButtonVariant, ComponentSize } from '@detome/detome-design-system';
 </script>
 ```
 
@@ -172,7 +172,7 @@ Container component with multiple visual variants for content grouping. Can rend
 
 ```svelte
 <script>
-	import { Card } from 'requify-design-system';
+	import { Card } from '@detome/detome-design-system';
 </script>
 ```
 
@@ -291,7 +291,7 @@ Text input with error states, icon slots, and clearable functionality. Extends H
 
 ```svelte
 <script>
-	import { Input, ComponentSize } from 'requify-design-system';
+	import { Input, ComponentSize } from '@detome/detome-design-system';
 </script>
 ```
 
@@ -413,7 +413,7 @@ Form label component with required field indicator. Wraps bits-ui.Label.Root for
 
 ```svelte
 <script>
-	import { Label } from 'requify-design-system';
+	import { Label } from '@detome/detome-design-system';
 </script>
 ```
 
@@ -484,7 +484,7 @@ Multi-line text input with error state support. Extends HTML textarea attributes
 
 ```svelte
 <script>
-	import { Textarea } from 'requify-design-system';
+	import { Textarea } from '@detome/detome-design-system';
 </script>
 ```
 
@@ -567,7 +567,7 @@ Small status indicator with semantic colors and dismissible option. Can render a
 
 ```svelte
 <script>
-	import { Badge, BadgeVariant, ComponentSize } from 'requify-design-system';
+	import { Badge, BadgeVariant, ComponentSize } from '@detome/detome-design-system';
 </script>
 ```
 
@@ -684,7 +684,7 @@ Circular loading spinner for indicating async operations. Animated SVG with conf
 
 ```svelte
 <script>
-	import { Spinner } from 'requify-design-system';
+	import { Spinner } from '@detome/detome-design-system';
 </script>
 ```
 
@@ -792,7 +792,7 @@ Groups buttons together with proper spacing and visual connection. Creates cohes
 
 ```svelte
 <script>
-	import { ButtonGroup, Button } from 'requify-design-system';
+	import { ButtonGroup, Button } from '@detome/detome-design-system';
 </script>
 ```
 
@@ -911,7 +911,7 @@ Pre-styled close button (X icon) for modals, panels, and alerts. Commonly used i
 
 ```svelte
 <script>
-	import { CloseButton } from 'requify-design-system';
+	import { CloseButton } from '@detome/detome-design-system';
 </script>
 ```
 

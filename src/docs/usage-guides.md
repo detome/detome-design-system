@@ -27,7 +27,7 @@ All components reference these color variables:
 @import 'tailwindcss';
 
 /* Import design system styles - REQUIRED for components to work properly */
-@source '../node_modules/@requify/requify-design-system/**/*.{svelte,js}';
+@source '../node_modules/@detome/detome-design-system/**/*.{svelte,js}';
 
 :root {
 	/* Primary brand color - main action buttons, links, key elements */
@@ -81,7 +81,7 @@ Add this to your global CSS file (e.g., `app.css` or `global.css`):
 @import 'tailwindcss';
 
 /* Import design system styles - REQUIRED for components to work properly */
-@source '../node_modules/@requify/requify-design-system/**/*.{svelte,js}';
+@source '../node_modules/@detome/detome-design-system/**/*.{svelte,js}';
 
 /* Override primary brand color to match your brand */
 :root {
@@ -233,8 +233,8 @@ Group related buttons together:
 
 ```svelte
 <script lang="ts">
-	import { Button, ButtonGroup } from '@requify/requify-design-system';
-	import { ButtonVariant } from '@requify/requify-design-system';
+	import { Button, ButtonGroup } from '@detome/detome-design-system';
+	import { ButtonVariant } from '@detome/detome-design-system';
 </script>
 
 <ButtonGroup>
@@ -249,8 +249,8 @@ Build complex forms with proper structure:
 
 ```svelte
 <script lang="ts">
-	import { Card, Input, Label, Button, Helper } from '@requify/requify-design-system';
-	import { ButtonVariant } from '@requify/requify-design-system';
+	import { Card, Input, Label, Button, Helper } from '@detome/detome-design-system';
+	import { ButtonVariant } from '@detome/detome-design-system';
 
 	let name = $state('');
 	let email = $state('');
@@ -305,8 +305,8 @@ Build complex forms with proper structure:
 
 ```svelte
 <script lang="ts">
-	import { Modal, Input, Label, Button } from '@requify/requify-design-system';
-	import { ModalSize, ButtonVariant } from '@requify/requify-design-system';
+	import { Modal, Input, Label, Button } from '@detome/detome-design-system';
+	import { ModalSize, ButtonVariant } from '@detome/detome-design-system';
 
 	let isOpen = $state(false);
 	let title = $state('');
@@ -344,7 +344,7 @@ Build complex forms with proper structure:
 		SidebarGroup,
 		SidebarItem,
 		SidebarDropdown
-	} from '@requify/requify-design-system';
+	} from '@detome/detome-design-system';
 </script>
 
 <Sidebar activeUrl="/dashboard">
@@ -396,9 +396,9 @@ Build complex forms with proper structure:
 
 ```svelte
 <script lang="ts">
-	import { Tabs, TabsList, TabsTrigger, TabsContent } from '@requify/requify-design-system';
-	import { Button } from '@requify/requify-design-system';
-	import { ButtonVariant } from '@requify/requify-design-system';
+	import { Tabs, TabsList, TabsTrigger, TabsContent } from '@detome/detome-design-system';
+	import { Button } from '@detome/detome-design-system';
+	import { ButtonVariant } from '@detome/detome-design-system';
 
 	let activeTab = $state('overview');
 </script>
@@ -451,9 +451,9 @@ Build complex forms with proper structure:
 		TableBody,
 		TableBodyRow,
 		TableBodyCell
-	} from '@requify/requify-design-system';
-	import { Button, Badge } from '@requify/requify-design-system';
-	import { ButtonVariant, BadgeVariant } from '@requify/requify-design-system';
+	} from '@detome/detome-design-system';
+	import { Button, Badge } from '@detome/detome-design-system';
+	import { ButtonVariant, BadgeVariant } from '@detome/detome-design-system';
 
 	type User = {
 		id: number;
@@ -510,11 +510,11 @@ Always import and use enums for type safety:
 
 ```typescript
 // Good - Type-safe
-import { Button, ButtonVariant } from '@requify/requify-design-system';
+import { Button, ButtonVariant } from '@detome/detome-design-system';
 <Button variant={ButtonVariant.PRIMARY}>Click</Button>
 
 // Avoid - String literals (no type safety)
-import { Button } from '@requify/requify-design-system';
+import { Button } from '@detome/detome-design-system';
 <Button variant="primary">Click</Button>  // ❌ No autocomplete or type checking
 ```
 
@@ -524,7 +524,7 @@ Use snippets for icons, headers, and custom content:
 
 ```svelte
 <script lang="ts">
-	import { Button } from '@requify/requify-design-system';
+	import { Button } from '@detome/detome-design-system';
 	import { Search, Save } from '@lucide/svelte';
 </script>
 
@@ -564,8 +564,8 @@ Use loading state to prevent duplicate submissions:
 
 ```svelte
 <script lang="ts">
-	import { Button } from '@requify/requify-design-system';
-	import { ButtonVariant } from '@requify/requify-design-system';
+	import { Button } from '@detome/detome-design-system';
+	import { ButtonVariant } from '@detome/detome-design-system';
 
 	let isSubmitting = $state(false);
 
@@ -593,7 +593,7 @@ Display errors clearly with proper visual feedback:
 
 ```svelte
 <script lang="ts">
-	import { Input, Label, Helper } from '@requify/requify-design-system';
+	import { Input, Label, Helper } from '@detome/detome-design-system';
 
 	let email = $state('');
 	let emailError = $derived(
@@ -614,8 +614,8 @@ Use consistent sizes within groups for better UX:
 
 ```svelte
 <script lang="ts">
-	import { Input, Button, Select } from '@requify/requify-design-system';
-	import { ComponentSize } from '@requify/requify-design-system';
+	import { Input, Button, Select } from '@detome/detome-design-system';
+	import { ComponentSize } from '@detome/detome-design-system';
 </script>
 
 <!-- All same size for consistency -->
@@ -659,8 +659,8 @@ Use size variants for different screen sizes:
 
 ```svelte
 <script lang="ts">
-	import { Button } from '@requify/requify-design-system';
-	import { ButtonVariant, ComponentSize } from '@requify/requify-design-system';
+	import { Button } from '@detome/detome-design-system';
+	import { ButtonVariant, ComponentSize } from '@detome/detome-design-system';
 </script>
 
 <!-- Responsive button sizes -->
@@ -710,9 +710,9 @@ When upgrading, check for breaking changes in CHANGELOG.md.
 ```svelte
 <script lang="ts">
 	// Lazy load heavy components
-	const Modal = lazy(() => import('@requify/requify-design-system').then((m) => m.Modal));
+	const Modal = lazy(() => import('@detome/detome-design-system').then((m) => m.Modal));
 	const DateRangePicker = lazy(() =>
-		import('@requify/requify-design-system').then((m) => m.DateRangePicker)
+		import('@detome/detome-design-system').then((m) => m.DateRangePicker)
 	);
 </script>
 
@@ -723,7 +723,7 @@ When upgrading, check for breaking changes in CHANGELOG.md.
 
 ```svelte
 <script lang="ts">
-	import { Search } from '@requify/requify-design-system';
+	import { Search } from '@detome/detome-design-system';
 
 	let searchQuery = $state('');
 
@@ -745,7 +745,7 @@ When upgrading, check for breaking changes in CHANGELOG.md.
 
 ```svelte
 <script lang="ts">
-	import { Listgroup, ListgroupItem } from '@requify/requify-design-system';
+	import { Listgroup, ListgroupItem } from '@detome/detome-design-system';
 
 	// Use $derived for computed values
 	let items = $state([dataset]); // Large dataset
@@ -783,13 +783,13 @@ Use proper state management:
 ### Component Not Rendering
 
 1. Check import paths
-2. Verify component is exported from `@requify/requify-design-system`
+2. Verify component is exported from `@detome/detome-design-system`
 3. Check browser console for errors
 
 ### Styles Not Applying
 
 1. Ensure Tailwind CSS is configured
-2. **Add `@source '../node_modules/@requify/requify-design-system/**/\*.{svelte,js}'` to your CSS file\*\* - this is required for components to work
+2. **Add `@source '../node_modules/@detome/detome-design-system/**/\*.{svelte,js}'` to your CSS file\*\* - this is required for components to work
 3. Check CSS custom properties are defined
 4. Verify component class names match Tailwind config
 

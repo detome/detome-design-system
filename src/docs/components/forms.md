@@ -31,7 +31,7 @@ Dropdown select component with keyboard navigation, error states, and search fun
 
 ```svelte
 <script>
-	import { Select } from 'requify-design-system';
+	import { Select } from '@detome/detome-design-system';
 </script>
 ```
 
@@ -169,7 +169,7 @@ Boolean input with checked/unchecked/indeterminate states. Wraps bits-ui.Checkbo
 
 ```svelte
 <script>
-	import { Checkbox } from 'requify-design-system';
+	import { Checkbox } from '@detome/detome-design-system';
 </script>
 ```
 
@@ -299,7 +299,7 @@ Toggle switch with variants (primary, secondary, success, error, warning, info).
 
 ```svelte
 <script>
-	import { Switch, AccentVariant } from 'requify-design-system';
+	import { Switch, AccentVariant } from '@detome/detome-design-system';
 </script>
 ```
 
@@ -428,7 +428,7 @@ Radio button group with single-select functionality. Wraps bits-ui.RadioGroup.Ro
 
 ```svelte
 <script>
-	import { RadioGroup, RadioItem } from 'requify-design-system';
+	import { RadioGroup, RadioItem } from '@detome/detome-design-system';
 </script>
 ```
 
@@ -591,7 +591,7 @@ Individual radio button component for use within RadioGroup or standalone.
 
 ```svelte
 <script>
-	import { RadioItem } from 'requify-design-system';
+	import { RadioItem } from '@detome/detome-design-system';
 </script>
 ```
 
@@ -656,7 +656,7 @@ Use Select when there are many options, and RadioGroup when options need descrip
 
 ```svelte
 <script>
-	import { SegmentedControl } from 'requify-design-system';
+	import { SegmentedControl } from '@detome/detome-design-system';
 </script>
 ```
 
@@ -744,7 +744,7 @@ Single date selection component with custom styling and keyboard support. Wraps 
 
 ```svelte
 <script>
-	import { Datepicker } from 'requify-design-system';
+	import { Datepicker } from '@detome/detome-design-system';
 </script>
 ```
 
@@ -850,7 +850,7 @@ Date range selection component with two date inputs. Wraps bits-ui.DatePicker fo
 
 ```svelte
 <script>
-	import { DateRangePicker } from 'requify-design-system';
+	import { DateRangePicker } from '@detome/detome-design-system';
 </script>
 ```
 
@@ -919,7 +919,7 @@ Search input with built-in search icon and proper styling. Extends HTML input wi
 
 ```svelte
 <script>
-	import { Search } from 'requify-design-system';
+	import { Search } from '@detome/detome-design-system';
 </script>
 ```
 
