@@ -10,16 +10,16 @@
 		"tailwindcss",
 		"bits-ui"
 	],
-	"homepage": "https://github.com/requify-app/requify-design-system#readme",
+	"homepage": "https://github.com/detome/detome-design-system#readme",
 	"bugs": {
-		"url": "https://github.com/requify-app/requify-design-system/issues"
+		"url": "https://github.com/detome/detome-design-system/issues"
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/requify-app/requify-design-system.git"
+		"url": "git+https://github.com/detome/detome-design-system.git"
 	},
 	"license": "MIT",
-	"author": "paul@requify.app",
+	"author": "paul@detome.com",
 	"type": "module",
 	"exports": {
 		".": {

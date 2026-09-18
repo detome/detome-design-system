@@ -114,7 +114,7 @@ export { default as DetomeIcon } from './brand/DetomeIcon.svelte';
 // Legacy aliases for compatibility
 export { default as TabItem } from './tabs/TabsContent.svelte';
 
-// Domain primitives — Requify-specific identity components
+// Domain primitives — Detome-specific identity components
 export { default as Identifier } from './identifier/Identifier.svelte';
 export { default as SuspectIndicator } from './trace/SuspectIndicator.svelte';
 export { default as TraceBadge } from './trace/TraceBadge.svelte';

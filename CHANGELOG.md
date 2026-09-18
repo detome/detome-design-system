@@ -11,12 +11,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - **SegmentedControl**: Attached pill-style control for choosing exactly one option from a small set (e.g. AND/OR combinators, view switchers). Built on bits-ui RadioGroup so exactly one segment is always selected, with roving tabindex and arrow-key navigation. Supports `xs` through `xl` sizes, per-option `disabled`, `bind:value`, and `onChange`. Exported alongside a `SegmentedControlOption` type.
 
+### Changed
+
+- **Package renamed**: `@requify/requify-design-system` is now `@detome/detome-design-system`. Update your import specifier and `@source` CSS directive to the new package name; all component APIs are unchanged.
+
 ## [0.1.0] - 2025-01-01
 
 ### Added
 
-- Initial release of Requify Design System
-- 60+ UI components extracted from Requify main application
+- Initial release of Detome Design System (originally published as Requify Design System)
+- 60+ UI components extracted from the Detome main application
 - **Foundation Components**: Button, ButtonGroup, CloseButton, Input, Textarea, Label, Card, Badge, Spinner
 - **Form Components**: Select, SelectItem, Checkbox, Switch, RadioGroup, RadioItem, Radio, Datepicker, DateRangePicker, Search
 - **Modal & Dialog Components**: Modal, AlertDialog, Drawer, Hr

@@ -1,6 +1,6 @@
 # Detome Design System
 
-A professional, customizable design system built with Svelte 5, Tailwind CSS, and bits-ui primitives. Includes 60+ accessible, type-safe UI components.
+A professional, customizable design system built with Svelte 5, Tailwind CSS, and bits-ui primitives. Includes 80+ accessible, type-safe UI components.
 
 ## Tech Stack
 
@@ -101,6 +101,20 @@ Text input with error states, left/right icon slots, clearable option, and size 
 - `id`: string (for label association)
 
 **Accessibility:** Proper label association via for/id attributes, error state with ARIA, keyboard navigation.
+
+#### Textarea
+Multi-line text input with error state support. Extends native HTML textarea attributes.
+
+**Props:**
+- `value`: string (bindable)
+- `error`: string (displays error message below textarea and triggers error styling)
+- `disabled`: boolean (default: false)
+- `rows`: number (visible rows, default: 4)
+- `id`: string (for label association)
+- `class`: string
+- Other native `<textarea>` attributes (placeholder, maxlength, etc.) are passed through
+
+**Accessibility:** Error state announced via aria-describedby, visible focus ring, resizable.
 
 #### Label
 Form label component with proper for/id attribute handling for accessibility.
@@ -821,6 +835,95 @@ Groups toolbar buttons with proper spacing.
 **Props:**
 - `children`: Snippet
 
+#### TabItem
+Legacy alias for TabsContent, kept for backward compatibility. Prefer TabsContent in new code.
+
+**Props:** same as TabsContent (`value`, `children`).
+
+### Brand Components
+
+#### DetomeLogo
+Auto-switching Detome wordmark logo. Renders the light variant by default and the dark variant when a `.dark` class is present on a parent (typically `<html>`). Both variants are rendered and toggled via `hidden`/`dark:block`, so there is no flash on theme switch, no hydration mismatch, and it works in SSR.
+
+**Props:**
+- `size`: 'sm' (16px) | 'md' (24px) | 'lg' (32px) | 'xl' (48px) | string (height-based; any other string is applied as a Tailwind class, default: 'md')
+- `alt`: string (default: 'detome'; pass `alt=""` when paired with visible text)
+- `class`: string (applied to both variants)
+
+**Accessibility:** only the visible variant is exposed to assistive tech (the hidden one uses `display:none`).
+
+#### DetomeLogoLight / DetomeLogoDark
+Explicit wordmark variants for light and dark backgrounds respectively. Same props as DetomeLogo.
+
+#### DetomeIcon
+Auto-switching Detome brand mark (the "d" icon). Same dark-mode stacking mechanism and props as DetomeLogo.
+
+#### DetomeIconLight / DetomeIconDark
+Explicit brand-mark variants for light and dark backgrounds. Same props as DetomeLogo.
+
+### Domain Components
+
+Detome-specific identity and workflow primitives.
+
+#### Identifier
+Monospace pill for displaying identifiers (IDs, tokens) with optional click-to-copy.
+
+**Props:**
+- `value`: string (required, the identifier to display)
+- `label`: string (used in the copy button's aria-label, e.g. `Copy {label}: {value}`)
+- `copyable`: boolean (renders a button that copies `value` to the clipboard and shows a check icon for 1.5s, default: true)
+- `class`: string
+
+**Accessibility:** copy button has `aria-label` and `title="Click to copy"`.
+
+#### SuspectIndicator
+Warning-styled status pill with an alert-triangle icon for flagging suspect links/items.
+
+**Props:**
+- `label`: string (default: 'Suspect link')
+- `class`: string
+
+**Accessibility:** `role="status"` with `aria-label`.
+
+#### TraceBadge
+Rounded pill badge for trace/graph annotations with directional variants.
+
+**Props:**
+- `label`: string (required)
+- `count`: number (rendered as `(count)` suffix when provided)
+- `variant`: 'default' | 'upstream' | 'downstream' | 'suspect' (default: 'default')
+- `icon`: Snippet (leading icon)
+- `class`: string
+
+#### ApprovalStamp
+Inline "Approved by {name}" stamp with shield icon, optional avatar, role, and timestamp.
+
+**Props:**
+- `name`: string (required, approver name)
+- `role`: string (e.g. job title, shown under the name)
+- `timestamp`: string (rendered inside a `<time>` element)
+- `avatarUrl`: string (falls back to an initial-letter avatar when omitted)
+- `class`: string
+
+#### EmptyState
+Centered empty-state placeholder with icon, title, description, and optional action.
+
+**Props:**
+- `title`: string (required)
+- `description`: string (muted text under the title)
+- `icon`: Snippet (defaults to an inbox icon in a circular container)
+- `action`: Snippet (e.g. a call-to-action Button)
+- `class`: string
+
+### Accessibility Components
+
+#### SkipLink
+Visually hidden "Skip to main content" link that becomes visible on keyboard focus and jumps past navigation to `href` (default: '#main-content'). Place it as the first focusable element on the page.
+
+**Props:**
+- `href`: string (default: '#main-content')
+- `class`: string
+
 ## Enums Reference
 
 ### ButtonVariant
@@ -838,6 +941,10 @@ Groups toolbar buttons with proper spacing.
 
 ### ComponentSize
 - XS, SM, MD, LG, XL
+
+### LucideIconSize
+- XS (12), SM (14), MD (16), LG (20), XL (24), XXL (32)
+- Numeric pixel sizes to pass as the `size` prop on @lucide/svelte icon components
 
 ### ModalSize
 - SM (384px), MD (448px), LG (768px), XL (1280px), FULL
@@ -1034,9 +1141,9 @@ Svelte 5 snippets allow flexible content composition:
 
 ## Support
 
-- GitHub: https://github.com/requify/requify-design-system
-- Issues: https://github.com/requify/requify-design-system/issues
-- Docs: https://github.com/requify/requify-design-system#readme
+- GitHub: https://github.com/detome/detome-design-system
+- Issues: https://github.com/detome/detome-design-system/issues
+- Docs: https://github.com/detome/detome-design-system#readme
 
 ## License
 

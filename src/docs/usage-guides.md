@@ -809,6 +809,6 @@ Use proper state management:
 
 ## Getting Help
 
-- **Documentation**: https://github.com/requify/requify-design-system
-- **Issues**: https://github.com/requify/requify-design-system/issues
+- **Documentation**: https://github.com/detome/detome-design-system
+- **Issues**: https://github.com/detome/detome-design-system/issues
 - **Context7**: Add documentation for AI assistance

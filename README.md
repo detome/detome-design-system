@@ -4,7 +4,7 @@ A professional, customizable design system built with Svelte 5, Tailwind CSS, an
 
 ## Features
 
-- **60+ UI Components**: Buttons, forms, navigation, feedback elements, and more
+- **80+ UI Components**: Buttons, forms, navigation, feedback elements, brand assets, and more
 - **Type-Safe**: Built with TypeScript and enums for variant and size options
 - **Customizable**: CSS variables for easy color theming
 - **Dark Mode**: Full dark mode support out of the box
@@ -124,7 +124,7 @@ The design system uses CSS variables for colors, making it easy to customize the
 
 - Select, Checkbox, Switch, Radio
 - Datepicker, DateRangePicker
-- Search
+- Search, SegmentedControl
 
 ### Navigation
 
@@ -132,7 +132,7 @@ The design system uses CSS variables for colors, making it easy to customize the
 
 ### Feedback
 
-- Alert, Toast, Modal, Drawer, Tooltip, Popover
+- Alert, Toast, ToastProvider, Modal, Drawer, Tooltip, Popover
 
 ### Data Display
 
@@ -141,6 +141,19 @@ The design system uses CSS variables for colors, making it easy to customize the
 ### Typography
 
 - Heading, P, A, Blockquote
+
+### Brand
+
+- DetomeLogo, DetomeLogoLight, DetomeLogoDark
+- DetomeIcon, DetomeIconLight, DetomeIconDark
+
+### Domain Primitives
+
+- Identifier, SuspectIndicator, TraceBadge, ApprovalStamp, EmptyState
+
+### Accessibility
+
+- SkipLink
 
 ## Development
 
